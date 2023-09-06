@@ -1,0 +1,79 @@
+@font-face {
+	font-weight: 400;
+	font-family: Playfair;
+	font-style: normal;
+	src:
+		url(assets/fonts/PlayfairDisplay-Regular.woff2) format("woff2"),
+		url(assets/fonts/PlayfairDisplay-Regular.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 400;
+	font-family: Playfair;
+	font-style: italic;
+	src:
+		url(assets/fonts/PlayfairDisplay-Italic.woff2) format("woff2"),
+		url(assets/fonts/PlayfairDisplay-Italic.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 700;
+	font-family: Playfair;
+	font-style: normal;
+	src:
+		url(assets/fonts/PlayfairDisplay-Bold.woff2) format("woff2"),
+		url(assets/fonts/PlayfairDisplay-Bold.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 300;
+	font-family: Unbounded;
+	font-style: normal;
+	src:
+		url(assets/fonts/Unbounded-Light.woff2) format("woff2"),
+		url(assets/fonts/Unbounded-Light.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 400;
+	font-family: Unbounded;
+	font-style: normal;
+	src:
+		url(assets/fonts/Unbounded-Regular.woff2) format("woff2"),
+		url(assets/fonts/Unbounded-Regular.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 500;
+	font-family: Unbounded;
+	font-style: normal;
+	src:
+		url(assets/fonts/Unbounded-Medium.woff2) format("woff2"),
+		url(assets/fonts/Unbounded-Medium.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 700;
+	font-family: Unbounded;
+	font-style: normal;
+	src:
+		url(assets/fonts/Unbounded-Bold.woff2) format("woff2"),
+		url(assets/fonts/Unbounded-Bold.woff) format("woff");
+	font-display: swap;
+}
+
+@font-face {
+	font-weight: 900;
+	font-family: Unbounded;
+	font-style: normal;
+	src:
+		url(assets/fonts/Unbounded-Black.woff2) format("woff2"),
+		url(assets/fonts/Unbounded-Black.woff) format("woff");
+	font-display: swap;
+}

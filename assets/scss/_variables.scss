@@ -1,0 +1,26 @@
+:root {
+	// FONTS
+	--font-primary: "Unbounded", "Arial", sans-serif;
+	--font-secondary: "Playfair", "Times New Roman", serif;
+
+	//COLORS
+	--primary: #fdd8af;
+	--emphasis: #f14d4d;
+	--fc-light: #ededeb;
+	--fc-grey: #828282;
+	--fc-dark: #202020;
+	--bg-light: #ebeaef;
+	--bg-primary: #111014;
+	--bg-secondary: #0f1518;
+
+	//Transition
+	--transition: all 0.3s ease;
+}
+
+//Z-index
+$ui-index-1: 1; // Для наползающих элементов в общем потоке
+$ui-index-2: 2; // Для наползающих элементов в общем потоке
+$ui-index-3: 3; // Для масок
+$ui-index-4: 4; // Для сайдбаров
+$ui-index-5: 5; // Для модалок
+$ui-index-6: 6; // Для эдементов, перекрывающих все

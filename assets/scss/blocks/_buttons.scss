@@ -1,0 +1,66 @@
+.btn {
+	position: relative;
+	min-width: 270px;
+	min-height: 74px;
+	padding: 25px 60px 25px 40px;
+	color: #fff;
+	font-size: 18px;
+	font-family: var(--font-secondary);
+	line-height: 1.2;
+	background: transparent;
+	border: 1px solid var(--fc-light);
+	transition: var(--transition);
+
+	@media (hover: hover) {
+
+		&:hover {
+			border-color: var(--primary);
+
+			.btn__dial {
+				color: var(--primary);
+			}
+		}
+
+		&:active {
+			opacity: 0.8;
+		}
+	}
+
+	&--dark {
+		color: var(--fc-dark);
+		border-color: var(--fc-dark);
+
+		@media (hover: hover) {
+
+			&:hover {
+				border-color: var(--emphasis);
+
+				.btn__dial {
+					color: var(--bg-primary);
+				}
+			}
+		}
+
+		.btn__dial {
+			background-color: var(--bg-light);
+		}
+	}
+
+	&__dial {
+		position: absolute;
+		top: 50%;
+		right: -40px;
+		width: fit-content;
+		height: 110%;
+		color: var(--fc-grey);
+		background-color: var(--bg-primary);
+		border-radius: 50%;
+		transform: translateY(-50%);
+
+		svg {
+			width: auto;
+			height: 100%;
+			transition: var(--transition);
+		}
+	}
+}

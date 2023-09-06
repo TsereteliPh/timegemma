@@ -1,0 +1,255 @@
+.header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: fit-content;
+	background: url(assets/images/header-bg.jpg) no-repeat 50% / cover;
+
+	@include xs {
+		background: var(--fc-dark);
+	}
+
+	&__wrapper {
+		display: flex;
+		gap: 15px;
+		align-items: center;
+		padding: 30px 0;
+
+		@include hg {
+			padding: 20px 0;
+		}
+
+		@include sm {
+			padding: 30px 0;
+		}
+
+		@include xs {
+			gap: 20px;
+		}
+	}
+
+	&__burger {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 75px;
+		height: 75px;
+		padding: 0;
+		overflow: hidden;
+		background: url(assets/images/icon-dial.svg) no-repeat 50% / 100% auto;
+		border: none;
+
+		@include xs {
+			display: block;
+			width: fit-content;
+			height: 40px;
+			background: none;
+		}
+
+		&:hover {
+
+			span {
+
+				&::before,
+				&::after {
+					width: 100%;
+				}
+			}
+		}
+
+		&.active {
+
+			span {
+				background: transparent;
+				transition-delay: 0.25s;
+				transition-duration: 0.1s;
+
+				&::before,
+				&::after {
+					top: 0;
+					width: 100%;
+					transform: rotateZ(-45deg);
+					transition: top 0.4s, transform 0.25s 0.25s;
+				}
+
+				&::before {
+					transform: rotateZ(45deg);
+				}
+			}
+		}
+
+		span {
+			position: relative;
+			display: block;
+			width: 30px;
+			height: 2px;
+			background-color: var(--primary);
+			border-radius: 2px;
+			transition-delay: 0.25s;
+			transition-duration: 0.25s;
+			pointer-events: none;
+
+			&::before,
+			&::after {
+				position: absolute;
+				left: 0;
+				width: 60%;
+				height: 2px;
+				background-color: var(--primary);
+				border-radius: 2px;
+				content: "";
+			}
+
+			&::before {
+				top: -6px;
+				transition: width 0.25s, transform 0.25s, top 0.25s 0.25s;
+				transition-duration: 0.25s;
+			}
+
+			&::after {
+				top: 6px;
+				transition: width 0.25s, transform 0.25s, top 0.25s .25s;
+				transition-duration: 0.25s;
+			}
+		}
+	}
+
+	&__link {
+		display: block;
+		width: 135px;
+		height: auto;
+		margin-left: 50px;
+		aspect-ratio: 135 / 73;
+		background: url(assets/images/logo-main.svg) no-repeat 50% / 100% auto;
+		cursor: pointer;
+
+		@include hg {
+			margin-left: 0;
+		}
+
+		@include xs {
+			width: 75px;
+		}
+	}
+
+	&__menu {
+		display: flex;
+		gap: 60px;
+		align-items: center;
+		margin-left: auto;
+
+		@include hg {
+			gap: 30px;
+		}
+
+		@include lg {
+			display: none;
+		}
+
+		.menu-item {
+			color: var(--fc-grey);
+			transition: var(--transition);
+
+			@media (hover: hover) {
+
+				&:hover {
+					color: var(--primary);
+				}
+
+				&:active {
+					opacity: 0.8;
+				}
+			}
+
+			a {
+				font-size: 16px;
+				text-decoration: none;
+			}
+		}
+	}
+
+	&__panel {
+		display: flex;
+		gap: 55px;
+		align-items: flex-end;
+		margin-left: 80px;
+
+		@include hg {
+			gap: 30px;
+		}
+
+		@include lg {
+			gap: 50px;
+			margin-left: auto;
+		}
+
+		@include xs {
+			gap: 30px;
+		}
+	}
+
+	&__search-btn,
+	&__favorites,
+	&__cart-link,
+	&__profile {
+		display: block;
+		cursor: pointer;
+		transition: var(--transition);
+
+		@media (hover: hover) {
+
+			&:hover {
+				transform: translateY(-4px);
+			}
+
+			&:active {
+				opacity: 0.9;
+			}
+		}
+
+		svg {
+			@include lg {
+				width: 25px;
+				height: auto;
+			}
+
+			@include xs {
+				width: 16px;
+			}
+		}
+	}
+
+	&__search-btn,
+	&__profile {
+		padding: 0;
+		background: none;
+		border: none;
+	}
+
+	&__cart-link {
+		position: relative;
+	}
+
+	&__cart-counter {
+		position: absolute;
+		top: -16px;
+		right: -22px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 1;
+		background-color: var(--primary);
+		border-radius: 50%;
+
+		@include xs {
+			width: 25px;
+			height: 25px;
+			font-size: 10px;
+		}
+	}
+}

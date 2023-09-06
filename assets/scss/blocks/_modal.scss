@@ -1,0 +1,58 @@
+.modal {
+	display: none;
+
+	&--search {
+		width: 70%;
+		padding: 40px;
+
+		@include lg {
+			width: 90%;
+		}
+
+		@include sm {
+			padding: 40px 20px;
+		}
+
+		@include xs {
+			padding: 20px 15px;
+		}
+	}
+
+	&__search-form {
+		position: relative;
+	}
+
+	&__search-input {
+		padding-right: 90px;
+		border-color: var(--fc-dark);
+	}
+
+	&__search-btn {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 70px;
+		height: 100%;
+		background-color: var(--fc-dark);
+		border: none;
+
+		@media (hover: hover) {
+
+			&:hover {
+
+				svg {
+					transform: scale(1.1);
+				}
+			}
+		}
+
+		svg {
+			width: 30px;
+			height: auto;
+			transition: var(--transition);
+		}
+	}
+}
