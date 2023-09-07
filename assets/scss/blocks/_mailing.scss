@@ -1,0 +1,233 @@
+.mailing {
+
+	&__content {
+		position: relative;
+		padding: 135px 0 260px;
+		background: url(assets/images/mailing-bg.jpg) no-repeat 50% / cover;
+
+		@include md {
+			padding: 100px 0 150px;
+		}
+
+		@include xs {
+			padding: 60px 0;
+		}
+
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 40%;
+			background: linear-gradient(to top, #000 0%, rgba(#000, 0) 100%) no-repeat;
+			content: "";
+		}
+	}
+
+	&__wrapper {
+		max-width: 710px;
+		margin-left: auto;
+
+		@include hg {
+			max-width: 600px;
+		}
+
+		@include md {
+			margin: 0 auto;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		color: var(--fc-light);
+		font-weight: 400;
+		font-size: 48px;
+		font-family: var(--font-secondary);
+		line-height: 1.3;
+		letter-spacing: 2.5;
+		text-align: center;
+
+		@include hg {
+			font-size: 36px;
+		}
+
+		@include md {
+			text-shadow: 3px 3px 3px var(--fc-dark);
+		}
+
+		@include xs {
+			font-size: 24px;
+		}
+
+		span {
+			color: var(--primary);
+		}
+	}
+
+	&__message {
+		margin-top: 30px;
+		color: var(--fc-light);
+		font-weight: 300;
+		font-size: 20px;
+		text-align: center;
+
+		@include hg {
+			font-size: 16px;
+		}
+
+		@include md {
+			text-shadow: 3px 3px 3px var(--fc-dark);
+		}
+
+		span {
+			font-weight: 700;
+		}
+	}
+
+	&__form {
+		display: grid;
+		grid-template-columns: 1fr 270px;
+		gap: 50px 20px;
+		margin-top: 50px;
+
+		@include xs {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+	}
+
+	&__policy {
+		grid-column: 1/3;
+		max-width: 470px;
+		margin: 0 auto;
+		text-align: center;
+
+		@include hg {
+			font-size: 12px;
+		}
+
+		@include md {
+			text-shadow: 3px 3px 3px var(--fc-dark);
+		}
+	}
+
+	&__social {
+		background: url(assets/images/mailing-social-bg.jpg) no-repeat 50% 100px / auto;
+
+		@include hg {
+			background-position: 50% 70px;
+		}
+
+		@include sm {
+			background-size: 200% auto;
+		}
+
+		@include xs {
+			background: none;
+		}
+	}
+
+	&__social-wrapper {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		justify-content: center;
+		max-width: 735px;
+		min-height: 475px;
+		margin: -100px auto 0;
+		background-color: var(--bg-secondary);
+		border: 1px solid var(--primary);
+
+		@include hg {
+			max-width: 650px;
+			min-height: 400px;
+			margin-top: -70px;
+		}
+
+		@include sm {
+			max-width: 540px;
+		}
+
+		@include xs {
+			max-width: none;
+			margin: 0;
+		}
+	}
+
+	&__social-text {
+		color: var(--primary);
+		font-size: 40px;
+		font-family: var(--font-secondary);
+		text-align: center;
+
+		@include hg {
+			font-size: 28px;
+		}
+
+		span {
+			display: block;
+			color: var(--fc-light);
+			font-weight: 300;
+			font-size: 64px;
+			font-family: var(--font-primary);
+			line-height: 1.3;
+
+			@include hg {
+				font-size: 40px;
+			}
+		}
+	}
+
+	&__link {
+		max-width: fit-content;
+		margin: 55px auto 0;
+		text-decoration: none;
+
+		.btn__dial {
+			background: var(--bg-secondary);
+		}
+	}
+}
+
+
+// .test-body {
+// 	display: flex;
+// 	align-items: center;
+// 	justify-content: center;
+// 	width: 100%;
+// 	height: 400px;
+// }
+
+// .progress-dial {
+// 	position: relative;
+// 	width: 60px;
+// 	height: 60px;
+
+// 	&__grey {
+// 		width: 100%;
+// 		height: 100%;
+// 		color: var(--fc-grey);
+// 		mask: conic-gradient(transparent 0, transparent 140deg, red 140deg);
+// 	}
+
+// 	&__fractions {
+// 		position: absolute;
+// 		top: 50%;
+// 		left: 50%;
+// 		width: 100%;
+// 		height: 100%;
+// 		color: var(--emphasis);
+// 		transform: translate(-50%, -50%);
+// 		mask: conic-gradient(#000 140deg, transparent 0);
+// 	}
+
+// 	.test-svg {
+// 		border: none;
+
+// 		path {
+// 			color: red;
+// 		}
+// 	}
+// }
