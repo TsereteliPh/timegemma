@@ -300,3 +300,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
 		}
 	}
 })
+
+
+const dial = document.querySelector('.js-test');
+console.log(dial);

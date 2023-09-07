@@ -3,14 +3,15 @@
 	text-decoration: none;
 	transition: all 0.2s ease;
 
-	&:hover {
-		@media (hover: hover) {
+	@media (hover: hover) {
+
+		&:hover {
 			text-decoration: underline;
 		}
-	}
 
-	&:active {
-		opacity: 0.8;
+		&:active {
+			opacity: 0.8;
+		}
 	}
 }
 

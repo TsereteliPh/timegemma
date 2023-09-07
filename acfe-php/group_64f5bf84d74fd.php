@@ -58,12 +58,47 @@ acf_add_local_field_group(array(
 				'acfe_flexible_grid_wrap' => false,
 			),
 			'layouts' => array(
-				'layout_64f5bf9fcf507' => array(
-					'key' => 'layout_64f5bf9fcf507',
-					'name' => '',
-					'label' => '',
+				'layout_64f85bdcc6cb3' => array(
+					'key' => 'layout_64f85bdcc6cb3',
+					'name' => 'mailing',
+					'label' => 'Подписка на рассылку + ссылка на соцсеть',
 					'display' => 'block',
 					'sub_fields' => array(
+						array(
+							'key' => 'field_64f85bf1c6cb5',
+							'label' => '',
+							'name' => '',
+							'aria-label' => '',
+							'type' => 'clone',
+							'instructions' => '',
+							'required' => 0,
+							'conditional_logic' => 0,
+							'wrapper' => array(
+								'width' => '',
+								'class' => '',
+								'id' => '',
+							),
+							'hide_field' => '',
+							'hide_label' => '',
+							'hide_instructions' => '',
+							'hide_required' => '',
+							'clone' => array(
+								0 => 'group_64f857d527712',
+							),
+							'display' => 'seamless',
+							'layout' => 'block',
+							'prefix_label' => 0,
+							'prefix_name' => 0,
+							'acfe_settings' => '',
+							'instruction_placement' => '',
+							'acfe_permissions' => '',
+							'acfe_field_group_condition' => 0,
+							'acfe_seamless_style' => 0,
+							'acfe_clone_modal' => 0,
+							'acfe_clone_modal_close' => 0,
+							'acfe_clone_modal_button' => '',
+							'acfe_clone_modal_size' => 'large',
+						),
 					),
 					'min' => '',
 					'max' => '',
@@ -132,7 +167,7 @@ acf_add_local_field_group(array(
 	'acfe_permissions' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1693827503,
+	'modified' => 1693998085,
 ));
 
 endif;

@@ -57,14 +57,19 @@
 	}
 ?>
 
-<main class="<?php echo $mainClass; ?>" <?php echo 'style="background: #000;"'; ?>>
+<main class="<?php echo $mainClass; ?>" <?php //echo 'style="background: #000;"'; ?>>
 	<?php //!temporarily ?>
-		<button class="btn" type="button" style="margin: 400px 0 200px 500px;">
+		<!-- <button class="btn" type="button" style="margin: 400px 0 200px 500px;">
 			Alle Nachrichten
 			<div class="btn__dial">
-				<svg width="83" height="76"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-dial"></use></svg>
+				<svg width="83" height="76"><use xlink:href="<?php //echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-dial"></use></svg>
 			</div>
-		</button>
+		</button> -->
+		<!-- <button class="btn-arrow" style="margin: 400px 0 200px 500px;">
+			<svg width="70" height="8"><use xlink:href="<?php //echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-right"></use></svg>
+		</button> -->
+
+
 	<?php //! end temporarily ?>
 
 

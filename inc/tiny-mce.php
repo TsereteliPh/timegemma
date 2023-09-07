@@ -18,6 +18,13 @@ function change_toolbar($args)
 			'title' => 'Стиль текста',
 			'items' => [
 				[
+					'title' => 'Light',
+					'selector' => 'ul, ol, a, p, span',
+					'styles' => [
+						'font-weight' => '300',
+					],
+				],
+				[
 					'title' => 'Regular',
 					'selector' => 'ul, ol, a, p, span',
 					'styles' => [
@@ -32,10 +39,17 @@ function change_toolbar($args)
 					],
 				],
 				[
-					'title' => 'Extra Bold',
+					'title' => 'Bold',
 					'selector' => 'ul, ol, a, p, span',
 					'styles' => [
-						'font-weight' => '800',
+						'font-weight' => '700',
+					],
+				],
+				[
+					'title' => 'Black',
+					'selector' => 'ul, ol, a, p, span',
+					'styles' => [
+						'font-weight' => '900',
 					],
 				],
 			]
