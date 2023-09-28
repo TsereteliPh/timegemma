@@ -7,7 +7,7 @@
 	--primary: #fdd8af;
 	--emphasis: #f14d4d;
 	--fc-light: #ededeb;
-	--fc-grey: #828282;
+	--fc-grey: #c7c7c7;
 	--fc-dark: #202020;
 	--bg-light: #ebeaef;
 	--bg-primary: #111014;
@@ -15,6 +15,16 @@
 
 	//Transition
 	--transition: all 0.3s ease;
+
+	//Indents
+	--section-indent: 80px;
+
+	@media (max-width: 991px) {
+		--section-indent: 40px;
+	}
+
+	//Custom progressbar angle
+	--progressbar-angle: 30deg;
 }
 
 //Z-index

@@ -2,12 +2,29 @@
 	position: absolute;
 	top: 0;
 	left: 0;
+	z-index: $ui-index-3;
 	width: 100%;
 	height: fit-content;
 	background: url(assets/images/header-bg.jpg) no-repeat 50% / cover;
 
 	@include xs {
 		background: var(--fc-dark);
+	}
+
+	&--index {
+		background: none;
+
+		@include xs {
+			background: none;
+		}
+
+		.header__wrapper {
+			padding-right: 10%;
+
+			@include hg {
+				padding-right: 0;
+			}
+		}
 	}
 
 	&__wrapper {
@@ -37,7 +54,7 @@
 		height: 75px;
 		padding: 0;
 		overflow: hidden;
-		background: url(assets/images/icon-dial.svg) no-repeat 50% / 100% auto;
+		background: url(assets/images/icon-dial-thin.svg) no-repeat 50% / 100% auto;
 		border: none;
 
 		@include xs {

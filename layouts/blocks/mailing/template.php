@@ -26,13 +26,6 @@
 				</form>
 			</div>
 		</div>
-
-		<div class="test-body">
-			<div class="progress-dial">
-				<svg class="progress-dial__grey" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
-				<svg class="progress-dial__fractions" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
-			</div>
-		</div>
 	</div>
 
 	<div class="mailing__social">

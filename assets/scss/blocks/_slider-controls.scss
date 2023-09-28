@@ -1,0 +1,66 @@
+.slider-controls {
+	display: flex;
+	gap: 25px;
+	align-items: center;
+	justify-content: center;
+
+	&__prev,
+	&__next {
+		cursor: pointer;
+
+		&:hover {
+
+			svg {
+				color: var(--emphasis);
+			}
+		}
+
+		&.swiper-button-disabled {
+			cursor: default;
+			opacity: 0.5;
+
+			&:hover {
+
+				svg {
+					color: var(--fc-grey);
+				}
+			}
+		}
+	}
+
+	&__progressbar {
+		position: relative;
+		width: 60px;
+		height: 60px;
+	}
+
+	&__dial {
+		width: 100%;
+		height: 100%;
+		color: var(--fc-grey);
+		mask: conic-gradient(transparent 0, transparent var(--progressbar-angle), #000 var(--progressbar-angle));
+	}
+
+	&__fraction {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 100%;
+		height: 100%;
+		color: var(--emphasis);
+		transform: translate(-50%, -50%);
+		transition: var(--transition);
+		mask: conic-gradient(#000 var(--progressbar-angle), transparent 0);
+	}
+
+	&__counter {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		color: var(--fc-light);
+		font-variant-numeric: lining-nums proportional-nums;
+		font-weight: 700;
+		font-size: 14px;
+		transform: translate(-50%, -50%);
+	}
+}

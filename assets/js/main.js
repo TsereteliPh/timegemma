@@ -254,36 +254,51 @@ try {
 
 //Swiper
 
+//Custom progressbar
+
+const customProgressbar = function(slider, elem) {
+	let progressbar = slider.el.querySelector(elem);
+	let progressbarCounter = progressbar.querySelector('.slider-controls__counter');
+	let activeSlide = slider.activeIndex + 1;
+	let amount = slider.slides.length;
+	let angle = (360 / amount) * activeSlide;
+
+	let counter;
+	if (activeSlide < 10) {
+		counter = '0' + activeSlide;
+	} else {
+		counter = activeSlide;
+	}
+
+	progressbarCounter.textContent = counter;
+	progressbar.style.setProperty('--progressbar-angle', angle + 'deg');
+}
+
 //Слайдер blocks/rest
 
-const restCarousel = document.querySelector(".rest__wrapper");
+const welcomeSlider = document.querySelector('.welcome__slider');
 
-if (restCarousel) {
-	let papersSwiper = new Swiper(restCarousel, {
+if (welcomeSlider) {
+	let welcomeSwiper = new Swiper(welcomeSlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 0,
+		speed: 1400,
+		allowTouchMove: false,
+		autoplay: {
+			delay: 4000,
+		},
 		navigation: {
-			nextEl: ".rest__next",
-			prevEl: ".rest__prev",
+			nextEl: '.slider-controls__next',
+			prevEl: '.slider-controls__prev',
 		},
-		breakpoints: {
-			1440: {
-				slidesPerView: 4,
-				centeredSlides: false,
+		on: {
+			afterInit: function() {
+				customProgressbar(this, '.slider-controls__progressbar')
 			},
-			992: {
-				slidesPerView: 3,
-				centeredSlides: false,
-			},
-			769: {
-				slidesPerView: 2,
-				centeredSlides: false,
-			},
-			577: {
-				centeredSlides: false,
-			},
-		},
-		slidesPerView: "auto",
-		centeredSlides: true,
-		spaceBetween: 25,
+			slideChange: function() {
+				customProgressbar(this, '.slider-controls__progressbar')
+			}
+		}
 	});
 }
 
@@ -300,7 +315,3 @@ document.addEventListener("DOMContentLoaded", function(e) {
 		}
 	}
 })
-
-
-const dial = document.querySelector('.js-test');
-console.log(dial);
