@@ -226,6 +226,8 @@
 		}
 
 		svg {
+			color: var(--fc-light);
+
 			@include lg {
 				width: 25px;
 				height: auto;

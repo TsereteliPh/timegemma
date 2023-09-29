@@ -35,7 +35,7 @@ if (!function_exists('adem_setup')) {
 	}
 
 	//	register thumbnails
-//	add_image_size('123x123', 123, 123, true);
+	add_image_size('180x300', 180, 300, true);
 
 	//	register post types
 //	register_post_type('review', [
