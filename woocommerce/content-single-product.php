@@ -22,7 +22,7 @@ global $product;
 /**
  * Hook: woocommerce_before_single_product.
  *
- * @hooked woocommerce_output_all_notices - 10
+ * //@hooked woocommerce_output_all_notices - 10
  */
 do_action( 'woocommerce_before_single_product' );
 
@@ -37,7 +37,7 @@ if ( post_password_required() ) {
 			<div class="product__desc">
 				<?php
 				// echo '<pre>';
-				// print_r( $product );
+				// print_r( $product->attributes );
 				// echo '</pre>';
 				?>
 
@@ -82,24 +82,103 @@ if ( post_password_required() ) {
 				 * @hooked woocommerce_template_single_price - 10
 				 * //@hooked woocommerce_template_single_excerpt - 20
 				 * @hooked woocommerce_template_single_add_to_cart - 30
-				 * @hooked woocommerce_template_single_meta - 40
+				 * //@hooked woocommerce_template_single_meta - 40
 				 * @hooked woocommerce_template_single_sharing - 50
 				 * @hooked WC_Structured_Data::generate_product_data() - 60
 				 */
 				do_action( 'woocommerce_single_product_summary' );
 				?>
+
+				<div class="product__tax">inkl. 19% USt. , zzgl. Versand</div>
+
+				<?php
+					$retail_price = get_field( 'retail_price' );
+					$benefit = $product->get_price() - $retail_price;
+					$benefit_percent = round(($benefit / $product->get_price() * 100), 2);
+					if ( $retail_price ) : ?>
+						<div class="product__retail-price">
+							Unverbindliche Preisempfehlung des<br>
+							Herstellers: <?php echo number_format( $retail_price, 0, ',', '.' ); ?> €
+						</div>
+
+						<div class="product__benefit">(Sie sparen <?php echo number_format( $benefit_percent, 2, ',', '.' ); ?>%, also <?php echo number_format( $benefit, 0, ',', '.' ); ?> €)</div>
+				<?php endif; ?>
 			</div>
+		</div>
+
+		<ul class="reset-list product__list">
+			<?php
+				$attributes = $product->get_attributes();
+				if ( $attributes ) :
+			?>
+				<li class="product__item product__item--desc">
+					<button class="product__item-button">
+						Beschreibung
+
+						<div class="product__item-cross">
+							<svg width="75" height="75"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
+						</div>
+					</button>
+
+					<ul class="reset-list product__item-attributes">
+						<?php
+							foreach ( $attributes as $attribute ) :
+								if ( $attribute->is_taxonomy() ) :
+									$attribute_taxonomy = $attribute->get_taxonomy_object();
+									$attribute_values = wc_get_product_terms( $product->get_id(), $attribute->get_name(), array( 'fields' => 'all' ) );
+						?>
+							<li class="product__item-attribute">
+								<?php echo $attribute_taxonomy->attribute_label; ?>
+
+								<span>
+									<?php
+										foreach ( $attribute_values as $key => $value ) {
+											if ( count( $attribute_values ) != $key + 1 ) {
+												echo $value->name . ', ';
+											} else {
+												echo $value->name;
+											}
+										}
+									?>
+								</span>
+							</li>
+						<?php
+							else :
+							$values = $attribute->get_options();
+						?>
+							<li class="product__item-attribute">
+								<?php echo $attribute['name']; ?>
+
+								<span>
+									<?php
+										foreach ( $attribute['options'] as $key => $value ) {
+											if ( count( $attribute['options'] ) != $key + 1 ) {
+												echo $value . ', ';
+											} else {
+												echo $value;
+											}
+										}
+									?>
+								</span>
+							</li>
+						<?php
+								endif;
+							endforeach;
+						?>
+					</ul>
+				</li>
+			<?php endif; ?>
 		</div>
 
 		<?php
 		/**
 		 * Hook: woocommerce_after_single_product_summary.
 		 *
-		 * @hooked woocommerce_output_product_data_tabs - 10
-		 * @hooked woocommerce_upsell_display - 15
-		 * @hooked woocommerce_output_related_products - 20
+		 * //@hooked woocommerce_output_product_data_tabs - 10
+		 * //@hooked woocommerce_upsell_display - 15
+		 * //@hooked woocommerce_output_related_products - 20
 		 */
-		//do_action( 'woocommerce_after_single_product_summary' );
+		do_action( 'woocommerce_after_single_product_summary' );
 		?>
 	</div>
 </section>
