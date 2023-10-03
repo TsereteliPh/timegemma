@@ -63,6 +63,19 @@
 		}
 	}
 
+	&--black {
+		color: var(--bg-light);
+		background-color: var(--fc-dark);
+		border-color: transparent;
+
+		@media (hover: hover) {
+
+			&:hover {
+				border-color: transparent;
+			}
+		}
+	}
+
 	&__dial {
 		position: absolute;
 		top: 50%;

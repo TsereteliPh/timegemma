@@ -45,3 +45,16 @@ function get_product_quantity_in_cart( $product_id ) {
 	return $quantity;
 
 }
+
+//add to cart fragment
+
+add_filter('woocommerce_add_to_cart_fragments', 'adem_header_add_to_cart_fragments');
+
+function adem_header_add_to_cart_fragments( $fragments ) {
+	$cart_count = WC()->cart->get_cart_contents_count();
+	$countHTML = '<span id="header-cart-counter" class="header__cart-counter">' . $cart_count . '</span>';
+
+	$fragments['#header-cart-counter'] = $countHTML;
+
+	return $fragments;
+}

@@ -36,12 +36,6 @@ if ( post_password_required() ) {
 		<div class="product__info">
 			<div class="product__desc">
 				<?php
-				// echo '<pre>';
-				// print_r( $product->attributes );
-				// echo '</pre>';
-				?>
-
-				<?php
 					$terms = get_the_terms( $product->get_id(), 'product_cat' );
 					if ( $terms ) :
 				?>
@@ -59,7 +53,7 @@ if ( post_password_required() ) {
 
 				<h1 class="product__title"><?php echo $product->name; ?></h1>
 
-				<div class="product__desc-text"><?php the_field( 'description' ); ?></div>
+				<div class="product__desc-text"><?php the_field( 'product_description' ); ?></div>
 
 				<?php
 				/**
@@ -92,7 +86,7 @@ if ( post_password_required() ) {
 				<div class="product__tax">inkl. 19% USt. , zzgl. Versand</div>
 
 				<?php
-					$retail_price = get_field( 'retail_price' );
+					$retail_price = get_field( 'product_retail_price' );
 					$benefit = $product->get_price() - $retail_price;
 					$benefit_percent = round(($benefit / $product->get_price() * 100), 2);
 					if ( $retail_price ) : ?>
@@ -130,13 +124,20 @@ if ( post_password_required() ) {
 							<li class="product__item-attribute">
 								<?php echo $attribute_taxonomy->attribute_label; ?>
 
+								<?php
+									//TODO: Add links for the attributes
+									// echo '<pre>';
+									// print_r( $attribute );
+									// echo '</pre>';
+								?>
+
 								<span>
 									<?php
 										foreach ( $attribute_values as $key => $value ) {
 											if ( count( $attribute_values ) != $key + 1 ) {
-												echo $value->name . ', ';
+												echo '<a href="' . esc_url( get_term_link( $value->term_id, $attribute->name ) ) . '">' . $value->name . ',</a> ';
 											} else {
-												echo $value->name;
+												echo '<a href="' . esc_url( get_term_link( $value->term_id ) ) . '">' . $value->name . '</a>';
 											}
 										}
 									?>
@@ -166,6 +167,44 @@ if ( post_password_required() ) {
 							endforeach;
 						?>
 					</ul>
+				</li>
+			<?php endif; ?>
+
+			<?php
+				$videos = get_field( 'product_videos' );
+				if ( $videos ) :
+			?>
+				<li class="product__item product__item--desc">
+					<button class="product__item-button">
+						Video
+
+						<div class="product__item-cross">
+							<svg width="75" height="75"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
+						</div>
+					</button>
+
+					<div class="product__item-videos">
+						<?php
+							foreach ( $videos as $video ) :
+								$preview = $video['preview'];
+								$videoLink = $video[$video['type']];
+						?>
+
+							<a href="<?php echo $videoLink; ?>" class="product__video" data-fancybox="product-video">
+								<?php
+									if ( $preview ) {
+										echo wp_get_attachment_image( $preview, 'medium', false );
+									} else {
+										echo wp_get_attachment_image( 86, 'medium', false );
+									}
+								?>
+
+								<button class="btn-play product__play-btn">
+									<svg width="50" height="50"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-btn-play"></use></svg>
+								</button>
+							</a>
+						<?php endforeach; ?>
+					</div>
 				</li>
 			<?php endif; ?>
 		</div>

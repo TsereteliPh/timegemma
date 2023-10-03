@@ -39,7 +39,9 @@
 				<a href="<?php echo wc_get_cart_url(); ?>" class="header__cart-link" aria-label="Warenkorb öffnen">
 					<svg width="18" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-cart"></use></svg>
 
-					<span class="header__cart-counter">2</span><?php //todo: implement counter ?>
+					<?php $contents_count = WC()->cart->cart_contents_count; ?>
+
+					<span id="header-cart-counter" class="header__cart-counter<?php echo ( $contents_count > 0 ) ? ' active' : ''; ?>"><?php echo WC()->cart->cart_contents_count; ?></span>
 				</a>
 
 				<button class="header__profile <?php //todo: add profile btn ?>" aria-label="Profil öffnen">

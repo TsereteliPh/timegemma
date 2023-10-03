@@ -107,4 +107,5 @@ require 'inc/mail.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';
+require 'inc/wc-add-to-cart.php';
 require 'inc/woocommerce.php';
