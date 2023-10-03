@@ -187,6 +187,22 @@ function tabs() {
 	}
 }
 
+function calcBreadcrumbsPadding() {
+	const main = document.querySelector('.main');
+	const breadcrumbs = document.querySelector('.breadcrumb');
+	let section = document.querySelector('.js-bc-padding');
+
+	let indent;
+	window.innerWidth >= 768 ? indent = 124 : indent = 40; //TODO: adaptive indent
+
+	if (!breadcrumbs) return;
+
+	if (!section) section = main.firstElementChild;
+
+	section.style.marginTop = 0;
+	section.style.paddingTop = breadcrumbs.clientHeight + indent + 'px';
+}
+
 function changeInputQuantity(form, dispatch = false) {
 	if (!form) return;
 
@@ -314,6 +330,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	showMorePosts();
 
+	calcBreadcrumbsPadding();
+
 	changeInputQuantity('.product__cart');
 
 	wcAddToCart();
@@ -397,21 +415,3 @@ document.addEventListener("DOMContentLoaded", function(e) {
 		}
 	}
 })
-
-// функционал кнопок +/- woocommerce quantity-input.php
-
-// const quantity = document.querySelector('.quantity');
-
-// if (quantity) {
-// 	const quantityBtns = quantity.querySelectorAll('.quantity__btn');
-// 	const input = quantity.querySelector('.quantity__input');
-
-// 	quantityBtns.forEach(btn => {
-// 		btn.onclick = function () {
-// 			let step = 1;
-// 			if (btn.dataset.type == 'remove') step = -1;
-
-//             input.value = parseInt(input.value) + step;
-//         }
-// 	});
-// }

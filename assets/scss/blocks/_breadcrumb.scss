@@ -1,0 +1,33 @@
+.breadcrumb {
+	position: absolute;
+	top: 180px;
+	z-index: $ui-index-1;
+	width: 100%;
+
+	.container {
+
+		> span {
+			display: flex;
+			gap: 20px;
+			align-items: center;
+			font-weight: 300;
+
+			@include xs {
+				gap: 15px;
+			}
+
+			span {
+
+				a {
+					text-decoration: none;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	&_last {
+		color: var(--emphasis);
+		cursor: default;
+	}
+}
