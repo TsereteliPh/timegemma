@@ -193,7 +193,7 @@ function calcBreadcrumbsPadding() {
 	let section = document.querySelector('.js-bc-padding');
 
 	let indent;
-	window.innerWidth >= 768 ? indent = 124 : indent = 40; //TODO: adaptive indent
+	window.innerWidth > 1439 ? indent = 124 : indent = 60;
 
 	if (!breadcrumbs) return;
 

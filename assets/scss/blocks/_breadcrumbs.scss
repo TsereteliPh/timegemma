@@ -4,10 +4,23 @@
 	z-index: $ui-index-1;
 	width: 100%;
 
+	@include hg {
+		top: 150px;
+	}
+
+	@include sm {
+		top: 160px;
+	}
+
+	@include xs {
+		top: 130px;
+	}
+
 	.container {
 
 		> span {
 			display: flex;
+			flex-wrap: wrap;
 			gap: 20px;
 			align-items: center;
 			font-weight: 300;
