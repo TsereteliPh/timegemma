@@ -88,9 +88,10 @@ if ( post_password_required() ) {
 
 				<?php
 					$retail_price = get_field( 'product_retail_price' );
-					$benefit = $product->get_price() - $retail_price;
-					$benefit_percent = round(($benefit / $product->get_price() * 100), 2);
-					if ( $retail_price ) : ?>
+					if ( $retail_price ) :
+						$benefit = $product->get_price() - $retail_price;
+						$benefit_percent = round(($benefit / $product->get_price() * 100), 2);
+				?>
 						<div class="product__retail-price">
 							Unverbindliche Preisempfehlung des<br>
 							Herstellers: <?php echo number_format( $retail_price, 0, ',', '.' ); ?> €

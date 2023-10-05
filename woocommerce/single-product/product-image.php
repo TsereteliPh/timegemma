@@ -30,30 +30,56 @@
 <?php do_action( 'woocommerce_product_thumbnails' ); ?>
 <div class="product__gallery swiper">
 	<div class="product__gallery-wrapper swiper-wrapper">
-		<?php foreach ( $gallery as $img ) : ?>
+		<?php
+			if ( $gallery ) :
+				foreach ( $gallery as $img ) :
+		?>
 			<a href="<?php echo wp_get_attachment_image_url( $img, 'full', false ); ?>" class="product__gallery-link swiper-slide" data-fancybox="product-gallery">
 				<?php echo wp_get_attachment_image( $img, 'large', false, array(
 					'class' => 'product__gallery-image'
 				) ); ?>
 			</a>
-        <?php endforeach; ?>
+        <?php
+				endforeach;
+			else :
+				$thumb = get_the_post_thumbnail_url( $product->get_id(), 'full' );
+				if ( $thumb ) :
+		?>
+					<a href="<?php the_post_thumbnail_url( $product->get_id(), 'full' ); ?>" class="product__gallery-link swiper-slide" data-fancybox="product-gallery">
+						<?php the_post_thumbnail( 'large', array(
+							'class' => 'product__gallery-image'
+						) ); ?>
+					</a>
+
+				<?php else : ?>
+					<a class="product__gallery-link swiper-slide">
+						<?php echo wp_get_attachment_image( 86, 'large', false, array(
+							'class' => 'product__gallery-image'
+						) ); ?>
+					</a>
+		<?php
+				endif;
+			endif;
+		?>
 	</div>
 
-	<div class="swiper-pagination"></div>
+	<?php if ( $gallery ) : ?>
+		<div class="swiper-pagination"></div>
 
-	<div class="slider-controls product__gallery-controls">
-		<div class="btn-arrow slider-controls__prev">
-			<svg width="70" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-left"></use></svg>
-		</div>
+		<div class="slider-controls product__gallery-controls">
+			<div class="btn-arrow slider-controls__prev">
+				<svg width="70" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-left"></use></svg>
+			</div>
 
-		<div class="slider-controls__progressbar">
-			<svg class="slider-controls__dial" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
-			<svg class="slider-controls__fraction" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
-			<div class="slider-controls__counter"></div>
-		</div>
+			<div class="slider-controls__progressbar">
+				<svg class="slider-controls__dial" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
+				<svg class="slider-controls__fraction" width="60" height="60"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-dial"></use></svg>
+				<div class="slider-controls__counter"></div>
+			</div>
 
-		<div class="btn-arrow slider-controls__next">
-			<svg width="70" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-right"></use></svg>
+			<div class="btn-arrow slider-controls__next">
+				<svg width="70" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-right"></use></svg>
+			</div>
 		</div>
-	</div>
+	<?php endif; ?>
 </div>
