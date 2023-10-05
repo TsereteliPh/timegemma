@@ -305,6 +305,12 @@
 		min-width: auto;
 	}
 
+	&__cart-unavailable {
+		background: var(--fc-grey);
+		cursor: default;
+		pointer-events: none;
+	}
+
 	&__tax,
 	&__retail-price,
 	&__benefit {

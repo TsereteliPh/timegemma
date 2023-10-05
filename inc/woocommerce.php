@@ -46,6 +46,8 @@ function get_product_quantity_in_cart( $product_id ) {
 
 }
 
+// ---------------------------------------------------------------- Filters
+
 //add to cart fragment
 
 add_filter('woocommerce_add_to_cart_fragments', 'adem_header_add_to_cart_fragments');
@@ -57,4 +59,18 @@ function adem_header_add_to_cart_fragments( $fragments ) {
 	$fragments['#header-cart-counter'] = $countHTML;
 
 	return $fragments;
+}
+
+//edit out of stock
+
+add_filter( 'woocommerce_get_availability', 'adem_out_of_stock', 10, 2 );
+
+function adem_out_of_stock( $availability, $product ) {
+
+	if ( ! $product->is_in_stock() ) {
+		$availability['availability'] = __( 'Produkt nicht verfügbar' );
+		$availability['class'] = __( 'btn btn--dark product__cart-unavailable' );
+	}
+
+	return $availability;
 }

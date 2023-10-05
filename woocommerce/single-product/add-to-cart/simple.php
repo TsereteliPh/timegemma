@@ -65,8 +65,4 @@ echo wc_get_stock_html($product); // WPCS: XSS ok. ?>
 
 	<?php do_action('woocommerce_after_add_to_cart_form'); ?>
 
-<?php else : ?>
-
-	<div class="product__cart-unavailable">Produkt nicht verfügbar</div>
-
 <?php endif; ?>
