@@ -1,0 +1,589 @@
+.product {
+
+	&__info {
+		display: grid;
+		grid-template-columns: 1fr 1.5fr 420px;
+		gap: 0 90px;
+
+		@include to (1500px) {
+			grid-template-columns: 1fr 1fr 420px;
+			gap: 0 50px;
+		}
+
+		@include hg {
+			grid-template-columns: 1fr 420px;
+			gap: 10px 50px;
+		}
+
+		@include lg {
+			grid-template-columns: 1fr 350px;
+		}
+
+		@include md {
+			grid-template-columns: 2fr 1fr;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		@include xs {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	&__cat {
+		@include hg {
+			grid-column: span 2;
+		}
+	}
+
+	&__cat-link {
+		display: flex;
+		width: fit-content;
+		height: 30px;
+		transition: var(--transition);
+
+		@media (hover: hover) {
+
+			&:hover {
+				scale: 1.05;
+			}
+		}
+
+		img {
+			width: auto;
+			height: auto;
+			object-fit: cover;
+		}
+	}
+
+	&__title {
+		margin: 10px 0 0;
+		font-weight: 400;
+		font-size: 40px;
+		font-family: var(--font-secondary);
+		line-height: 1.35;
+
+		@include hg {
+			grid-column: span 2;
+			margin: 0;
+		}
+
+		@include md {
+			font-size: 34px;
+			line-height: 1.2;
+		}
+
+		@include sm {
+			font-size: 28px;
+		}
+
+		@include xs {
+			font-size: 24px;
+		}
+	}
+
+	&__desc-text {
+		margin-top: 40px;
+		line-height: 1.4;
+
+		@include hg {
+			grid-column: span 2;
+			margin-top: 10px;
+		}
+
+		@include sm {
+			grid-column: span 1;
+			margin-top: 20px;
+		}
+
+		@include xs {
+			order: 2;
+			padding-top: 25px;
+			border-top: 1px solid var(--fc-grey);
+		}
+
+		p {
+			margin-bottom: 30px;
+
+			@include hg {
+				margin-bottom: 20px;
+			}
+		}
+	}
+
+	&__gallery {
+		display: flex;
+		grid-row: 1/4;
+		grid-column: 2/3;
+		align-items: center;
+		align-self: center;
+		justify-content: center;
+		width: 100%;
+		min-width: 300px;
+		max-width: 625px;
+		aspect-ratio: 1/1;
+		background-color: #fff;
+		border-radius: 50%;
+		outline: 1px solid var(--fc-grey);
+		outline-offset: 10px;
+
+		@include hg {
+			grid-row: 4/6;
+			grid-column: 1/2;
+			margin: 10px;
+		}
+
+		@include sm {
+			grid-row: 3/4;
+			grid-column: span 2;
+			justify-self: center;
+			max-width: 500px;
+			margin: 20px 10px 10px;
+		}
+
+		.swiper-pagination {
+			bottom: 35px;
+			display: none;
+			--swiper-theme-color: var(--emphasis);
+
+			@include xs {
+				display: block;
+			}
+		}
+	}
+
+	&__gallery-wrapper {
+		max-height: 55%;
+	}
+
+	&__gallery-link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: auto;
+		height: 100%;
+		overflow: hidden;
+
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 15px;
+			background: radial-gradient(ellipse at 50% 50%, rgba(#000, 0.4) 0%, rgba(#000, 0) 60%, #fff 100%);
+			border-radius: 50%;
+			opacity: 0;
+			transition: var(--transition);
+			content: "";
+		}
+
+		&.swiper-slide-active {
+			align-items: flex-start;
+
+			&::before {
+				opacity: 1;
+			}
+
+			img {
+				scale: 1;
+				opacity: 1;
+			}
+		}
+
+		img {
+			width: auto;
+			height: 95%;
+			object-fit: cover;
+			scale: 0.5;
+			opacity: 0.3;
+			transition: var(--transition);
+		}
+	}
+
+	&__gallery-controls {
+		position: absolute;
+		bottom: 45px;
+		left: 50%;
+		transform: translateX(-50%);
+
+		@include to(1500px) {
+			bottom: 30px;
+		}
+
+		@include xs {
+			display: none;
+		}
+	}
+
+	&__panel {
+		position: relative;
+		grid-row: 1/4;
+		grid-column: 3/4;
+		align-self: center;
+
+		@include hg {
+			grid-row: 4/6;
+			grid-column: 2/3;
+		}
+
+		@include sm {
+			align-self: start;
+			margin-top: 20px;
+		}
+
+		@include xs {
+			width: 100%;
+		}
+	}
+
+	&__favorite {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
+	&__price {
+		font-size: 54px;
+		line-height: 1.3;
+
+		@include lg {
+			font-size: 38px;
+		}
+
+		@include md {
+			padding-top: 5px;
+			font-size: 30px;
+		}
+
+		@include sm {
+			padding-top: 10px;
+			font-size: 24px;
+		}
+
+		@include xs {
+			padding: 0;
+			font-size: 32px;
+		}
+	}
+
+	&__cart {
+		position: relative;
+		margin-top: 20px;
+
+		.quantity {
+			display: none;
+		}
+
+		&.in-cart {
+
+			.quantity {
+				display: flex;
+			}
+
+			.product__cart-btn {
+				display: none;
+			}
+		}
+
+		&.loader {
+
+			.quantity,
+			.product__cart-btn {
+				opacity: 0.2;
+			}
+		}
+	}
+
+	&__cart-btn {
+		display: flex;
+		gap: 10px;
+		justify-content: center;
+		width: 100%;
+		min-width: auto;
+	}
+
+	&__tax,
+	&__retail-price,
+	&__benefit {
+		margin-top: 25px;
+
+		@include md {
+			margin-top: 15px;
+		}
+	}
+
+	&__retail-price {
+		line-height: 1.6;
+	}
+
+	&__benefit {
+		font-weight: 300;
+	}
+
+	&__sku,
+	&__manufacturer {
+		display: flex;
+		gap: 20px;
+		justify-content: space-between;
+		width: 100%;
+		font-weight: 300;
+
+		span {
+			font-weight: 500;
+			text-align: right;
+		}
+	}
+
+	&__sku {
+		margin-top: 70px;
+
+		@include md {
+			margin-top: 40px;
+		}
+	}
+
+	&__manufacturer {
+		margin-top: 15px;
+
+		span {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+	}
+
+	&__list {
+		margin-top: 95px;
+		counter-reset: product-desc-number 0;
+
+		@include lg {
+			margin-top: 50px;
+		}
+
+		@include sm {
+			margin-top: 30px;
+		}
+	}
+
+	&__item {
+		position: relative;
+		padding: 20px 0 20px 80px;
+		border-top: 1px solid var(--fc-grey);
+		counter-increment: about-number 1;
+
+		@include hg {
+			padding: 20px 0 20px 40px;
+		}
+
+		&::before {
+			position: absolute;
+			top: 45px;
+			left: 0;
+			width: fit-content;
+			height: fit-content;
+			color: var(--fc-grey);
+			font-size: 16px;
+			content: counter(about-number, decimal-leading-zero);
+
+			@include hg {
+				top: 35px;
+			}
+		}
+
+		&:last-child {
+			border-bottom: 1px solid var(--fc-grey);
+		}
+	}
+
+	&__item-button {
+		display: flex;
+		gap: 50px;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 0;
+		font-size: 40px;
+		font-family: var(--font-secondary);
+		background: none;
+		border: none;
+
+		@include hg {
+			font-size: 30px;
+		}
+
+		@include xs {
+			font-size: 24px;
+		}
+
+		@media (hover: hover) {
+
+			&:hover {
+
+				svg {
+					color: var(--fc-dark);
+				}
+			}
+		}
+
+		&.active {
+
+			.product__item-cross {
+
+				&::before,
+				&::after {
+					transform: translate(-50%, -50%) rotate(45deg);
+				}
+			}
+
+			+ .product__item-content {
+				@include hg {
+					margin-top: 30px;
+				}
+			}
+		}
+	}
+
+	&__item-cross {
+		position: relative;
+		width: 75px;
+		height: 75px;
+
+		@include hg {
+			width: 50px;
+			height: 50px;
+		}
+
+		&::before,
+		&::after {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			background-color: var(--fc-dark);
+			transform: translate(-50%, -50%);
+			transition: var(--transition);
+			content: "";
+		}
+
+		&::before {
+			width: 26px;
+			height: 2px;
+
+			@include hg {
+				width: 18px;
+			}
+		}
+
+		&::after {
+			width: 2px;
+			height: 26px;
+
+			@include hg {
+				height: 18px;
+			}
+		}
+
+		svg {
+			width: 100%;
+			height: 100%;
+			color: var(--fc-grey);
+			transition: var(--transition);
+		}
+	}
+
+	&__item-content {
+		max-width: 970px;
+		max-height: 0;
+		margin: 0 170px 0 auto;
+		overflow: hidden;
+		transition: all 0.2s ease-out;
+
+		@include hg {
+			max-width: 750px;
+			margin: 0 0 0 auto;
+		}
+
+		@include md {
+			margin: 0;
+		}
+	}
+
+	&__item-attributes {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+	}
+
+	&__item-attribute,
+	&__item-videos {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+
+	&__item-attribute {
+		gap: 180px;
+		font-weight: 300;
+		font-size: 16px;
+
+		@include xs {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 10px 40px;
+			justify-content: space-between;
+			font-size: 14px;
+		}
+
+		span {
+			font-weight: 500;
+
+			@include xs {
+				margin-left: auto;
+			}
+		}
+	}
+
+	&__item-videos {
+		gap: 30px;
+
+		@include md {
+			max-width: none;
+		}
+
+		@include xs {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__video {
+		position: relative;
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 16/9;
+		overflow: hidden;
+
+		@media (hover: hover) {
+
+			&:hover {
+
+				img {
+					filter: grayscale(0);
+				}
+			}
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			transition: filter 0.5s linear;
+
+			@media (hover: hover) {
+				filter: grayscale(1);
+			}
+		}
+	}
+}

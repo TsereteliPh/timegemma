@@ -31,7 +31,7 @@
 <div class="product__gallery swiper">
 	<div class="product__gallery-wrapper swiper-wrapper">
 		<?php foreach ( $gallery as $img ) : ?>
-			<a href="<?php echo wp_get_attachment_image_url( $img, 'full', false ); ?>" class="product__gallery-link" data-fancybox="product-gallery">
+			<a href="<?php echo wp_get_attachment_image_url( $img, 'full', false ); ?>" class="product__gallery-link swiper-slide" data-fancybox="product-gallery">
 				<?php echo wp_get_attachment_image( $img, 'large', false, array(
 					'class' => 'product__gallery-image'
 				) ); ?>
@@ -39,7 +39,9 @@
         <?php endforeach; ?>
 	</div>
 
-	<div class="slider-controls welcome__controls">
+	<div class="swiper-pagination"></div>
+
+	<div class="slider-controls product__gallery-controls">
 		<div class="btn-arrow slider-controls__prev">
 			<svg width="70" height="8"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-left"></use></svg>
 		</div>

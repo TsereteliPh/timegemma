@@ -72,6 +72,7 @@
 
 			&:hover {
 				border-color: transparent;
+				opacity: 0.9;
 			}
 		}
 	}
@@ -144,5 +145,72 @@
 			color: var(--emphasis);
 			transform: scale(1.02);
 		}
+	}
+}
+
+.btn-fav {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	background: #fff;
+	border: none;
+	border-radius: 50%;
+
+	&.active {
+
+		svg {
+			animation: heart-pulse 0.4s ease-out;
+			fill: var(--emphasis);
+		}
+	}
+
+	svg {
+		flex-shrink: 0;
+		fill: none;
+	}
+}
+
+.btn-play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 20%;
+	height: auto;
+	aspect-ratio: 1/1;
+	background: none;
+	border: none;
+	transform: translate(-50%, -50%);
+	transition: var(--transition);
+
+	@media (hover: hover) {
+
+		&:hover {
+			transform: translate(-50%, -50%) scale(1.04);
+		}
+	}
+
+	svg {
+		width: 100%;
+		height: 100%;
+		color: var(--primary);
+		transition: var(--transition);
+	}
+}
+
+@keyframes heart-pulse {
+
+	0% {
+		transform: scale(0);
+	}
+
+	70% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
 	}
 }

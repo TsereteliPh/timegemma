@@ -34,52 +34,53 @@ if ( post_password_required() ) {
 <section id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="container">
 		<div class="product__info">
-			<div class="product__desc">
-				<?php
-					$terms = get_the_terms( $product->get_id(), 'product_cat' );
-					if ( $terms ) :
-				?>
-					<div class="product__cat">
-						<?php foreach ( $terms as $term ) : ?>
-							<a href="<?php echo esc_url( get_term_link( $term->term_id, 'product_cat' ) ); ?>" class="product__cat-link" aria-label="Link zu Produkten in der Kategorie <?php echo $term->name; ?>">
-								<?php
-									$term_thumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
-									echo wp_get_attachment_image( $term_thumb, 'medium', false );
-								?>
-							</a>
-						<?php endforeach; ?>
-					</div>
-				<?php endif; ?>
+			<?php
+				$terms = get_the_terms( $product->get_id(), 'product_cat' );
+				if ( $terms ) :
+			?>
+				<div class="product__cat">
+					<?php foreach ( $terms as $term ) : ?>
+						<a href="<?php echo esc_url( get_term_link( $term->term_id, 'product_cat' ) ); ?>" class="product__cat-link" aria-label="Link zu Produkten in der Kategorie <?php echo $term->name; ?>">
+							<?php
+								$term_thumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
+								echo wp_get_attachment_image( $term_thumb, 'medium', false );
+							?>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			<?php endif; ?>
 
-				<h1 class="product__title"><?php echo $product->name; ?></h1>
+			<h1 class="product__title"><?php echo $product->name; ?></h1>
 
-				<div class="product__desc-text"><?php the_field( 'product_description' ); ?></div>
+			<div class="product__desc-text"><?php the_field( 'product_description' ); ?></div>
 
-				<?php
-				/**
-				 * Hook: woocommerce_before_single_product_summary.
-				 *
-				 * //@hooked woocommerce_show_product_sale_flash - 10
-				 * @hooked woocommerce_show_product_images - 20
-				 */
-				do_action( 'woocommerce_before_single_product_summary' );
-				?>
-			</div>
+			<?php
+			/**
+			 * Hook: woocommerce_before_single_product_summary.
+			 *
+			 * //@hooked woocommerce_show_product_sale_flash - 10
+			 * @hooked woocommerce_show_product_images - 20
+			 */
+			do_action( 'woocommerce_before_single_product_summary' );
+			?>
 
 			<div class="product__panel">
+				<button class="btn-fav product__favorite" type="button">
+					<svg width="22" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart--red"></use></svg>
+				</button>
 				<?php
 				/**
 				 * Hook: woocommerce_single_product_summary.
 				 *
-		 		 * //@hooked woocommerce_template_single_title - 5
-				 * @hooked woocommerce_template_single_rating - 10
-				 * @hooked woocommerce_template_single_price - 10
-				 * //@hooked woocommerce_template_single_excerpt - 20
-				 * @hooked woocommerce_template_single_add_to_cart - 30
-				 * //@hooked woocommerce_template_single_meta - 40
-				 * @hooked woocommerce_template_single_sharing - 50
-				 * @hooked WC_Structured_Data::generate_product_data() - 60
-				 */
+					 * //@hooked woocommerce_template_single_title - 5
+					* @hooked woocommerce_template_single_rating - 10
+					* @hooked woocommerce_template_single_price - 10
+					* //@hooked woocommerce_template_single_excerpt - 20
+					* @hooked woocommerce_template_single_add_to_cart - 30
+					* //@hooked woocommerce_template_single_meta - 40
+					* @hooked woocommerce_template_single_sharing - 50
+					* @hooked WC_Structured_Data::generate_product_data() - 60
+					*/
 				do_action( 'woocommerce_single_product_summary' );
 				?>
 
@@ -96,6 +97,27 @@ if ( post_password_required() ) {
 						</div>
 
 						<div class="product__benefit">(Sie sparen <?php echo number_format( $benefit_percent, 2, ',', '.' ); ?>%, also <?php echo number_format( $benefit, 0, ',', '.' ); ?> €)</div>
+				<?php endif; ?>
+
+				<?php if ( $product->get_sku() ) : ?>
+					<div class="product__sku">
+						Artikelnummer
+						<span><?php echo $product->get_sku(); ?></span>
+					</div>
+				<?php endif; ?>
+
+				<?php
+					$manufacturer = get_the_terms( $product->get_id(), 'pa_manufacturer' );
+					if ( $manufacturer ) :
+				?>
+					<div class="product__manufacturer">
+						Hersteller
+						<span class="product__manufacturer-links">
+							<?php foreach ( $manufacturer as $term ) :?>
+								<a href="<?php echo esc_url( get_term_link( $term->term_id, 'pa_manufacturer' ) );?>"><?php echo $term->name; ?></a>
+							<?php endforeach;?>
+						</span>
+					</div>
 				<?php endif; ?>
 			</div>
 		</div>
@@ -114,12 +136,13 @@ if ( post_password_required() ) {
 						</div>
 					</button>
 
-					<ul class="reset-list product__item-attributes">
+					<ul class="reset-list product__item-content product__item-attributes">
 						<?php
 							foreach ( $attributes as $attribute ) :
 								if ( $attribute->is_taxonomy() ) :
+									if ( $attribute['id'] == 15 ) continue;
 									$attribute_taxonomy = $attribute->get_taxonomy_object();
-									$attribute_values = wc_get_product_terms( $product->get_id(), $attribute->get_name(), array( 'fields' => 'all' ) );
+									$attribute_values = wc_get_product_terms( $product->get_id(), $attribute->get_name(), array( 'fields' => 'all') );
 						?>
 							<li class="product__item-attribute">
 								<?php echo $attribute_taxonomy->attribute_label; ?>
@@ -127,7 +150,7 @@ if ( post_password_required() ) {
 								<?php
 									//TODO: Add links for the attributes
 									// echo '<pre>';
-									// print_r( $attribute );
+									// print_r( $attribute['id'] );
 									// echo '</pre>';
 								?>
 
@@ -183,7 +206,7 @@ if ( post_password_required() ) {
 						</div>
 					</button>
 
-					<div class="product__item-videos">
+					<div class="product__item-content product__item-videos">
 						<?php
 							foreach ( $videos as $video ) :
 								$preview = $video['preview'];
@@ -193,9 +216,9 @@ if ( post_password_required() ) {
 							<a href="<?php echo $videoLink; ?>" class="product__video" data-fancybox="product-video">
 								<?php
 									if ( $preview ) {
-										echo wp_get_attachment_image( $preview, 'medium', false );
+										echo wp_get_attachment_image( $preview, 'large', false );
 									} else {
-										echo wp_get_attachment_image( 86, 'medium', false );
+										echo wp_get_attachment_image( 86, 'large', false );
 									}
 								?>
 

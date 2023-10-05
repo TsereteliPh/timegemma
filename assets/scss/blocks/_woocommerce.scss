@@ -1,0 +1,16 @@
+.woocommerce {
+
+	.loader {
+
+		&::before {
+			background: url(assets/images/icon-loading.svg) no-repeat center center;
+		}
+	}
+
+	.quantity {
+
+		.qty {
+			width: 60px;
+		}
+	}
+}

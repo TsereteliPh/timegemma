@@ -20,14 +20,14 @@ function get_siblings(elem) {
 }
 
 function slideDown(elem) {
-	elem.style.height = `${elem.scrollHeight}px`;
+	elem.style.maxHeight = `${elem.scrollHeight}px`;
 }
 
 function slideToggle(elem) {
 	if (elem.offsetHeight === 0) {
-		elem.style.height = `${elem.scrollHeight}px`;
+		elem.style.maxHeight = `${elem.scrollHeight}px`;
 	} else {
-		elem.style.height = 0;
+		elem.style.maxHeight = 0;
 	}
 }
 
@@ -288,6 +288,7 @@ function wcAddToCart() {
 	form.addEventListener('submit', function (e) {
 		e.preventDefault();
 		const form = this;
+		this.classList.add('loader');
 		let formData = new FormData(this);
 		formData.append('action', 'wc_add_to_cart');
 
@@ -297,6 +298,7 @@ function wcAddToCart() {
 		})
 			.then(response => response.json())
 			.then(data => {
+				this.classList.remove('loader');
 				if (data.count > 0) {
 					this.classList.add('in-cart');
 				} else {
@@ -402,6 +404,39 @@ if (welcomeSlider) {
 	});
 }
 
+//Слайдер product-image.php
+
+const productGallerySlider = document.querySelector('.product__gallery');
+
+if (productGallerySlider) {
+	let productGallerySwiper = new Swiper(productGallerySlider, {
+		slidesPerView: 'auto',
+		spaceBetween: 60,
+		centeredSlides: true,
+		navigation: {
+			nextEl: '.slider-controls__next',
+			prevEl: '.slider-controls__prev',
+		},
+		pagination: {
+			el: '.swiper-pagination',
+            clickable: true,
+		},
+		on: {
+			afterInit: function() {
+				customProgressbar(this, '.slider-controls__progressbar')
+			},
+			slideChange: function() {
+				customProgressbar(this, '.slider-controls__progressbar')
+			}
+		},
+		breakpoints: {
+			577: {
+				spaceBetween: 85
+			}
+		}
+	});
+}
+
 // Функционал шапки сайта
 
 document.addEventListener("DOMContentLoaded", function(e) {
@@ -415,3 +450,30 @@ document.addEventListener("DOMContentLoaded", function(e) {
 		}
 	}
 })
+
+//Функционал блока .product__list (content-single-product.php)
+
+const productList = document.querySelector('.product__list');
+
+if (productList) {
+	const productItemBtns = productList.querySelectorAll('.product__item-button');
+
+	const productItemBtnsClose = () => {
+		for (let btn of productItemBtns) {
+			btn.classList.remove('active');
+			btn.nextElementSibling.style.maxHeight = 0;
+		}
+	}
+
+	productItemBtns.forEach(btn => {
+		btn.addEventListener('click', function() {
+			if (this.classList.contains('active')) {
+				productItemBtnsClose();
+			} else {
+				productItemBtnsClose();
+				this.classList.add('active');
+				slideToggle(this.nextElementSibling);
+			}
+		})
+	});
+}
