@@ -17,35 +17,6 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_p
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
-// check product in cart
-function is_product_in_cart() {
-    foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
-        $cart_product = $values['data'];
-
-        if( get_the_ID() == $cart_product->id ) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-// product quantity in cart by ID
-
-function get_product_quantity_in_cart( $product_id ) {
-	$quantity = 0;
-
-	foreach ( WC()->cart->get_cart() as $cart_item ) {
-		if( $product_id == $cart_item[ 'product_id' ] ){
-			$quantity = $cart_item[ 'quantity' ];
-			break;
-		}
-	}
-
-	return $quantity;
-
-}
-
 // ---------------------------------------------------------------- Filters
 
 //add to cart fragment
@@ -73,4 +44,35 @@ function adem_out_of_stock( $availability, $product ) {
 	}
 
 	return $availability;
+}
+
+// ---------------------------------------------------------------- Functions
+
+// check product in cart
+function is_product_in_cart() {
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
+        $cart_product = $values['data'];
+
+        if( get_the_ID() == $cart_product->id ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// product quantity in cart by ID
+
+function get_product_quantity_in_cart( $product_id ) {
+	$quantity = 0;
+
+	foreach ( WC()->cart->get_cart() as $cart_item ) {
+		if( $product_id == $cart_item[ 'product_id' ] ){
+			$quantity = $cart_item[ 'quantity' ];
+			break;
+		}
+	}
+
+	return $quantity;
+
 }

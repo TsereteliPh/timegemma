@@ -14,6 +14,7 @@ if (have_rows('blocks', $id)) {
 		}
 
 		if (get_row_layout() == 'about') get_template_part('layouts/blocks/about/template');
+		else if (get_row_layout() == 'catalog-links') get_template_part('layouts/blocks/catalog-links/template');
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');
 	}
 }

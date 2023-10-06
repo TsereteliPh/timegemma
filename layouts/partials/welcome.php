@@ -5,7 +5,7 @@
 		<?php if ( $welcome['slider'] ) : ?>
 			<ul class="reset-list welcome__slider-wrapper swiper-wrapper">
 				<?php foreach ( $welcome['slider'] as $slide ) : ?>
-					<li class="welcome__slide swiper-slide">
+					<li class="haze welcome__slide swiper-slide">
 						<?php echo wp_get_attachment_image( $slide, 'full', false ); ?>
 					</li>
 				<?php endforeach; ?>

@@ -1,0 +1,37 @@
+.title {
+	position: relative;
+	max-width: fit-content;
+	margin: 0 auto;
+	padding: 15px 0 20px 30px;
+
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		color: var(--primary);
+
+		@include hg {
+			width: auto;
+			height: 75px;
+		}
+
+		@include sm {
+			height: 65px;
+		}
+	}
+
+	&__text {
+		margin: 0;
+		color: var(--fc-light);
+		font-size: 48px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			font-size: 36px;
+		}
+
+		@include sm {
+			font-size: 32px;
+		}
+	}
+}
