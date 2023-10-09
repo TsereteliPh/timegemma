@@ -52,7 +52,93 @@
 	</div>
 </header>
 
-<?php if(!is_front_page() && function_exists('yoast_breadcrumb')) : ?>
+<div class="drop">
+	<div class="conteiner drop__container">
+		<?php
+			wp_nav_menu(array(
+				'theme_location' => 'menu_burger',
+				'container' => '',
+				'menu_id' => 'menu-burger',
+				'menu_class' => 'reset-list drop__menu'
+			));
+
+			$forHimTerms = get_terms( [
+				'taxonomy' => 'product_cat',
+				'child_of' => 17
+			] );
+
+			$forHerTerms = get_terms( [
+				'taxonomy' => 'product_cat',
+				'child_of' => 18
+			] );
+		?>
+
+		<?php if ( $forHimTerms || $forHerTerms ) : ?>
+			<ul class="reset-list drop__tabs js-tabs">
+				<li class="btn-tab drop__tab active" data-tab="header-for-him">Für Männer</li>
+				<li class="btn-tab drop__tab" data-tab="header-for-her">Für Frauen</li>
+			</ul>
+
+			<div class="drop__cats-wrapper">
+				<div class="drop__cats active" id="header-for-him">
+					<?php foreach ( $forHimTerms as $term ) : ?>
+						<a href="<?php echo get_term_link( $term->term_id ); ?>" class="drop__cat">
+							<?php
+								$termThumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
+
+								echo $term->name;
+								if ( $termThumb ) {
+									echo wp_get_attachment_image( $termThumb, 'medium', false );
+								}
+							?>
+						</a>
+					<?php endforeach; ?>
+				</div>
+
+				<div class="drop__cats" id="header-for-her">
+					<?php foreach ( $forHerTerms as $term ) : ?>
+						<a href="<?php echo get_term_link( $term->term_id ); ?>" class="drop__cat">
+							<?php
+								$termThumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
+
+								echo $term->name;
+								if ( $termThumb ) {
+									echo wp_get_attachment_image( $termThumb, 'medium', false );
+								}
+							?>
+						</a>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $user ) : ?>
+			<?php // TODO: username and email address ?>
+		<?php endif; ?>
+
+		<?php
+			$headerCollection = get_field( 'collection_banner', 'options' );
+			if ( $headerCollection ) {
+				$post = $headerCollection;
+				setup_postdata( $post );
+					get_template_part( 'layouts/partials/cards/collection-card', array(
+						'class' => 'drop__collection'
+					) );
+				wp_reset_postdata();
+			}
+		?>
+
+		<?php
+			$socials = get_field( 'socials', 'options' );
+			if ( $socials ) :
+			//TODO: drop_socials
+		?>
+
+		<?php endif; ?>
+	</div>
+</div>
+
+<?php if( !is_front_page() && function_exists( 'yoast_breadcrumb' ) ) : ?>
 	<div class="breadcrumb">
 		<div class="container">
 			<?php echo yoast_breadcrumb(); ?>
@@ -68,6 +154,6 @@
 ?>
 
 <main class="<?php echo $mainClass; ?>">
-<?php if (is_front_page()) get_template_part('layouts/partials/welcome'); ?>
+<?php if ( is_front_page() ) get_template_part('layouts/partials/welcome'); ?>
 
 
