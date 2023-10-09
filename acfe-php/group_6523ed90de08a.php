@@ -1,0 +1,142 @@
+<?php 
+
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array(
+	'key' => 'group_6523ed90de08a',
+	'title' => 'Коллекция',
+	'fields' => array(
+		array(
+			'key' => 'field_6523ee059c339',
+			'label' => 'Год коллекции',
+			'name' => 'collection_year',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '15',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+			'acfe_field_group_condition' => 0,
+		),
+		array(
+			'key' => 'field_6523ee5b9c33a',
+			'label' => 'Бренд коллекции',
+			'name' => 'collection_brand',
+			'aria-label' => '',
+			'type' => 'acfe_taxonomy_terms',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '85',
+				'class' => '',
+				'id' => '',
+			),
+			'taxonomy' => array(
+				0 => 'product_cat',
+			),
+			'allow_terms' => '',
+			'allow_level' => '',
+			'field_type' => 'checkbox',
+			'min' => 1,
+			'max' => 1,
+			'default_value' => array(
+			),
+			'return_format' => 'object',
+			'layout' => 'vertical',
+			'toggle' => 0,
+			'save_terms' => 0,
+			'load_terms' => 0,
+			'acfe_field_group_condition' => 0,
+			'choices' => array(
+			),
+			'ui' => 0,
+			'multiple' => 0,
+			'allow_null' => 0,
+			'ajax' => 0,
+			'placeholder' => '',
+			'search_placeholder' => '',
+			'allow_custom' => 0,
+			'other_choice' => 0,
+		),
+		array(
+			'key' => 'field_6523ef089c33b',
+			'label' => 'Товары коллекции',
+			'name' => 'collection_products',
+			'aria-label' => '',
+			'type' => 'relationship',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'post_type' => array(
+				0 => 'product',
+			),
+			'post_status' => '',
+			'taxonomy' => '',
+			'filters' => array(
+				0 => 'search',
+				1 => 'post_type',
+				2 => 'taxonomy',
+			),
+			'return_format' => 'object',
+			'acfe_add_post' => 0,
+			'acfe_edit_post' => 0,
+			'acfe_bidirectional' => array(
+				'acfe_bidirectional_enabled' => '0',
+			),
+			'min' => '',
+			'max' => '',
+			'elements' => '',
+			'acfe_field_group_condition' => 0,
+			'bidirectional' => 0,
+			'bidirectional_target' => array(
+			),
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'collection',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => array(
+		0 => 'the_content',
+	),
+	'active' => true,
+	'description' => '',
+	'show_in_rest' => 0,
+	'acfe_autosync' => array(
+		0 => 'php',
+	),
+	'acfe_form' => 0,
+	'acfe_display_title' => '',
+	'acfe_meta' => '',
+	'acfe_note' => '',
+	'modified' => 1696853936,
+));
+
+endif;

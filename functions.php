@@ -37,33 +37,33 @@ if (!function_exists('adem_setup')) {
 	//	register thumbnails
 	add_image_size('180x300', 180, 300, true);
 
-	//	register post types
-//	register_post_type('review', [
-//		'label' => null,
-//		'labels' => [
-//			'name' => 'Отзывы',
-//			'singular_name' => 'Отзыв',
-//			'add_new' => 'Добавить отзыв',
-//			'add_new_item' => 'Добавить отзыв',
-//			'edit_item' => 'Редактировать отзыв',
-//			'new_item' => 'Новый отзыв',
-//			'view_item' => 'Смотреть отзыв',
-//			'search_items' => 'Найти отзыв',
-//			'not_found' => 'Не найдено',
-//			'not_found_in_trash' => 'Не найдено в корзине',
-//			'menu_name' => 'Отзывы',
-//		],
-//		'public' => true,
-//		'show_in_menu' => true,
-//		'menu_position' => 21,
-//		'menu_icon' => 'dashicons-format-chat',
-//		'supports' => ['title', 'editor'],
-//		'taxonomies' => ['review_type'],
-//		'has_archive' => false,
-//		'rewrite' => true,
-//		'query_var' => true,
-//		'publicly_queryable' => false
-//	]);
+	// register post types
+	register_post_type('collection', [
+		'label' => null,
+		'labels' => [
+			'name' => 'Коллекции',
+			'singular_name' => 'Коллекция',
+			'add_new' => 'Добавить новую коллекцию',
+			'add_new_item' => 'Добавить новую коллекцию',
+			'edit_item' => 'Редактировать коллекцию',
+			'new_item' => 'Новая коллекция',
+			'view_item' => 'Смотреть коллекцию',
+			'search_items' => 'Найти коллекцию',
+			'not_found' => 'Не найдено',
+			'not_found_in_trash' => 'Не найдено в корзине',
+			'menu_name' => 'Коллекции',
+		],
+		'public' => true,
+		'show_in_menu' => true,
+		'menu_position' => 25,
+		'menu_icon' => 'dashicons-images-alt2',
+		'supports' => ['title', 'editor', 'thumbnail'],
+		'taxonomies' => ['collection_type'],
+		'has_archive' => true,
+		'rewrite' => true,
+		'query_var' => true,
+		'publicly_queryable' => false
+	]);
 }
 
 add_action('after_setup_theme', 'adem_setup');
