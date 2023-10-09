@@ -1,0 +1,17 @@
+.main-slider {
+
+	.slider-controls {
+		margin-top: 40px;
+	}
+
+	.slider-controls__prev,
+	.slider-controls__next {
+
+		svg {
+			@include xs {
+				width: 40px;
+				height: auto;
+			}
+		}
+	}
+}

@@ -1,0 +1,145 @@
+.product-card {
+	height: auto;
+	padding: 50px 10px 40px;
+	transition: var(--transition);
+
+	@include xs {
+		padding: 0;
+	}
+
+	&:hover {
+		color: var(--fc-light);
+		background-color: var(--bg-primary);
+
+		.products-card__wrapper::before {
+			transform: scale(1) rotate(180deg);
+		}
+
+		.product-card__fav {
+			transform: scale(1);
+		}
+	}
+
+	&.swiper-slide {
+
+		&:hover {
+			color: inherit;
+			background: none;
+		}
+	}
+
+	&__wrapper {
+		position: relative;
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+
+		@include xs {
+			max-width: 250px;
+			margin: 0 auto;
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 30px;
+			height: 65px;
+			color: var(--fc-light);
+			font-weight: 700;
+			font-size: 16px;
+			text-transform: uppercase;
+			writing-mode: vertical-lr;
+			transform: rotate(180deg);
+			transition: var(--transition);
+
+			@media (hover: hover) {
+				transform: scale(0) rotate(180deg);
+			}
+		}
+
+		&--new {
+
+			&::before {
+				background-color: var(--fc-dark);
+				content: "Neu";
+			}
+
+		}
+
+		&--year {
+
+			&::before {
+				background-color: var(--emphasis);
+				content: attr(data-year);
+			}
+		}
+	}
+
+	&__fav {
+		position: absolute;
+		top: 0;
+		right: 0;
+		transition: var(--transition);
+
+		@media (hover: hover) {
+			transform: scale(0);
+		}
+	}
+
+	&__img {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: url(assets/images/icon-dial-thin.svg) no-repeat 50% / contain;
+
+		img {
+			width: auto;
+			height: 100%;
+			max-height: 300px;
+			aspect-ratio: 3/5;
+			object-fit: contain;
+
+			@include hg {
+				max-height: 250px;
+			}
+
+			@include md {
+				max-height: 300px;
+			}
+		}
+	}
+
+	&__link {
+		margin-top: auto;
+		font-size: 18px;
+		font-family: var(--font-secondary);
+		text-align: center;
+
+		@include hg {
+			font-size: 16px;
+		}
+	}
+
+	&__price {
+		position: relative;
+		padding-top: 20px;
+		font-weight: 700;
+		font-size: 20px;
+		text-align: center;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 50px;
+			height: 1px;
+			background-color: var(--fc-grey);
+			transform: translateX(-50%);
+			content: "";
+		}
+	}
+}

@@ -13,7 +13,7 @@ if (have_rows('blocks', $id)) {
 			$counters[$layout]++;
 		}
 
-		if (get_row_layout() == 'about') get_template_part('layouts/blocks/about/template');
+		if (get_row_layout() == 'best') get_template_part('layouts/blocks/best/template');
 		else if (get_row_layout() == 'catalog-links') get_template_part('layouts/blocks/catalog-links/template');
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');
 	}

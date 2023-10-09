@@ -1,4 +1,9 @@
 .product {
+	padding-bottom: 130px;
+
+	@include hg {
+		padding-bottom: 80px;
+	}
 
 	&__info {
 		display: grid;

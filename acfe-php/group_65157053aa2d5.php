@@ -30,6 +30,28 @@ acf_add_local_field_group(array(
 			'acfe_field_group_condition' => 0,
 		),
 		array(
+			'key' => 'field_65213be2efc9d',
+			'label' => 'Новинка',
+			'name' => 'product_new',
+			'aria-label' => '',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '65',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => '',
+			'default_value' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+			'ui' => 1,
+			'style' => '',
+			'acfe_field_group_condition' => 0,
+		),
+		array(
 			'key' => 'field_6516d30e71a55',
 			'label' => 'Описание товара',
 			'name' => 'product_description',
@@ -251,7 +273,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1696340261,
+	'modified' => 1696676929,
 ));
 
 endif;

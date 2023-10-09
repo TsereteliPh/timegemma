@@ -204,34 +204,35 @@ function calcBreadcrumbsPadding() {
 }
 
 function changeInputQuantity(form, dispatch = false) {
-	if (!form) return;
+	const formEl = document.querySelector(form);
+	if (formEl) {
+		formEl.addEventListener('click', function (e) {
+			if (e.target.classList.contains('quantity__btn')) {
+				let input = e.target.closest('.quantity').querySelector('.quantity__input');
+				let val = parseInt(input.value);
+				let min = parseInt(input.getAttribute('min'));
+				let max = parseInt(input.getAttribute('max'));
+				let step = parseInt(input.getAttribute('step'));
 
-	document.querySelector(form).addEventListener('click', function (e) {
-		if (e.target.classList.contains('quantity__btn')) {
-			let input = e.target.closest('.quantity').querySelector('.quantity__input');
-			let val = parseInt(input.value);
-			let min = parseInt(input.getAttribute('min'));
-			let max = parseInt(input.getAttribute('max'));
-			let step = parseInt(input.getAttribute('step'));
-
-			if (e.target.classList.contains('quantity__btn--add')) {
-				if (max && (max <= val)) {
-					input.value = max;
+				if (e.target.classList.contains('quantity__btn--add')) {
+					if (max && (max <= val)) {
+						input.value = max;
+					} else {
+						input.value = val + step;
+					}
 				} else {
-					input.value = val + step;
+					if ((min || min == 0) && (min >= val - step)) {
+						input.value = min;
+					} else if (val > 1) {
+						input.value = val - step;
+					}
 				}
-			} else {
-				if ((min || min == 0) && (min >= val - step)) {
-					input.value = min;
-				} else if (val > 1) {
-					input.value = val - step;
-				}
-			}
 
-			const changeQuantityInput = new Event('change', {bubbles: true, cancelable: true});
-			input.dispatchEvent(changeQuantityInput);
-		}
-	});
+				const changeQuantityInput = new Event('change', {bubbles: true, cancelable: true});
+				input.dispatchEvent(changeQuantityInput);
+			}
+		});
+	}
 }
 
 //Ajax
@@ -272,51 +273,54 @@ function showMorePosts() {
 
 function wcAddToCart() {
 	const form = document.querySelector('.product__cart');
-	const quantityInput = form.querySelector('.qty');
-	let update_cart;
 
-	quantityInput.addEventListener('change', function (e) {
-		const input = this;
+	if (form) {
+		const quantityInput = form.querySelector('.qty');
+		let update_cart;
 
-		if (update_cart != null) clearTimeout(update_cart);
+		quantityInput.addEventListener('change', function (e) {
+			const input = this;
 
-		update_cart = setTimeout(function () {
-			input.closest('.product__cart').querySelector('.btn').click();
-		}, 1000);
-	});
+			if (update_cart != null) clearTimeout(update_cart);
 
-	form.addEventListener('submit', function (e) {
-		e.preventDefault();
-		const form = this;
-		this.classList.add('loader');
-		let formData = new FormData(this);
-		formData.append('action', 'wc_add_to_cart');
+			update_cart = setTimeout(function () {
+				input.closest('.product__cart').querySelector('.btn').click();
+			}, 1000);
+		});
 
-		const response = fetch(adem_ajax.url, {
-			method: 'POST',
-			body: formData
-		})
-			.then(response => response.json())
-			.then(data => {
-				this.classList.remove('loader');
-				if (data.count > 0) {
-					this.classList.add('in-cart');
-				} else {
-					this.classList.remove('in-cart');
-					quantityInput.value = 1;
-				}
-				let counter = document.querySelector('#header-cart-counter');
-				counter.innerHTML = data.count;
-				if (data.countAll > 0) {
-					counter.classList.add('active');
-				} else {
-                    counter.classList.remove('active');
-                }
+		form.addEventListener('submit', function (e) {
+			e.preventDefault();
+			const form = this;
+			this.classList.add('loader');
+			let formData = new FormData(this);
+			formData.append('action', 'wc_add_to_cart');
+
+			const response = fetch(adem_ajax.url, {
+				method: 'POST',
+				body: formData
 			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
-	});
+				.then(response => response.json())
+				.then(data => {
+					this.classList.remove('loader');
+					if (data.count > 0) {
+						this.classList.add('in-cart');
+					} else {
+						this.classList.remove('in-cart');
+						quantityInput.value = 1;
+					}
+					let counter = document.querySelector('#header-cart-counter');
+					counter.innerHTML = data.count;
+					if (data.countAll > 0) {
+						counter.classList.add('active');
+					} else {
+						counter.classList.remove('active');
+					}
+				})
+				.catch((error) => {
+					console.error('Error:', error);
+				});
+		});
+	}
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -434,6 +438,54 @@ if (productGallerySlider) {
 				spaceBetween: 85
 			}
 		}
+	});
+}
+
+//Слайдеры .main-slider
+
+const mainSliders = document.querySelectorAll('.main-slider');
+
+if (mainSliders) {
+	mainSliders.forEach(slider => {
+		let mainSwiper = new Swiper(slider, {
+			slidesPerView: 1,
+			centeredSlides: true,
+			spaceBetween: 30,
+			navigation: {
+				nextEl: '.slider-controls__next',
+				prevEl: '.slider-controls__prev',
+			},
+			on: {
+				afterInit: function() {
+					customProgressbar(this, '.slider-controls__progressbar')
+				},
+				slideChange: function() {
+					customProgressbar(this, '.slider-controls__progressbar')
+				}
+			},
+			breakpoints: {
+				1501: {
+					slidesPerView: 6,
+					centeredSlides: false
+				},
+				1280: {
+					slidesPerView: 5,
+					centeredSlides: false
+				},
+				992: {
+					slidesPerView: 4,
+					centeredSlides: false
+				},
+				769: {
+					slidesPerView: 3,
+					centeredSlides: false
+				},
+				577: {
+					slidesPerView: 2,
+					centeredSlides: false
+				}
+			}
+		});
 	});
 }
 

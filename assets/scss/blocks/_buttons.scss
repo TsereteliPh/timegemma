@@ -39,12 +39,13 @@
 		position: relative;
 		min-width: 230px;
 		margin-right: 55px;
-		padding: 25px 45px;
+		padding: 25px 55px 25px 40px;
 		border-right: none;
 
 		@include sm {
+			min-width: 180px;
 			margin-right: 35px;
-			padding: 10px 25px;
+			padding: 10px 35px 10px 25px;
 		}
 	}
 

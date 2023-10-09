@@ -3,6 +3,7 @@
 	max-width: fit-content;
 	margin: 0 auto;
 	padding: 15px 0 20px 30px;
+	color: var(--fc-light);
 
 	svg {
 		position: absolute;
@@ -22,7 +23,8 @@
 
 	&__text {
 		margin: 0;
-		color: var(--fc-light);
+		color: inherit;
+		font-weight: 400;
 		font-size: 48px;
 		font-family: var(--font-secondary);
 
