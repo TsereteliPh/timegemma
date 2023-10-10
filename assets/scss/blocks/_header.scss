@@ -6,6 +6,7 @@
 	width: 100%;
 	height: fit-content;
 	background: url(assets/images/header-bg.jpg) no-repeat 50% / cover;
+	transition: var(--transition);
 
 	@include xs {
 		background: var(--fc-dark);
@@ -24,6 +25,16 @@
 			@include hg {
 				padding-right: 0;
 			}
+		}
+	}
+
+	&.active {
+		background-color: var(--bg-light);
+
+		.header__link,
+		.header__menu,
+		.header__panel {
+			opacity: 0;
 		}
 	}
 
@@ -86,6 +97,7 @@
 				&::after {
 					top: 0;
 					width: 100%;
+					background-color: var(--fc-dark);
 					transform: rotateZ(-45deg);
 					transition: top 0.4s, transform 0.25s 0.25s;
 				}
@@ -140,6 +152,7 @@
 		aspect-ratio: 135 / 73;
 		background: url(assets/images/logo-main.svg) no-repeat 50% / 100% auto;
 		cursor: pointer;
+		transition: var(--transition);
 
 		@include hg {
 			margin-left: 0;
@@ -155,6 +168,7 @@
 		gap: 60px;
 		align-items: center;
 		margin-left: auto;
+		transition: var(--transition);
 
 		@include hg {
 			gap: 30px;
@@ -191,6 +205,7 @@
 		gap: 55px;
 		align-items: flex-end;
 		margin-left: 80px;
+		transition: var(--transition);
 
 		@include hg {
 			gap: 30px;

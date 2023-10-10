@@ -53,7 +53,7 @@
 </header>
 
 <div class="drop">
-	<div class="conteiner drop__container">
+	<div class="container drop__container">
 		<?php
 			wp_nav_menu(array(
 				'theme_location' => 'menu_burger',
@@ -115,13 +115,14 @@
 		<?php if ( $user ) : ?>
 			<?php // TODO: username and email address ?>
 		<?php endif; ?>
+		<!-- <div class="drop__user">test</div> -->
 
 		<?php
 			$headerCollection = get_field( 'collection_banner', 'options' );
 			if ( $headerCollection ) {
 				$post = $headerCollection;
 				setup_postdata( $post );
-					get_template_part( 'layouts/partials/cards/collection-card', array(
+					get_template_part( 'layouts/partials/cards/collection-card', null, array(
 						'class' => 'drop__collection'
 					) );
 				wp_reset_postdata();
@@ -135,6 +136,7 @@
 		?>
 
 		<?php endif; ?>
+		<!-- <div class="drop__socials"></div> -->
 	</div>
 </div>
 

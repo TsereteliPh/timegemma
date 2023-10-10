@@ -206,6 +206,30 @@
 	}
 }
 
+.btn-tab {
+	padding: 15px 25px;
+	font-weight: 300;
+	text-align: center;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: var(--transition);
+
+	@media (hover: hover) {
+
+		&:hover {
+			color: var(--fc-light);
+			background-color: var(--fc-dark);
+		}
+	}
+
+	&.active {
+		color: var(--fc-light);
+		font-weight: 700;
+		background-color: var(--fc-dark);
+	}
+}
+
 @keyframes heart-pulse {
 
 	0% {

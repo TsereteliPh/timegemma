@@ -496,9 +496,18 @@ document.addEventListener("DOMContentLoaded", function(e) {
 
 	if (header) {
 		const headerBurger = header.querySelector('.header__burger');
+		const drop = document.querySelector('.drop');
 
 		headerBurger.onclick = function () {
 			this.classList.toggle('active');
+			header.classList.toggle('active');
+			drop.classList.toggle('active');
+
+			if (drop.classList.contains('active')) {
+				document.body.style.overflow = 'hidden';
+			} else {
+				document.body.style.overflow = 'visible';
+			}
 		}
 	}
 })
