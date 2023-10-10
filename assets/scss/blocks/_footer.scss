@@ -1,3 +1,121 @@
 .footer {
-	margin-top: auto;
+	margin-top: 70px;
+	padding: 15px 0 55px;
+	font-weight: 300;
+	border-top: 1px solid var(--fc-grey);
+
+	&__container {
+		display: grid;
+		grid-template-columns: 1fr 1.5fr 230px;
+		gap: 80px;
+	}
+
+	&__link {
+		display: block;
+		width: 140px;
+		height: auto;
+		aspect-ratio: 134 / 72;
+		background: url(assets/images/logo-main--dark.svg) no-repeat 50% / contain;
+		cursor: pointer;
+	}
+
+	&__text {
+		max-width: 450px;
+		margin-top: 15px;
+	}
+
+	&__socials {
+		margin-top: 30px;
+	}
+
+	&__links {
+		display: grid;
+		grid-template-columns: 200px 1fr;
+		gap: 40px;
+	}
+
+	&__label {
+		margin: 30px 0;
+		font-weight: 400;
+		font-size: 20px;
+		font-family: var(--font-secondary);
+	}
+
+	&__menu {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.menu-item {
+
+			> a {
+				@include ui-link(var(--fc-dark));
+			}
+		}
+	}
+
+	&__tabs {
+		display: flex;
+		gap: 20px;
+		align-items: center;
+	}
+
+	&__tab {
+		cursor: pointer;
+
+		&.active {
+			font-weight: 700;
+			cursor: default;
+		}
+	}
+
+	&__cats-wrapper {
+		position: relative;
+	}
+
+	&__cats {
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: none;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 10px 90px;
+		width: 100%;
+
+		&.active {
+			position: static;
+			display: grid;
+			animation: footer-cats-show 0.4s ease-in;
+		}
+	}
+
+	&__cat {
+		@include ui-link(var(--fc-dark));
+	}
+
+	&__contacts {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+
+		a {
+			font-weight: 700;
+			@include ui-link(var(--fc-dark));
+		}
+	}
+
+	&__emails {
+		margin-top: 40px;
+	}
+}
+
+@keyframes footer-cats-show {
+
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
