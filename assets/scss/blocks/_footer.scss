@@ -4,10 +4,42 @@
 	font-weight: 300;
 	border-top: 1px solid var(--fc-grey);
 
+	@include xs {
+		margin-top: 0;
+		padding: 40px 0 70px;
+		border: none;
+	}
+
 	&__container {
 		display: grid;
 		grid-template-columns: 1fr 1.5fr 230px;
 		gap: 80px;
+
+		@include hg {
+			gap: 60px;
+		}
+
+		@include lg {
+			grid-template-columns: 1fr 2fr;
+			row-gap: 30px;
+		}
+
+		@include md {
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+		}
+	}
+
+	&__info {
+		@include md {
+			order: 1;
+		}
+
+		@include xs {
+			padding-top: 30px;
+			border-top: 1px solid var(--fc-grey);
+		}
 	}
 
 	&__link {
@@ -22,6 +54,10 @@
 	&__text {
 		max-width: 450px;
 		margin-top: 15px;
+
+		@include md {
+			max-width: none;
+		}
 	}
 
 	&__socials {
@@ -32,6 +68,16 @@
 		display: grid;
 		grid-template-columns: 200px 1fr;
 		gap: 40px;
+
+		@include md {
+			grid-template-columns: 1fr 2fr;
+		}
+
+		@include xs {
+			display: flex;
+			flex-direction: column;
+			gap: 50px;
+		}
 	}
 
 	&__label {
@@ -39,6 +85,10 @@
 		font-weight: 400;
 		font-size: 20px;
 		font-family: var(--font-secondary);
+
+		@include sm {
+			margin: 0 0 30px;
+		}
 	}
 
 	&__menu {
@@ -82,6 +132,20 @@
 		gap: 10px 90px;
 		width: 100%;
 
+		@include hg {
+			grid-template-columns: 1fr 1fr;
+			gap: 10px 30px;
+			justify-content: space-between;
+		}
+
+		@include lg {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr 1fr;
+		}
+
 		&.active {
 			position: static;
 			display: grid;
@@ -91,6 +155,27 @@
 
 	&__cat {
 		@include ui-link(var(--fc-dark));
+	}
+
+	&__contact-us {
+		@include lg {
+			display: flex;
+			grid-column: span 2;
+			gap: 60px;
+		}
+
+		@include xs {
+			flex-direction: column;
+			gap: 30px;
+			padding-top: 30px;
+			border-top: 1px solid var(--fc-grey);
+		}
+
+		.footer__label {
+			@include lg {
+				margin: 0;
+			}
+		}
 	}
 
 	&__contacts {
@@ -106,6 +191,10 @@
 
 	&__emails {
 		margin-top: 40px;
+
+		@include lg {
+			margin: 0;
+		}
 	}
 }
 
