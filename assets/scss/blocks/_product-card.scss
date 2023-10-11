@@ -11,7 +11,7 @@
 		color: var(--fc-light);
 		background-color: var(--bg-primary);
 
-		.products-card__wrapper::before {
+		.product-card__wrapper::before {
 			transform: scale(1) rotate(180deg);
 		}
 
@@ -33,6 +33,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 25px;
+		height: 100%;
 
 		@include xs {
 			max-width: 250px;
