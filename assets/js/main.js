@@ -144,7 +144,7 @@ function setFileName() {
 	}
 }
 
-function tabs() {
+function tabs(swiper) {
 	const tabsLists = document.querySelectorAll(".js-tabs");
 	if (tabsLists) {
 		tabsLists.forEach(function (tabsList) {
@@ -165,19 +165,40 @@ function tabs() {
 	}
 
 	function changeTab(tabItem) {
-		const tabContainer = document.querySelector(
-			"#" + tabItem.getAttribute("data-tab")
-		);
+		let tabItems;
+		let tabContainer;
+		let activeTabClass = tabItem.dataset.class;
+
+		if (activeTabClass) {
+			tabItems = document.querySelectorAll("." + tabItem.dataset.tab);
+		} else {
+			tabContainer = document.querySelector("#" + tabItem.dataset.tab);
+		}
 
 		tabItem.classList.add("active");
 		get_siblings(tabItem).forEach(function (tab) {
 			tab.classList.remove("active");
 		});
 
-		tabContainer.classList.add("active");
-		get_siblings(tabContainer).forEach(function (tab_container) {
-			tab_container.classList.remove("active");
-		});
+		if (activeTabClass) {
+			tabItems.forEach(item => {
+				if (item.classList.contains(activeTabClass)) {
+					item.classList.add("active");
+				} else {
+					item.classList.remove("active");
+				}
+
+				if (swiper) {
+					swiper.update();
+					swiper.slideTo(0);
+				}
+			})
+		} else {
+			tabContainer.classList.add("active");
+			get_siblings(tabContainer).forEach(function (tab_container) {
+				tab_container.classList.remove("active");
+			});
+		}
 
 		tabItem.parentNode.classList.remove("open");
 	}
@@ -364,6 +385,7 @@ try {
 
 const customProgressbar = function(slider, elem) {
 	let progressbar = slider.el.querySelector(elem);
+	if (!progressbar) progressbar = slider.el.parentNode.querySelector(elem);
 	let progressbarCounter = progressbar.querySelector('.slider-controls__counter');
 	let activeSlide = slider.activeIndex + 1;
 	let amount = slider.slides.length;
@@ -380,7 +402,7 @@ const customProgressbar = function(slider, elem) {
 	progressbar.style.setProperty('--progressbar-angle', angle + 'deg');
 }
 
-//Слайдер blocks/rest
+//Слайдер welcome.php
 
 const welcomeSlider = document.querySelector('.welcome__slider');
 
@@ -400,6 +422,44 @@ if (welcomeSlider) {
 		on: {
 			afterInit: function() {
 				customProgressbar(this, '.slider-controls__progressbar')
+			},
+			slideChange: function() {
+				customProgressbar(this, '.slider-controls__progressbar')
+			}
+		}
+	});
+}
+
+//Слайдер blocks/new-releases
+
+const newReleasesSlider = document.querySelector('.new-releases__slider');
+
+if (newReleasesSlider) {
+	let newReleasesSwiper = new Swiper(newReleasesSlider, {
+		slidesPerView: 1,
+		spaceBetween: 20,
+		navigation: {
+			nextEl: newReleasesSlider.parentNode.querySelector('.slider-controls__next'),
+			prevEl: newReleasesSlider.parentNode.querySelector('.slider-controls__prev'),
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 4
+			},
+			992: {
+				slidesPerView: 3
+			},
+			769: {
+				slidesPerView: 2
+			},
+			577: {
+				slidesPerView: 2
+			}
+		},
+		on: {
+			afterInit: function() {
+				customProgressbar(this, '.slider-controls__progressbar');
+				tabs(this);
 			},
 			slideChange: function() {
 				customProgressbar(this, '.slider-controls__progressbar')

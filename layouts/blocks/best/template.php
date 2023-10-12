@@ -12,15 +12,15 @@
 		?>
 			<ul class="reset-list best__list swiper-wrapper">
 				<?php
-					foreach ( $bestProducts as $post ) :
+					foreach ( $bestProducts as $post ) {
                         setup_postdata( $post );
-				?>
-					<?php get_template_part('/layouts/partials/cards/product-card', null, array(
-						'class' => 'best__item swiper-slide',
-					) ); ?>
-				<?php
+
+						get_template_part('/layouts/partials/cards/product-card', null, array(
+							'class' => 'no-background best__item swiper-slide',
+						) );
+
 						wp_reset_postdata();
-					endforeach;
+					}
 				?>
 			</ul>
 

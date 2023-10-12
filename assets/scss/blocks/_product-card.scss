@@ -1,26 +1,28 @@
 .product-card {
 	height: auto;
-	padding: 50px 10px 40px;
 	transition: var(--transition);
 
 	@include xs {
 		padding: 0;
 	}
 
-	&:hover {
-		color: var(--fc-light);
-		background-color: var(--bg-primary);
+	@media (hover: hover) {
 
-		.product-card__wrapper::before {
-			transform: scale(1) rotate(180deg);
-		}
+		&:hover {
+			color: var(--fc-light);
+			background-color: var(--bg-primary);
 
-		.product-card__fav {
-			transform: scale(1);
+			.product-card__wrapper::before {
+				transform: scale(1) rotate(180deg);
+			}
+
+			.product-card__fav {
+				transform: scale(1);
+			}
 		}
 	}
 
-	&.swiper-slide {
+	&.no-background {
 
 		&:hover {
 			color: inherit;
@@ -34,6 +36,7 @@
 		flex-direction: column;
 		gap: 25px;
 		height: 100%;
+		padding: 50px 10px 40px;
 
 		@include xs {
 			max-width: 250px;
@@ -82,8 +85,8 @@
 
 	&__fav {
 		position: absolute;
-		top: 0;
-		right: 0;
+		top: 10px;
+		right: 10px;
 		transition: var(--transition);
 
 		@media (hover: hover) {
