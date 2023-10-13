@@ -5,6 +5,16 @@ function change_toolbar($args)
 {
 	$style_formats = [
 		[
+			'title' => 'Светлая кнопка',
+			'selector' => 'a, button',
+			'classes' => 'btn',
+		],
+		[
+			'title' => 'Темная кнопка',
+			'selector' => 'a, button',
+			'classes' => 'btn btn--dark',
+		],
+		[
 			'title' => 'Ненумерованный список',
 			'selector' => 'ul',
 			'classes' => 'article-ul',
@@ -55,8 +65,8 @@ function change_toolbar($args)
 			]
 		]
 	];
-	$args['fontsize_formats'] = "6px 8px 10px 12px 14px 16px 18px 20px 22px 24px 28px 30px 32px 34px 36px 38px 40px";
-	$args['font_formats'] = "Montserrat=Montserrat,sans-serif;Cormorant Unicase=Cormorant Unicase,sans-serif";
+	$args['fontsize_formats'] = "6px 8px 10px 12px 14px 16px 18px 20px 22px 24px 28px 30px 32px 34px 36px 38px 40px 42px 44px 46px 48px 50px 52px 54px 56px 58px 60px 62px 64px 64px";
+	$args['font_formats'] = "Playfair=Playfair, serif";
 	$args['style_formats'] = json_encode($style_formats);
 
 	return $args;
