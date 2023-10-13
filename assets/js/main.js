@@ -144,7 +144,7 @@ function setFileName() {
 	}
 }
 
-function tabs(swiper) {
+function tabs() {
 	const tabsLists = document.querySelectorAll(".js-tabs");
 	if (tabsLists) {
 		tabsLists.forEach(function (tabsList) {
@@ -171,6 +171,7 @@ function tabs(swiper) {
 
 		if (activeTabClass) {
 			tabItems = document.querySelectorAll("." + tabItem.dataset.tab);
+			tabContainer = document.querySelector("." + tabItem.dataset.tab).parentNode.parentNode;
 		} else {
 			tabContainer = document.querySelector("#" + tabItem.dataset.tab);
 		}
@@ -181,18 +182,14 @@ function tabs(swiper) {
 		});
 
 		if (activeTabClass) {
+			tabContainer.classList.add("observer-trigger");
 			tabItems.forEach(item => {
 				if (item.classList.contains(activeTabClass)) {
 					item.classList.add("active");
 				} else {
 					item.classList.remove("active");
 				}
-
-				if (swiper) {
-					swiper.update();
-					swiper.slideTo(0);
-				}
-			})
+			});
 		} else {
 			tabContainer.classList.add("active");
 			get_siblings(tabContainer).forEach(function (tab_container) {
@@ -438,6 +435,7 @@ if (newReleasesSlider) {
 	let newReleasesSwiper = new Swiper(newReleasesSlider, {
 		slidesPerView: 1,
 		spaceBetween: 20,
+		observer: true,
 		navigation: {
 			nextEl: newReleasesSlider.parentNode.querySelector('.slider-controls__next'),
 			prevEl: newReleasesSlider.parentNode.querySelector('.slider-controls__prev'),
@@ -459,10 +457,53 @@ if (newReleasesSlider) {
 		on: {
 			afterInit: function() {
 				customProgressbar(this, '.slider-controls__progressbar');
-				tabs(this);
 			},
 			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar')
+				customProgressbar(this, '.slider-controls__progressbar');
+			},
+			observerUpdate: function() {
+				this.update();
+				this.slideTo(0);
+			}
+		}
+	});
+}
+
+//Слайдер blocks/collecion-slider
+
+const collectionSlider = document.querySelector('.collection-slider__slider');
+
+if (collectionSlider) {
+	let collectionsSwiper = new Swiper(collectionSlider, {
+		slidesPerView: 1,
+		spaceBetween: 25,
+		observer: true,
+		navigation: {
+			nextEl: collectionSlider.parentNode.querySelector('.slider-controls__next'),
+			prevEl: collectionSlider.parentNode.querySelector('.slider-controls__prev'),
+		},
+		breakpoints: {
+			992: {
+				slidesPerView: 2
+			},
+			769: {
+				slidesPerView: 1
+			},
+			577: {
+				slidesPerView: 2
+			}
+		},
+		on: {
+			afterInit: function() {
+				// console.log(this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
+			},
+			slideChange: function() {
+				customProgressbar(this, '.slider-controls__progressbar');
+			},
+			observerUpdate: function() {
+				this.update();
+				this.slideTo(0);
 			}
 		}
 	});

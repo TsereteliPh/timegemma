@@ -5,7 +5,7 @@
 
 			<ul class="reset-list new-releases__btns js-tabs">
 				<li class="btn-tab new-releases__btn active" data-tab="new-releases__item" data-class="new-for-him">Für ihn</li>
-				<li class="btn-tab new-releases__btn" data-tab="new-releases__item" data-class="new-for-her">Für Sie</button>
+				<li class="btn-tab new-releases__btn" data-tab="new-releases__item" data-class="new-for-her">Für Sie</li>
 			</ul>
 		</div>
 
