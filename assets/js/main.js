@@ -380,12 +380,20 @@ try {
 
 //Custom progressbar
 
-const customProgressbar = function(slider, elem) {
+const customProgressbar = function(slider, elem, slidesPerView) {
 	let progressbar = slider.el.querySelector(elem);
 	if (!progressbar) progressbar = slider.el.parentNode.querySelector(elem);
 	let progressbarCounter = progressbar.querySelector('.slider-controls__counter');
+
 	let activeSlide = slider.activeIndex + 1;
-	let amount = slider.slides.length;
+	if (slidesPerView) activeSlide = slider.activeIndex + slidesPerView;
+
+	let amount = 0;
+	slider.slides.forEach(slide => {
+		if (slide.classList.contains('active')) amount++;
+	});
+	if (!amount) amount = slider.slides.length;
+
 	let angle = (360 / amount) * activeSlide;
 
 	let counter;
@@ -456,14 +464,15 @@ if (newReleasesSlider) {
 		},
 		on: {
 			afterInit: function() {
-				customProgressbar(this, '.slider-controls__progressbar');
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			},
 			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar');
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			},
 			observerUpdate: function() {
 				this.update();
 				this.slideTo(0);
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			}
 		}
 	});
@@ -495,15 +504,15 @@ if (collectionSlider) {
 		},
 		on: {
 			afterInit: function() {
-				// console.log(this.params.slidesPerView);
-				customProgressbar(this, '.slider-controls__progressbar');
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			},
 			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar');
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			},
 			observerUpdate: function() {
 				this.update();
 				this.slideTo(0);
+				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 			}
 		}
 	});
@@ -558,10 +567,10 @@ if (mainSliders) {
 			},
 			on: {
 				afterInit: function() {
-					customProgressbar(this, '.slider-controls__progressbar')
+					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView)
 				},
 				slideChange: function() {
-					customProgressbar(this, '.slider-controls__progressbar')
+					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView)
 				}
 			},
 			breakpoints: {
