@@ -21,6 +21,14 @@
 		}
 	}
 
+	&--dark {
+		color: var(--fc-dark);
+
+		svg {
+			color: var(--fc-dark);
+		}
+	}
+
 	&__text {
 		margin: 0;
 		color: inherit;

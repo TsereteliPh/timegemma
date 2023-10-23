@@ -15,6 +15,7 @@ if (have_rows('blocks', $id)) {
 
 		if (get_row_layout() == 'banner') get_template_part('layouts/blocks/banner/template');
 		else if (get_row_layout() == 'best') get_template_part('layouts/blocks/best/template');
+		else if (get_row_layout() == 'brands') get_template_part('layouts/blocks/brands/template');
 		else if (get_row_layout() == 'catalog-links') get_template_part('layouts/blocks/catalog-links/template');
 		else if (get_row_layout() == 'collection-slider') get_template_part('layouts/blocks/collection-slider/template');
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');

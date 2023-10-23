@@ -380,13 +380,13 @@ try {
 
 //Custom progressbar
 
-const customProgressbar = function(slider, elem, slidesPerView) {
+const customProgressbar = function(slider, elem) {
 	let progressbar = slider.el.querySelector(elem);
 	if (!progressbar) progressbar = slider.el.parentNode.querySelector(elem);
 	let progressbarCounter = progressbar.querySelector('.slider-controls__counter');
 
 	let activeSlide = slider.activeIndex + 1;
-	if (slidesPerView) activeSlide = slider.activeIndex + slidesPerView;
+	if (slider.params.slidesPerView > 1) activeSlide = slider.activeIndex + slider.params.slidesPerView;
 
 	let amount = 0;
 	slider.slides.forEach(slide => {
@@ -394,7 +394,7 @@ const customProgressbar = function(slider, elem, slidesPerView) {
 	});
 	if (!amount) amount = slider.slides.length;
 
-	let angle = (360 / amount) * activeSlide;
+	let angle = (360 / (amount / slider.params.grid.rows)) * activeSlide;
 
 	let counter;
 	if (activeSlide < 10) {
@@ -464,15 +464,15 @@ if (newReleasesSlider) {
 		},
 		on: {
 			afterInit: function() {
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			},
 			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			},
 			observerUpdate: function() {
 				this.update();
 				this.slideTo(0);
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			}
 		}
 	});
@@ -504,16 +504,69 @@ if (collectionSlider) {
 		},
 		on: {
 			afterInit: function() {
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			},
 			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			},
 			observerUpdate: function() {
 				this.update();
 				this.slideTo(0);
-				customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				customProgressbar(this, '.slider-controls__progressbar');
 			}
+		}
+	});
+}
+
+//Слайдер blocks/brands
+
+const brandsSlider = document.querySelector('.brands__slider');
+
+if (brandsSlider) {
+	let brandssSwiper = new Swiper(brandsSlider, {
+		slidesPerView: 2,
+		spaceBetween: 30,
+		autoplay: {
+			delay: 2000,
+		},
+		speed: 600,
+		grid: {
+			rows: 6,
+			fill: 'row'
+		},
+		navigation: {
+			nextEl: brandsSlider.parentNode.querySelector('.slider-controls__next'),
+			prevEl: brandsSlider.parentNode.querySelector('.slider-controls__prev'),
+		},
+		breakpoints: {
+			1440: {
+				slidesPerView: 3,
+				spaceBetween: 60,
+				grid: {
+					rows: 3
+				}
+			},
+			769: {
+				slidesPerView: 3,
+				spaceBetween: 60,
+				grid: {
+					rows: 2
+				}
+			},
+			577: {
+				slidesPerView: 4,
+				grid: {
+					rows: 3
+				}
+			}
+		},
+		on: {
+			afterInit: function() {
+				customProgressbar(this, '.slider-controls__progressbar');
+			},
+			slideChange: function() {
+				customProgressbar(this, '.slider-controls__progressbar');
+			},
 		}
 	});
 }
