@@ -206,16 +206,17 @@ function tabs() {
 }
 
 function calcBreadcrumbsPadding() {
-	const main = document.querySelector('.main');
 	const breadcrumbs = document.querySelector('.breadcrumb');
-	let section = document.querySelector('.js-bc-padding');
-
-	let indent;
-	window.innerWidth > 1439 ? indent = 124 : indent = 60;
 
 	if (!breadcrumbs) return;
 
+	const main = document.querySelector('.main');
+	let section = document.querySelector('.js-bc-padding');
+
 	if (!section) section = main.firstElementChild;
+
+	let indent;
+	window.innerWidth > 1439 ? indent = 124 : indent = 60;
 
 	section.style.marginTop = 0;
 	section.style.paddingTop = breadcrumbs.clientHeight + indent + 'px';

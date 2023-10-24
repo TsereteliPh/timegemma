@@ -1,0 +1,76 @@
+.single-news {
+	display: flex;
+	align-items: flex-end;
+	min-height: 580px;
+	background: no-repeat 50% / cover;
+
+	@include lg {
+		min-height: 520px;
+	}
+
+	@include xs {
+		min-height: 420px;
+		background-position: 50% top;
+	}
+
+	&__wrapper {
+		width: 100%;
+		height: fit-content;
+		min-height: 240px;
+		background: linear-gradient(to right, var(--bg-light) 0%, var(--bg-light) 35%, rgba(#fff, 0) 35%, rgba(#fff, 0) 100%) no-repeat;
+
+		@include hg {
+			min-height: 200px;
+			background: linear-gradient(to right, var(--bg-light) 0%, var(--bg-light) 45%, rgba(#fff, 0) 45%, rgba(#fff, 0) 100%) no-repeat;
+		}
+
+		@include md {
+			background: linear-gradient(to right, var(--bg-light) 0%, var(--bg-light) 60%, rgba(#fff, 0) 60%, rgba(#fff, 0) 100%) no-repeat;
+		}
+
+		@include sm {
+			min-height: 160px;
+			background: var(--bg-light);
+		}
+	}
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		min-height: inherit;
+		padding: 20px 0;
+
+		@include xs {
+			padding: 15px 0;
+		}
+	}
+
+	&__date {
+		font-weight: 300;
+	}
+
+	&__title {
+		max-width: 30%;
+		margin: 5px 0 0;
+		font-size: 32px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			max-width: 40%;
+		}
+
+		@include md {
+			max-width: 55%;
+			font-size: 28px;
+		}
+
+		@include sm {
+			max-width: none;
+		}
+
+		@include xs {
+			font-size: 24px;
+		}
+	}
+}
