@@ -1,0 +1,46 @@
+.main-text {
+	margin: 45px 0 0;
+
+	&__container {
+
+		&--border {
+			padding: 30px;
+			border: 1px solid var(--fc-grey);
+
+			@include sm {
+				padding: 15px;
+			}
+		}
+	}
+
+	&__title {
+		margin-bottom: 40px;
+		font-family: var(--font-primary);
+
+		@include xs {
+			margin-bottom: 25px;
+		}
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 1.5;
+
+		@include xs {
+			font-size: 14px;
+		}
+
+		p {
+			margin-bottom: 40px;
+
+			@include sm {
+				margin-bottom: 25px;
+			}
+
+			&:last-child {
+				margin: 0;
+			}
+		}
+	}
+}

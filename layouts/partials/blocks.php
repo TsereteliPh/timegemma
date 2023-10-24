@@ -19,6 +19,7 @@ if (have_rows('blocks', $id)) {
 		else if (get_row_layout() == 'catalog-links') get_template_part('layouts/blocks/catalog-links/template');
 		else if (get_row_layout() == 'collection-slider') get_template_part('layouts/blocks/collection-slider/template');
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');
+		else if (get_row_layout() == 'main-text') get_template_part('layouts/blocks/main-text/template');
 		else if (get_row_layout() == 'new-releases') get_template_part('layouts/blocks/new-releases/template');
 	}
 }

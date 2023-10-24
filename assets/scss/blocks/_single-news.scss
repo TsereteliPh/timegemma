@@ -29,7 +29,7 @@
 		}
 
 		@include sm {
-			min-height: 160px;
+			min-height: auto;
 			background: var(--bg-light);
 		}
 	}

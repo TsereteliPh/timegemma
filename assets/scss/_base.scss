@@ -128,6 +128,24 @@ iframe {
 	@include md {
 		margin: 0 1rem;
 	}
+
+	&--small {
+		max-width: 1140px;
+
+		@include to(1750px) {
+			max-width: 1140px;
+			margin: 0 auto;
+		}
+
+		@include to(1180px) {
+			max-width: 100%;
+			margin: 0 2rem;
+		}
+
+		@include md {
+			margin: 0 1rem;
+		}
+	}
 }
 
 .main {
