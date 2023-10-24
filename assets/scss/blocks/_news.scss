@@ -1,0 +1,22 @@
+.news {
+
+	&__list {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 0 20px;
+		margin-top: 50px;
+
+		@include md {
+			margin-top: 20px;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__button {
+		width: 100%;
+		margin-top: 50px;
+	}
+}

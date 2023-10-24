@@ -11,7 +11,11 @@ function load_more() {
 	if( $query->have_posts() ) {
 		while( $query->have_posts() ) {
 			$query->the_post();
-			$return_html .= get_template_part('layouts/partials/post-card');
+			if ( $args['cat'] == 42 ) {
+				$return_html .= get_template_part('layouts/partials/cards/news-card', null, array(
+					'class' => 'news__item'
+				));
+			}
 		}
 		wp_reset_postdata();
 	}

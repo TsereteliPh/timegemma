@@ -1,0 +1,152 @@
+.news-card {
+	display: grid;
+	grid-template-columns: 270px 1fr;
+	gap: 0 20px;
+	padding: 20px 0;
+	border-bottom: 1px solid var(--fc-grey);
+
+	@include hg {
+		grid-template-columns: 230px 1fr;
+	}
+
+	@include lg {
+		grid-template-columns: 250px 1fr;
+	}
+
+	@include md {
+		display: flex;
+		flex-direction: column;
+	}
+
+	@include sm {
+		display: grid;
+	}
+
+	@include xs {
+		display: flex;
+		border: none;
+	}
+
+	&__img {
+		display: block;
+		align-self: center;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 3/2;
+		object-fit: cover;
+
+		@include lg {
+			height: 100%;
+			aspect-ratio: auto;
+		}
+
+		@include md {
+			align-self: auto;
+			height: auto;
+			aspect-ratio: 16/9;
+		}
+
+		@include sm {
+			align-self: center;
+			aspect-ratio: 3/2;
+		}
+	}
+
+	&__info {
+		display: grid;
+		grid-template-columns: 1fr 50px;
+		gap: 0 60px;
+
+		@include hg {
+			gap: 0 15px;
+		}
+
+		@include lg {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		@include md {
+			height: 100%;
+		}
+
+		@include sm {
+			display: grid;
+		}
+
+		@include xs {
+			display: flex;
+		}
+	}
+
+	&__link {
+		display: block;
+		align-self: end;
+		font-size: 20px;
+		font-family: var(--font-secondary);
+		@include ui-link(var(--fc-dark));
+
+		@include lg {
+			align-self: auto;
+			font-size: 18px;
+		}
+
+		@include md {
+			margin: 20px 0;
+		}
+
+		@include sm {
+			align-self: end;
+			margin: 0;
+		}
+
+		@include xs {
+			align-self: auto;
+			margin-top: 20px;
+		}
+	}
+
+	&__excerpt {
+		position: relative;
+		margin-top: 20px;
+		padding-top: 20px;
+		font-weight: 300;
+
+		@include md {
+			margin-top: auto;
+		}
+
+		@include sm {
+			margin-top: 20px;
+		}
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 50px;
+			height: 1px;
+			background: var(--fc-grey);
+			content: "";
+		}
+	}
+
+	&__button {
+		grid-row: 1/3;
+		grid-column: 2/3;
+		align-self: center;
+
+		@include lg {
+			display: none;
+		}
+
+		@include sm {
+			display: block;
+		}
+
+		@include xs {
+			display: none;
+		}
+	}
+}

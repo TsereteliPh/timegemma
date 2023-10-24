@@ -264,7 +264,7 @@ function showMorePosts() {
 	show_more_btn.addEventListener("click", function (e) {
 		e.stopImmediatePropagation();
 		const container = document.querySelector(".js-show-more-container");
-		this.textContent = "Загрузка...";
+		this.classList.add('loader');
 
 		const response = fetch(adem_ajax.url, {
 			method: "POST",
@@ -279,7 +279,7 @@ function showMorePosts() {
 		})
 			.then((response) => response.text())
 			.then((data) => {
-				this.innerHTML = this.dataset.text;
+				this.classList.remove('loader');
 				container.insertAdjacentHTML("beforeend", data);
 				current_page++;
 				if (current_page === max_pages) this.remove();
