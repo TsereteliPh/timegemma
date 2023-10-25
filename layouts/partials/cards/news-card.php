@@ -1,11 +1,11 @@
-<li class="news-card">
+<li class="news-card <?php echo $args['class']; ?>">
 	<?php
 		if ( has_post_thumbnail() ) {
-			the_post_thumbnail( 'medium', array(
+			the_post_thumbnail( 'large', array(
 				'class' => 'news-card__img'
 			) );
 		} else {
-			echo wp_get_attachment_image( 86, 'medium', false, array(
+			echo wp_get_attachment_image( 86, 'large', false, array(
 				'class' => 'news-card__img'
 			) );
 		}

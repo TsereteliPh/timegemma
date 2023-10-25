@@ -35,11 +35,6 @@
 		aspect-ratio: 3/2;
 		object-fit: cover;
 
-		@include lg {
-			height: 100%;
-			aspect-ratio: auto;
-		}
-
 		@include md {
 			align-self: auto;
 			height: auto;

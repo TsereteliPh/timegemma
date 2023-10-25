@@ -13,23 +13,31 @@
 					'post_type' => 'post',
 					'cat' => 42,
 					'orderby' => 'post_date',
-					'posts_per_page' => '1',
+					'posts_per_page' => '3',
 					'paged' => 1
 				];
 
 				$query = new WP_Query($args);
-
-				// echo '<pre>';
-				// print_r($query);
-				// echo '</pre>';
 				$posts = $query->posts;
 
 				if ( $query->have_posts() ) {
-					foreach ($posts as $post) {
-						get_template_part('layouts/partials/cards/news-card', null, array(
-							'class' => 'news__item'
-						));
-					}
+                    if (is_archive()) {
+                        foreach ($posts as $post) {
+                            get_template_part('layouts/partials/cards/news-card', null, array(
+								'class' => 'news__item'
+                            ));
+                        }
+                    } else {
+                        while ( $query->have_posts() ) {
+                            $query->the_post();
+
+                            get_template_part('layouts/partials/cards/news-card', null, array(
+								'class' => 'news__item'
+                            ));
+                        }
+
+                        wp_reset_postdata();
+                    }
 				}
 			?>
 		</ul>
