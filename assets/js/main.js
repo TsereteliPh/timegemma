@@ -481,42 +481,74 @@ if (newReleasesSlider) {
 
 //Слайдер blocks/collecion-slider
 
-const collectionSlider = document.querySelector('.collection-slider__slider');
+const collectionSlider = document.querySelector('.collection-slider');
 
 if (collectionSlider) {
-	let collectionsSwiper = new Swiper(collectionSlider, {
-		slidesPerView: 1,
-		spaceBetween: 25,
-		observer: true,
-		navigation: {
-			nextEl: collectionSlider.parentNode.querySelector('.slider-controls__next'),
-			prevEl: collectionSlider.parentNode.querySelector('.slider-controls__prev'),
-		},
-		breakpoints: {
-			992: {
-				slidesPerView: 2
+	let collecionSliderWrapper = collectionSlider.querySelector('.collection-slider__slider');
+
+	if (collectionSlider.classList.contains('collection-slider--sorted')) {
+		let collectionsSwiper = new Swiper(collecionSliderWrapper, {
+			slidesPerView: 1,
+			spaceBetween: 25,
+			observer: true,
+			navigation: {
+				nextEl: collecionSliderWrapper.parentNode.querySelector('.slider-controls__next'),
+				prevEl: collecionSliderWrapper.parentNode.querySelector('.slider-controls__prev'),
 			},
-			769: {
-				slidesPerView: 1
+			breakpoints: {
+				992: {
+					slidesPerView: 2
+				},
+				769: {
+					slidesPerView: 1
+				},
+				577: {
+					slidesPerView: 2
+				}
 			},
-			577: {
-				slidesPerView: 2
+			on: {
+				afterInit: function() {
+					customProgressbar(this, '.slider-controls__progressbar');
+				},
+				slideChange: function() {
+					customProgressbar(this, '.slider-controls__progressbar');
+				},
+				observerUpdate: function() {
+					this.update();
+					this.slideTo(0);
+					customProgressbar(this, '.slider-controls__progressbar');
+				}
 			}
-		},
-		on: {
-			afterInit: function() {
-				customProgressbar(this, '.slider-controls__progressbar');
+		});
+	} else {
+		let sortedCollectionSlider = new Swiper(collecionSliderWrapper, {
+			slidesPerView: 1,
+			spaceBetween: 25,
+			navigation: {
+				nextEl: collecionSliderWrapper.parentNode.querySelector('.slider-controls__next'),
+				prevEl: collecionSliderWrapper.parentNode.querySelector('.slider-controls__prev'),
 			},
-			slideChange: function() {
-				customProgressbar(this, '.slider-controls__progressbar');
+			breakpoints: {
+				1280: {
+					slidesPerView: 3
+				},
+				769: {
+					slidesPerView: 2
+				},
+				577: {
+					slidesPerView: 2
+				}
 			},
-			observerUpdate: function() {
-				this.update();
-				this.slideTo(0);
-				customProgressbar(this, '.slider-controls__progressbar');
+			on: {
+				afterInit: function() {
+					customProgressbar(this, '.slider-controls__progressbar');
+				},
+				slideChange: function() {
+					customProgressbar(this, '.slider-controls__progressbar');
+				}
 			}
-		}
-	});
+		});
+	}
 }
 
 //Слайдер blocks/brands

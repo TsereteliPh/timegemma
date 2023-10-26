@@ -2,15 +2,75 @@
 	margin: 50px 0;
 	overflow: hidden;
 
+	&--sorted {
+
+		.collection-slider__container {
+			flex-direction: row;
+			gap: 25px;
+
+			@include sm {
+				flex-direction: column;
+				gap: 40px;
+				min-height: auto;
+			}
+		}
+
+		.collection-slider__title {
+			// position: relative;
+			margin: 60px 0 0;
+			text-align: center;
+		}
+
+		.collection-slider__list {
+			min-height: auto;
+		}
+
+		.collection-slider__item {
+			display: none;
+
+			&.active {
+				display: flex;
+				animation: collection-item-show 0.3s ease-out;
+			}
+		}
+
+		.collection-slider__controls {
+			top: auto;
+			right: auto;
+			bottom: 40px;
+			left: calc(100% - 170px);
+			transform: translateX(-50%);
+
+			@include sm {
+				position: static;
+				transform: none;
+			}
+		}
+	}
+
 	&__container {
 		display: flex;
-		gap: 25px;
+		flex-direction: column;
+		gap: 40px;
 		min-height: 400px;
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 400;
+		font-size: 48px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			font-size: 36px;
+		}
+
+		@include lg {
+			font-size: 30px;
+		}
 
 		@include sm {
-			flex-direction: column;
-			gap: 40px;
-			min-height: auto;
+			margin-top: 0;
 		}
 	}
 
@@ -19,17 +79,19 @@
 		max-width: 100%;
 	}
 
+	&__list {
+		min-height: 400px;
+
+		@include sm {
+			min-height: auto;
+		}
+	}
+
 	&__item {
-		display: none;
 		height: auto;
 
 		@include sm {
 			min-height: 460px;
-		}
-
-		&.active {
-			display: flex;
-			animation: collection-item-show 0.3s ease-out;
 		}
 	}
 
@@ -44,13 +106,12 @@
 
 	&__controls {
 		position: absolute;
-		bottom: 40px;
-		left: calc(100% - 170px);
-		transform: translateX(-50%);
+		top: 0;
+		right: 0;
 
 		@include sm {
 			position: static;
-			transform: none;
+			margin: 0 auto;
 		}
 	}
 
@@ -61,27 +122,6 @@
 		@include sm {
 			order: -1;
 			width: 100%;
-		}
-	}
-
-	&__title {
-		position: relative;
-		margin: 60px 0 0;
-		font-weight: 400;
-		font-size: 48px;
-		font-family: var(--font-secondary);
-		text-align: center;
-
-		@include hg {
-			font-size: 36px;
-		}
-
-		@include lg {
-			font-size: 30px;
-		}
-
-		@include sm {
-			margin-top: 0;
 		}
 	}
 
