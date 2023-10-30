@@ -122,7 +122,7 @@ do_action( 'woocommerce_before_main_content' );
 					/**
 					 * Hook: woocommerce_no_products_found.
 					 *
-					 *todo @hooked wc_no_products_found - 10
+					 * @hooked wc_no_products_found - 10
 					 */
 					do_action( 'woocommerce_no_products_found' );
 				}
