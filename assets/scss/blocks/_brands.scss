@@ -46,7 +46,7 @@
 		aspect-ratio: 1/1;
 		text-decoration: none;
 
-		@media (hover: hover) {
+		@include mouse {
 
 			&:hover {
 

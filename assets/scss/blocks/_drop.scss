@@ -81,7 +81,7 @@
 					font-size: 14px;
 				}
 
-				@media (hover: hover) {
+				@include mouse {
 
 					&:hover {
 						color: var(--fc-light);
@@ -161,7 +161,7 @@
 			background-color: #fff;
 		}
 
-		@media (hover: hover) {
+		@include mouse {
 
 			&:hover {
 				color: var(--emphasis);

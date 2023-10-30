@@ -17,6 +17,17 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_p
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
+remove_action( 'woocommerce_archive_description', 'woocommerce_taxonomy_archive_description', 10 );
+remove_action( 'woocommerce_archive_description', 'woocommerce_product_archive_description', 10 );
+
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+
+remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
+
+remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+
 // ---------------------------------------------------------------- Filters
 
 //add to cart fragment
@@ -44,6 +55,22 @@ function adem_out_of_stock( $availability, $product ) {
 	}
 
 	return $availability;
+}
+
+//rename catalog_orderby
+
+add_filter( 'woocommerce_catalog_orderby', 'adem_custom_woocommerce_catalog_orderby', 20 );
+
+function adem_custom_woocommerce_catalog_orderby( $orderby ) {
+    $orderby[ 'menu_order' ] = 'Default';
+    $orderby[ 'popularity' ] = 'Nach Beliebtheit';
+    $orderby[ 'date' ] = 'Nach Datum';
+    $orderby[ 'price' ] = 'Nach Preis ↑';
+    $orderby[ 'price-desc' ] = 'Nach Preis ↓';
+
+	unset( $orderby[ 'rating' ] );
+
+	return $orderby;
 }
 
 // ---------------------------------------------------------------- Functions

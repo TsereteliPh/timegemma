@@ -12,39 +12,119 @@
 		<div class="collection-slider__slider swiper">
 			<ul class="reset-list collection-slider__list swiper-wrapper">
 				<?php
+					// if ( !$sorted ) {
+					// 	foreach ( $collections as $post ) {
+					// 		echo '<li class="collection-slider__item swiper-slide">';
+
+					// 		setup_postdata( $post );
+
+					// 			get_template_part('/layouts/partials/cards/collection-card', null, array(
+					// 				'class' => 'collection-slider__link',
+					// 			) );
+
+					// 		wp_reset_postdata();
+
+					// 		echo '</li>';
+					// 	}
+					// } else {
+					// 	$iteration = 0;
+
+					// 	foreach ( $collections as $collection ) {
+					// 		foreach ( $collection['items'] as $post ) {
+					// 				$extraClass = ' year_' . $collection['year'];
+					// 				if ( $iteration == 0 ) $extraClass .= ' active';
+
+					// 			echo '<li class="collection-slider__item swiper-slide' . $extraClass . '">';
+
+					// 			setup_postdata( $post );
+
+					// 				get_template_part('/layouts/partials/cards/collection-card', null, array(
+					// 					'class' => 'collection-slider__link',
+					// 				) );
+
+					// 			wp_reset_postdata();
+
+					// 			echo '</li>';
+					// 		}
+
+					// 		$iteration++;
+					// 	}
+					// }
+				?>
+
+				<?php
+
 					if ( !$sorted ) {
-						foreach ( $collections as $post ) {
-							echo '<li class="collection-slider__item swiper-slide">';
+						$query = new WP_Query( array(
+							'post_type'         => 'collection',
+							'posts_per_page'    => -1,
+							'post__in'          => $collections,
+							'post_status'       => 'any',
+							'orderby'           => 'post__in',
+						) );
+						$posts = $query->posts;
 
-							setup_postdata( $post );
+						if ( $query->have_posts() ) {
+							if (is_archive()) {
+								foreach ($posts as $post) {
+									echo '<li class="collection-slider__item swiper-slide">';
+										get_template_part('/layouts/partials/cards/collection-card', null, array(
+											'class' => 'collection-slider__link',
+										) );
+									echo '</li>';
+								}
+							} else {
+								while ( $query->have_posts() ) {
+									$query->the_post();
 
-								get_template_part('/layouts/partials/cards/collection-card', null, array(
-									'class' => 'collection-slider__link',
-								) );
+									echo '<li class="collection-slider__item swiper-slide">';
+										get_template_part('/layouts/partials/cards/collection-card', null, array(
+											'class' => 'collection-slider__link',
+										) );
+									echo '</li>';
+								}
 
-							wp_reset_postdata();
-
-							echo '</li>';
+								wp_reset_postdata();
+							}
 						}
 					} else {
 						$iteration = 0;
 
 						foreach ( $collections as $collection ) {
-							foreach ( $collection['items'] as $post ) {
-									$extraClass = ' year_' . $collection['year'];
-									if ( $iteration == 0 ) $extraClass .= ' active';
+							$query = new WP_Query( array(
+								'post_type'         => 'collection',
+								'posts_per_page'    => -1,
+								'post__in'          => $collection['items'],
+								'post_status'       => 'any',
+								'orderby'           => 'post__in',
+							) );
+							$posts = $query->posts;
 
-								echo '<li class="collection-slider__item swiper-slide' . $extraClass . '">';
+							if ( $query->have_posts() ) {
+								$extraClass = ' year_' . $collection['year'];
+								if ( $iteration == 0 ) $extraClass .= ' active';
 
-								setup_postdata( $post );
+								if (is_archive()) {
+									foreach ($posts as $post) {
+										echo '<li class="collection-slider__item swiper-slide' . $extraClass . '">';
+											get_template_part('/layouts/partials/cards/collection-card', null, array(
+												'class' => 'collection-slider__link',
+											) );
+										echo '</li>';
+									}
+								} else {
+									while ( $query->have_posts() ) {
+										$query->the_post();
 
-									get_template_part('/layouts/partials/cards/collection-card', null, array(
-										'class' => 'collection-slider__link',
-									) );
+										echo '<li class="collection-slider__item swiper-slide' . $extraClass . '">';
+											get_template_part('/layouts/partials/cards/collection-card', null, array(
+												'class' => 'collection-slider__link',
+											) );
+										echo '</li>';
+									}
 
-								wp_reset_postdata();
-
-								echo '</li>';
+									wp_reset_postdata();
+								}
 							}
 
 							$iteration++;

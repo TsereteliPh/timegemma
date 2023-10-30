@@ -21,4 +21,17 @@
 	.collection-card__brand {
 		height: 40px;
 	}
+
+	.catalog__ordering {
+		float: none;
+		margin: 0 0 0 auto;
+
+		@include sm {
+			margin: 0;
+		}
+	}
+
+	.product {
+		padding: 0;
+	}
 }

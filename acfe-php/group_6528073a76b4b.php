@@ -79,7 +79,7 @@ acf_add_local_field_group(array(
 			'filters' => array(
 				0 => 'search',
 			),
-			'return_format' => 'object',
+			'return_format' => 'id',
 			'acfe_add_post' => 0,
 			'acfe_edit_post' => 0,
 			'acfe_bidirectional' => array(
@@ -214,7 +214,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1698236778,
+	'modified' => 1698334529,
 ));
 
 endif;

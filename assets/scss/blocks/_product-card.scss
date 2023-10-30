@@ -6,7 +6,7 @@
 		padding: 0;
 	}
 
-	@media (hover: hover) {
+	@include mouse {
 
 		&:hover {
 			color: var(--fc-light);
@@ -60,7 +60,7 @@
 			transform: rotate(180deg);
 			transition: var(--transition);
 
-			@media (hover: hover) {
+			@include mouse {
 				transform: scale(0) rotate(180deg);
 			}
 		}
@@ -89,7 +89,7 @@
 		right: 10px;
 		transition: var(--transition);
 
-		@media (hover: hover) {
+		@include mouse {
 			transform: scale(0);
 		}
 	}

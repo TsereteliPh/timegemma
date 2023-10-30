@@ -15,6 +15,10 @@ function load_more() {
 				$return_html .= get_template_part('layouts/partials/cards/news-card', null, array(
 					'class' => 'news__item'
 				));
+			} else if ( $args['post_type'] == 'product' || isset( $args['product_cat'] ) )  {
+				$return_html .= get_template_part('layouts/partials/cards/product-card', null, array(
+					'class' => 'catalog__item'
+				));
 			}
 		}
 		wp_reset_postdata();

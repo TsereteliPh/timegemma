@@ -96,6 +96,39 @@ add_filter('big_image_size_threshold', '__return_false');
 // remove prefix in archive title
 add_filter( 'get_the_archive_title_prefix', '__return_empty_string' );
 
+// Custom breadcrumbs yoast
+add_filter( 'wpseo_breadcrumb_links', 'custom_breadcrumbs' );
+
+function custom_breadcrumbs( $links ) {
+	global $post;
+
+	if ( is_tax( 'product_cat' ) ) {
+		$breadcrumb[] = array(
+			'url' => wc_get_page_permalink( 'shop' ),
+			'text' => 'Katalog',
+		);
+
+		array_splice( $links, 1, -2, $breadcrumb );
+	} else if ( is_singular( 'product_cat' ) ) {
+		$breadcrumb[] = array(
+			'url' => wc_get_page_permalink( 'shop' ),
+			'text' => 'Katalog',
+		);
+
+		// $term = get_the_terms( $post->ID, 'products-cat');
+		// if ( $term ) {
+		// 	$breadcrumb[] = array(
+		// 		'url' => get_term_link( $term[0]->term_id ),
+		// 		'text' => $term[0]->name,
+		// 	);
+		// }
+
+		array_splice( $links, 1, -2, $breadcrumb );
+	}
+
+	return $links;
+}
+
 // excerpt
 function adem_excerpt($limit, $ID = null)
 {

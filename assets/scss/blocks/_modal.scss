@@ -39,7 +39,7 @@
 		background-color: var(--fc-dark);
 		border: none;
 
-		@media (hover: hover) {
+		@include mouse {
 
 			&:hover {
 

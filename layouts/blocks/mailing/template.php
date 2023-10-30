@@ -7,7 +7,7 @@
 ?>
 
 <section class="mailing">
-	<div class="mailing__content" <?php echo $bgImage; ?>>
+	<div class="mailing__content" <?php if ( $bgImage ) echo $bgImage; ?>>
 		<div class="container">
 			<div class="mailing__wrapper">
 				<h2 class="mailing__title"><?php the_sub_field( 'title' ); ?></h2>

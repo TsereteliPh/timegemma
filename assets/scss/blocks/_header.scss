@@ -182,7 +182,7 @@
 			color: var(--fc-grey);
 			transition: var(--transition);
 
-			@media (hover: hover) {
+			@include mouse {
 
 				&:hover {
 					color: var(--primary);
@@ -229,7 +229,7 @@
 		cursor: pointer;
 		transition: var(--transition);
 
-		@media (hover: hover) {
+		@include mouse {
 
 			&:hover {
 				transform: translateY(-4px);
