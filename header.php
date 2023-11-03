@@ -44,9 +44,9 @@
 					<span id="header-cart-counter" class="header__cart-counter<?php echo ( $contents_count > 0 ) ? ' active' : ''; ?>"><?php echo WC()->cart->cart_contents_count; ?></span>
 				</a>
 
-				<button class="header__profile <?php //todo: add profile btn ?>" aria-label="Profil öffnen">
+				<a href="<?php echo wc_get_page_permalink( 'myaccount' ); //todo add logged-out modals ?>" class="header__profile" aria-label="Profil öffnen">
 					<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-profile"></use></svg>
-				</button>
+				</a>
 			</div>
 		</div>
 	</div>

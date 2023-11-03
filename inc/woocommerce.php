@@ -25,6 +25,8 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 
 remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
 
+remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
+
 remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
 
@@ -73,6 +75,34 @@ function adem_custom_woocommerce_catalog_orderby( $orderby ) {
 	return $orderby;
 }
 
+//Change cart coupon
+add_filter( 'woocommerce_cart_totals_coupon_label', 'adem_cart_totals_coupon_label', 10, 2 );
+
+function adem_cart_totals_coupon_label( $label, $coupon ) {
+	if ( $coupon->get_code() ) {
+        // New label
+        $label = sprintf( 'Aktiver aktionscode: <span class="cart__coupon-code">' . $coupon->get_code() . '</span>' );
+    }
+
+    return $label;
+}
+
+//Change remove coupon link
+add_filter( 'woocommerce_cart_totals_coupon_html', 'custom_cart_totals_coupon_html', 30, 3 );
+
+function custom_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount_html ) {
+
+    if( 'percent' == $coupon->get_discount_type() ) {
+        $percent = $coupon->get_amount();
+
+        $discount_amount_html = '<span class="cart__coupon-summ">' . apply_filters( 'woocommerce_coupon_discount_amount_html', $discount_amount_html, $coupon ) . '</span>';
+
+		$coupon_html = $discount_amount_html . ' <a href="' . esc_url( add_query_arg( 'remove_coupon', urlencode( $coupon->get_code() ), defined( 'WOOCOMMERCE_CHECKOUT' ) ? wc_get_checkout_url() : wc_get_cart_url() ) ) . '" class="woocommerce-remove-coupon cart__coupon-remove" data-coupon="' . esc_attr( $coupon->get_code() ) . '">[Stornieren]</a>';
+	}
+
+    return $coupon_html;
+}
+
 // ---------------------------------------------------------------- Functions
 
 // check product in cart
@@ -102,4 +132,28 @@ function get_product_quantity_in_cart( $product_id ) {
 
 	return $quantity;
 
+}
+
+// update cart quantity
+add_action('wp_footer', 'adem_cart_update_qty_script');
+function adem_cart_update_qty_script()
+{
+	if ( is_cart() ) {
+		?>
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				changeInputQuantity('.cart', true);
+				let update_cart;
+				jQuery('body').delegate(".cart__item .qty", "change", function () {
+					if (update_cart != null) {
+						clearTimeout(update_cart);
+					}
+					update_cart = setTimeout(function () {
+						jQuery("[name='update_cart']").trigger("click")
+					}, 1000);
+				});
+			});
+		</script>
+		<?php
+	}
 }

@@ -216,7 +216,7 @@ function calcBreadcrumbsPadding() {
 	if (!section) section = main.firstElementChild;
 
 	let indent;
-	window.innerWidth > 1439 ? indent = 124 : indent = 60;
+	window.innerWidth > 1439 ? indent = 84 : indent = 60;
 
 	section.style.marginTop = 0;
 	section.style.paddingTop = breadcrumbs.clientHeight + indent + 'px';

@@ -3,7 +3,7 @@
 	text-decoration: none;
 	transition: all 0.2s ease;
 
-	@media (hover: hover) {
+	@media (hover: hover) and (pointer: fine) {
 
 		&:hover {
 			text-decoration: underline;

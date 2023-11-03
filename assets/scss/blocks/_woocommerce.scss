@@ -1,6 +1,19 @@
 .woocommerce {
 
+	.woocommerce-notices-wrapper {
+		display: none;
+	}
+
 	.loader {
+
+		&::before {
+			background: url(assets/images/icon-loading.svg) no-repeat center center;
+		}
+	}
+
+	.blockUI.blockOverlay {
+		background: rgba(#ebeaef, 0.5) !important;
+		opacity: 1 !important;
 
 		&::before {
 			background: url(assets/images/icon-loading.svg) no-repeat center center;
@@ -33,5 +46,12 @@
 
 	.product {
 		padding: 0;
+	}
+}
+
+.woocommerce-page {
+
+	.collection-card__img {
+		height: 100%;
 	}
 }

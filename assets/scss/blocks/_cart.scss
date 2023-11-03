@@ -1,0 +1,423 @@
+.cart {
+	margin-top: 60px;
+
+	@include md {
+		margin-top: 45px;
+	}
+
+	@include xs {
+		margin-top: 30px;
+	}
+
+	&__form {
+		display: flex;
+		gap: 40px;
+		justify-content: space-between;
+
+		@include md {
+			flex-direction: column;
+			gap: 30px;
+		}
+
+		@include xs {
+			gap: 20px;
+		}
+	}
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		width: 100%;
+		max-width: 1140px;
+
+		@include md {
+			gap: 30px;
+		}
+
+		@include xs {
+			gap: 20px;
+		}
+	}
+
+	&__item {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1.5fr 2fr auto;
+		gap: 30px 70px;
+		padding: 40px;
+		background-color: #fff;
+		box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
+
+		@include hg {
+			gap: 20px 40px;
+		}
+
+		@include lg {
+			grid-template-columns: 1fr 2fr;
+		}
+
+		@include xs {
+			grid-template-columns: 40px 1fr;
+			gap: 0 45px;
+			padding: 20px;
+		}
+	}
+
+	&__item-buttons {
+		position: absolute;
+		top: 40px;
+		right: 40px;
+		display: flex;
+		gap: 20px;
+		align-items: center;
+
+		@include xs {
+			position: static;
+			grid-column: span 2;
+			justify-content: flex-end;
+			margin-bottom: 25px;
+		}
+	}
+
+	&__item-fav {
+		width: fit-content;
+		height: fit-content;
+		background: none;
+	}
+
+	&__item-remove {
+		width: 18px;
+		height: 18px;
+		background: url(assets/images/icon-trash-can.svg) no-repeat 50% / contain;
+	}
+
+	&__item-thumbnail {
+		display: flex;
+		grid-row: span 2;
+		grid-column: 1/2;
+		align-items: center;
+		justify-content: center;
+		background: url(assets/images/icon-dial-thin.svg) no-repeat 50% / contain;
+
+		@include lg {
+			grid-row: span 4;
+			background: none;
+			filter: drop-shadow(0 15px 10px rgba(#000, 0.4));
+		}
+
+		@include xs {
+			grid-row: span 2;
+			filter: drop-shadow(0 5px 10px rgba(#000, 0.4));
+		}
+	}
+
+	&__item-label {
+		position: relative;
+		align-self: center;
+		padding-bottom: 25px;
+
+		@include lg {
+			padding-right: 75px;
+		}
+
+		@include xs {
+			align-self: auto;
+			padding: 0;
+		}
+
+		&::before {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 50px;
+			height: 1px;
+			background: var(--fc-grey);
+			content: "";
+
+			@include xs {
+				display: none;
+			}
+		}
+
+		a {
+			font-size: 24px;
+			font-family: var(--font-secondary);
+			@include ui-link(var(--fc-dark));
+
+			@include lg {
+				font-size: 20px;
+			}
+
+			@include xs {
+				font-size: 18px;
+			}
+		}
+	}
+
+	&__item-price {
+		align-self: center;
+		font-weight: 300;
+		font-size: 24px;
+		text-align: center;
+
+		@include lg {
+			align-self: start;
+			font-size: 20px;
+			text-align-last: left;
+		}
+
+		@include xs {
+			grid-row: 2/3;
+			grid-column: 2/3;
+			align-self: end;
+			font-size: 16px;
+		}
+	}
+
+	&__attributes {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+
+		@include lg {
+			gap: 10px;
+		}
+
+		@include xs {
+			grid-column: span 2;
+			margin-top: 25px;
+		}
+	}
+
+	&__attributes-item {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 15px;
+		align-items: center;
+		justify-content: space-between;
+		font-weight: 300;
+	}
+
+	&__attributes-links {
+		margin-left: auto;
+		font-weight: 500;
+
+		a {
+			@include ui-link(var(--fc-dark));
+		}
+	}
+
+	&__attributes-color {
+		display: inline-block;
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+	}
+
+	&__item-quantity {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+		width: fit-content;
+
+		@include lg {
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+		}
+
+		@include xs {
+			grid-column: span 2;
+			gap: 10px;
+			width: 100%;
+			margin-top: 40px;
+		}
+
+		.quantity {
+
+			@include lg {
+				order: 1;
+				margin: 0;
+			}
+
+			@include xs {
+				order: 0;
+			}
+
+			&__btn {
+
+				@include xs {
+					width: 35px;
+					height: 35px;
+				}
+			}
+		}
+	}
+
+	&__item-subtotal {
+		font-weight: 700;
+		font-size: 24px;
+
+		@include lg {
+			margin-top: 10px;
+			font-size: 20px;
+		}
+
+		@include xs {
+			margin: 0;
+		}
+	}
+
+	&__actions {
+		display: none;
+	}
+
+	&__totals {
+		width: 100%;
+		max-width: 415px;
+
+		@include hg {
+			max-width: 350px;
+		}
+
+		@include md {
+			order: -1;
+			max-width: none;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-weight: 400;
+		font-size: 24px;
+		font-family: var(--font-secondary);
+
+		@include md {
+			grid-column: span 2;
+		}
+
+		@include xs {
+			font-size: 20px;
+		}
+	}
+
+	&__subtotal,
+	&__order-total {
+		display: flex;
+		gap: 15px;
+		justify-content: space-between;
+		margin-top: 20px;
+		font-weight: 300;
+	}
+
+	&__summ {
+		font-weight: 500;
+	}
+
+	&__coupon {
+		position: relative;
+		margin-top: 25px;
+		font-weight: 300;
+
+		@include xs {
+			margin-top: 20px;
+		}
+	}
+
+	&__coupon-input {
+		width: 100%;
+		min-height: 75px;
+		margin-top: 5px;
+		padding: 20px 70px 20px 20px;
+		font-size: 14px;
+		text-transform: uppercase;
+		background: #fff;
+		border: 1px solid transparent;
+		transition: var(--transition);
+
+		&:hover,
+		&:focus {
+			border-color: var(--fc-dark);
+		}
+
+		&::placeholder {
+			font-weight: 300;
+		}
+	}
+
+	&__coupon-btn {
+		position: absolute;
+		right: 20px;
+		bottom: 22px;
+		width: 30px;
+		height: 30px;
+		background: var(--fc-dark);
+		border: none;
+		border-radius: 50%;
+
+		&::after {
+			position: absolute;
+			top: 45%;
+			left: 50%;
+			width: 14px;
+			height: 7px;
+			border-bottom: 2px solid var(--bg-light);
+			border-left: 2px solid var(--bg-light);
+			transform: translate(-50%, -50%) rotate(-45deg);
+			content: "";
+		}
+	}
+
+	&__coupon-active {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		margin-top: 20px;
+	}
+
+	&__coupon-label {
+		display: flex;
+		gap: 10px;
+		justify-content: space-between;
+		font-weight: 300;
+	}
+
+	&__coupon-code {
+		font-weight: 500;
+		text-transform: uppercase;
+	}
+
+	&__coupon-diff {
+		display: flex;
+		flex-direction: column;
+		gap: 5px;
+		width: fit-content;
+		margin-left: auto;
+		text-align: right;
+	}
+
+	&__coupon-summ {
+		font-weight: 500;
+	}
+
+	&__coupon-remove {
+		position: relative;
+		display: block;
+		font-weight: 500;
+	}
+
+	&__checkout {
+		margin-top: 25px;
+
+		@include sm {
+			min-height: 74px;
+			font-size: 18px;
+		}
+
+		@include xs {
+			margin-top: 20px;
+		}
+	}
+}
