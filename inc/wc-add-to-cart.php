@@ -24,7 +24,7 @@ function wc_add_to_cart() {
 	// Возвращаем JSON-ответ
 	echo json_encode(array(
 		'status' => 'success',
-		'count' => get_product_quantity_in_cart($product_id),
+		'count' => WC()->cart->get_cart_contents_count(),
 		'countAll' =>  WC()->cart->cart_contents_count
 	));
 	die();
