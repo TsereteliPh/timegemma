@@ -88,6 +88,7 @@ function setTelMask() {
 
 function sendForm() {
 	document.querySelectorAll("form[name]").forEach(function (form) {
+
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
 			const form = this;
@@ -117,14 +118,16 @@ function sendForm() {
 				.then((data) => {
 					Fancybox.close(true);
 					form.reset();
-					setTimeout(function () {
-						Fancybox.show([
-							{
-								src: "#success",
-								type: "inline",
-							},
-						]);
-					}, 100);
+					if (!form.classList.contains("checkout")) {
+						setTimeout(function () {
+							Fancybox.show([
+								{
+									src: "#success",
+									type: "inline",
+								},
+							]);
+						}, 100);
+					}
 				})
 				.catch((error) => {
 					console.error("Error:", error);

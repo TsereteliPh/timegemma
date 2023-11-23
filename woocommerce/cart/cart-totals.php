@@ -18,23 +18,23 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<div class="cart__totals cart_totals<?php //echo ( WC()->customer->has_calculated_shipping() ) ? ' calculated_shipping' : ''; ?>">
+<div class="cart-totals cart__totals cart_totals<?php //echo ( WC()->customer->has_calculated_shipping() ) ? ' calculated_shipping' : ''; ?>">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 
-	<h2 class="cart__title">Bestellübersicht</h2>
+	<h2 class="cart-totals__title">Bestellübersicht</h2>
 
 	<?php if ( is_checkout() || WC()->cart->get_coupons() ) : ?>
-		<div class="cart__subtotal">
-			<div class="cart__subtotal-label">Zwischensumme:</div>
-			<div class="cart__summ" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></div>
+		<div class="cart-totals__subtotal">
+			<div class="cart-totals__subtotal-label">Zwischensumme:</div>
+			<div class="cart-totals__summ" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>"><?php wc_cart_totals_subtotal_html(); ?></div>
 		</div>
 	<?php endif; ?>
 
 	<?php foreach ( WC()->cart->get_coupons() as $code => $coupon ) : ?>
-		<div class="cart__coupon-active coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
-			<div class="cart__coupon-label"><?php wc_cart_totals_coupon_label( $coupon ); ?></div>
-			<div class="cart__coupon-diff"><?php wc_cart_totals_coupon_html( $coupon ); ?></div>
+		<div class="cart-totals__coupon-active coupon-<?php echo esc_attr( sanitize_title( $code ) ); ?>">
+			<div class="cart-totals__coupon-label"><?php wc_cart_totals_coupon_label( $coupon ); ?></div>
+			<div class="cart-totals__coupon-diff"><?php wc_cart_totals_coupon_html( $coupon ); ?></div>
 		</div>
 	<?php endforeach; ?>
 
@@ -70,18 +70,18 @@ defined( 'ABSPATH' ) || exit;
 
 	<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-	<div class="cart__order-total">
+	<div class="cart-totals__order-total">
 		<div>Bestellpreis:</div>
-		<div class="cart__summ" data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></div>
+		<div class="cart-totals__summ" data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></div>
 	</div>
 
 	<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
 
 	<?php if ( wc_coupons_enabled() ) : ?>
-		<div class="cart__coupon coupon">
+		<div class="cart-totals__coupon coupon">
 			<label for="coupon_code">Aktionscode</label>
-			<input type="text" name="coupon_code" class="cart__coupon-input input-text" id="coupon_code" value="" placeholder="Aktionscode eingeben" />
-			<button type="submit" class="cart__coupon-btn <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"></button>
+			<input type="text" name="coupon_code" class="cart-totals__coupon-input input-text" id="coupon_code" value="" placeholder="Aktionscode eingeben" />
+			<button type="submit" class="cart-totals__coupon-btn <?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="apply_coupon" value="<?php esc_attr_e( 'Apply coupon', 'woocommerce' ); ?>"></button>
 			<?php do_action( 'woocommerce_cart_coupon' ); ?>
 		</div>
 	<?php endif; ?>

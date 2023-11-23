@@ -12,48 +12,6 @@
 		<div class="collection-slider__slider swiper">
 			<ul class="reset-list collection-slider__list swiper-wrapper">
 				<?php
-					// if ( !$sorted ) {
-					// 	foreach ( $collections as $post ) {
-					// 		echo '<li class="collection-slider__item swiper-slide">';
-
-					// 		setup_postdata( $post );
-
-					// 			get_template_part('/layouts/partials/cards/collection-card', null, array(
-					// 				'class' => 'collection-slider__link',
-					// 			) );
-
-					// 		wp_reset_postdata();
-
-					// 		echo '</li>';
-					// 	}
-					// } else {
-					// 	$iteration = 0;
-
-					// 	foreach ( $collections as $collection ) {
-					// 		foreach ( $collection['items'] as $post ) {
-					// 				$extraClass = ' year_' . $collection['year'];
-					// 				if ( $iteration == 0 ) $extraClass .= ' active';
-
-					// 			echo '<li class="collection-slider__item swiper-slide' . $extraClass . '">';
-
-					// 			setup_postdata( $post );
-
-					// 				get_template_part('/layouts/partials/cards/collection-card', null, array(
-					// 					'class' => 'collection-slider__link',
-					// 				) );
-
-					// 			wp_reset_postdata();
-
-					// 			echo '</li>';
-					// 		}
-
-					// 		$iteration++;
-					// 	}
-					// }
-				?>
-
-				<?php
-
 					if ( !$sorted ) {
 						$query = new WP_Query( array(
 							'post_type'         => 'collection',

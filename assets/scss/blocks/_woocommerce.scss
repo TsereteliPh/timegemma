@@ -47,6 +47,15 @@
 	.product {
 		padding: 0;
 	}
+
+	form .check__payment label.checkbox {
+		display: flex;
+	}
+
+	.woocommerce-cart #payment,
+	.woocommerce-checkout #payment {
+		background: #fff;
+	}
 }
 
 .woocommerce-page {
@@ -54,4 +63,14 @@
 	.collection-card__img {
 		height: 100%;
 	}
+
+	form .check__payment label.checkbox {
+		display: flex;
+	}
+}
+
+.select2-dropdown {
+	margin-top: 10px;
+	color: var(--fc-dark);
+	border: 1px solid var(--fc-grey) !important;
 }

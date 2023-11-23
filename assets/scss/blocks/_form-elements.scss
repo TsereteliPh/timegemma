@@ -29,6 +29,7 @@
 }
 
 .fieldset {
+	position: relative;
 	width: 100%;
 	min-height: 74px;
 	margin: -7px 0 0;
@@ -50,6 +51,10 @@
 		@include xs {
 			font-size: 12px;
 		}
+
+		span {
+			color: var(--fc-grey);
+		}
 	}
 
 	input {
@@ -57,7 +62,6 @@
 		height: 100%;
 		padding: 0;
 		font-size: 18px;
-		font-family: var(--font-secondary);
 		background: transparent;
 		border: none;
 		outline: none;
@@ -82,6 +86,114 @@
 		input {
 			color: var(--fc-light);
 		}
+	}
+}
+
+.radio,
+.checkbox {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+	font-weight: 300;
+	font-size: 14px;
+
+	@include mouse {
+
+		&:hover {
+
+			.radio__switcher,
+			.checkbox__switcher {
+				border-color: var(--fc-dark);
+			}
+		}
+	}
+
+	&__input {
+		display: none;
+		appearance: none;
+	}
+
+	&__switcher {
+		position: relative;
+		flex-shrink: 0;
+		width: 30px;
+		height: 30px;
+		background: #fff;
+		cursor: pointer;
+		transition: var(--transition);
+
+		@include xs {
+			width: 24px;
+			height: 24px;
+		}
+	}
+}
+
+.radio {
+
+	&__switcher {
+		border: 1px solid transparent;
+		border-radius: 50%;
+
+		&::before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 12px;
+			height: 12px;
+			background: var(--fc-dark);
+			border-radius: 50%;
+			transform: translate(-50%, -50%) scale(0);
+			visibility: hidden;
+			transition: var(--transition);
+			content: "";
+
+			@include xs {
+				width: 10px;
+				height: 10px;
+			}
+		}
+	}
+
+	&__input:checked + &__switcher::before {
+		transform: translate(-50%, -50%) scale(1);
+		visibility: visible;
+	}
+}
+
+.checkbox {
+
+	&__switcher {
+		border: 1px solid var(--fc-grey);
+
+		&::before {
+			position: absolute;
+			top: 40%;
+			left: 50%;
+			width: 14px;
+			height: 7px;
+			border-bottom: 2px solid var(--fc-light);
+			border-left: 2px solid var(--fc-light);
+			transform: translate(-50%, -50%) rotate(-45deg);
+			visibility: hidden;
+			opacity: 0;
+			content: "";
+
+			@include xs {
+				width: 10px;
+				height: 5px;
+			}
+		}
+	}
+
+	&__input:checked + &__switcher {
+		background: var(--fc-dark);
+		border: 1px solid var(--fc-dark);
+	}
+
+	&__input:checked + &__switcher::before {
+		visibility: visible;
+		opacity: 1;
 	}
 }
 
