@@ -1,0 +1,58 @@
+.search {
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 50px;
+
+		@include hg {
+			gap: 40px;
+		}
+
+		@include sm {
+			gap: 30px;
+		}
+
+		@include xs {
+			align-items: center;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-size: 48px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			font-size: 40px;
+		}
+
+		@include md {
+			font-size: 32px;
+		}
+
+		@include sm {
+			font-size: 28px;
+		}
+
+		@include xs {
+			font-size: 24px;
+			text-align: center;
+		}
+
+		span {
+			color: var(--emphasis);
+		}
+	}
+
+	&__group-title {
+
+		span {
+			color: var(--emphasis);
+		}
+	}
+
+	&__link {
+		width: fit-content;
+	}
+}

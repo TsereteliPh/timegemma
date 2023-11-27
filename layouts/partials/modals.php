@@ -8,10 +8,12 @@
 
 <div class="modal modal--search" id="search">
 	<form role="search" method="get" class="modal__search-form" action="<?php bloginfo( 'url' ); ?>" id="searchform">
-		<input type="search" id="search" class="input modal-search-input" value="<?php echo get_search_query(); ?>" name="s" placeholder="Seitensuche">
+		<input type="search" id="search" class="input modal-search-input" value="<?php echo get_search_query(); ?>" name="s" placeholder="Seitensuche" data-swplive="true">
 
 		<button type="submit" class="modal__search-btn">
 			<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
 		</button>
 	</form>
+
+	<div class="modal__search-result"></div>
 </div>

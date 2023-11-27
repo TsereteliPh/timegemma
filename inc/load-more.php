@@ -19,6 +19,10 @@ function load_more() {
 				$return_html .= get_template_part('layouts/partials/cards/product-card', null, array(
 					'class' => 'catalog__item'
 				));
+			} else if ( $args['post_type'] == 'collection' ) {
+				$return_html .= get_template_part('layouts/partials/cards/collection-card', null, array(
+					'class' => 'collections__link'
+				));
 			}
 		}
 		wp_reset_postdata();

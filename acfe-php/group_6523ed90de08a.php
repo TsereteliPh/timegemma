@@ -50,7 +50,7 @@ acf_add_local_field_group(array(
 			'allow_level' => '',
 			'field_type' => 'checkbox',
 			'min' => 1,
-			'max' => 1,
+			'max' => '',
 			'default_value' => array(
 			),
 			'return_format' => 'object',
@@ -136,7 +136,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1696853936,
+	'modified' => 1700823584,
 ));
 
 endif;

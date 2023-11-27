@@ -13,7 +13,7 @@
 					'post_type' => 'post',
 					'cat' => 42,
 					'orderby' => 'post_date',
-					'posts_per_page' => '3',
+					'posts_per_page' => '6',
 					'paged' => 1
 				];
 

@@ -55,4 +55,59 @@
 			transition: var(--transition);
 		}
 	}
+
+	&__search-result {
+		position: relative;
+
+		.searchwp-live-search-results {
+			display: none;
+		}
+
+		.searchwp-live-search-no-min-chars {
+			display: none;
+		}
+
+		.searchwp-live-search-results-showing {
+			display: flex;
+			flex-direction: column;
+			height: fit-content;
+			min-height: 100px;
+			max-height: 200px;
+			margin-top: 15px;
+			// padding: 5px 0;
+			overflow: auto;
+			border: 1px solid var(--fc-dark);
+			border-radius: 0;
+		}
+
+		.searchwp-live-search-no-results {
+			align-self: center;
+			width: fit-content;
+			height: fit-content;
+			margin: auto;
+		}
+	}
+
+	&__search-link {
+		display: block;
+		width: 100%;
+		padding: 20px 15px;
+		font-size: 18px;
+		font-family: var(--font-secondary);
+		border-bottom: 1px solid var(--fc-grey);
+		@include ui-link(var(--fc-dark));
+
+		@include sm {
+			padding: 15px 10px;
+			font-size: 16px;
+		}
+
+		@include xs {
+			font-size: 14px;
+		}
+
+		&:last-child {
+			border: none;
+		}
+	}
 }

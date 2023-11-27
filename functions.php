@@ -63,7 +63,7 @@ if (!function_exists('adem_setup')) {
 		'has_archive' => true,
 		'rewrite' => true,
 		'query_var' => true,
-		'publicly_queryable' => false
+		'publicly_queryable' => true
 	]);
 }
 
@@ -115,14 +115,6 @@ function custom_breadcrumbs( $links ) {
 			'text' => 'Katalog',
 		);
 
-		// $term = get_the_terms( $post->ID, 'products-cat');
-		// if ( $term ) {
-		// 	$breadcrumb[] = array(
-		// 		'url' => get_term_link( $term[0]->term_id ),
-		// 		'text' => $term[0]->name,
-		// 	);
-		// }
-
 		array_splice( $links, 1, -2, $breadcrumb );
 	}
 
@@ -134,6 +126,49 @@ function adem_excerpt($limit, $ID = null)
 {
 	return mb_substr(get_the_excerpt($ID), 0, $limit) . '...';
 }
+
+//SearchWP plugin configs
+add_filter( 'searchwp_live_search_configs', 'adem_searchwp_live_search_configs' );
+
+function adem_searchwp_live_search_configs( $configs ) {
+	$configs['default'] = array(
+		'engine' => 'default',
+		'input' => array(
+			'delay'     => 300,
+			'min_chars' => 1,
+		),
+		'parent_el' => '.modal__search-result',
+		'results' => array(
+			'position'  => 'bottom',
+			'width'     => 'auto',
+			'offset'    => array(
+				'x' => 0,
+				'y' => 15
+			),
+		),
+		'spinner' => array(
+			'lines'     => 0,
+			'length'    => 0,
+			'width'     => 'auto',
+			'radius'    => 0,
+			'scale'     => 1,
+			'corners'   => 0,
+			'color'     => 'inherit',
+			'fadeColor' => 'transparent',
+			'speed'     => 1,
+			'rotate'    => 0,
+			'direction' => 1,
+			'className' => 'loader',
+			'top'       => '50%',
+			'left'      => '50%',
+			'position'  => 'absolute'
+		),
+	);
+
+	return $configs;
+}
+
+add_filter( 'searchwp_live_search_base_styles', '__return_false' );
 
 require 'inc/acf.php';
 require 'inc/load-more.php';

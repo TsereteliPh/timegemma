@@ -501,12 +501,6 @@ if (collectionSlider) {
 			breakpoints: {
 				992: {
 					slidesPerView: 2
-				},
-				769: {
-					slidesPerView: 1
-				},
-				577: {
-					slidesPerView: 2
 				}
 			},
 			on: {
@@ -536,9 +530,6 @@ if (collectionSlider) {
 					slidesPerView: 3
 				},
 				769: {
-					slidesPerView: 2
-				},
-				577: {
 					slidesPerView: 2
 				}
 			},
