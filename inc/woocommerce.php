@@ -32,6 +32,7 @@ remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
 
 remove_action( 'woocommerce_checkout_before_customer_details', 'wc_get_pay_buttons', 30 ); //? Delete if not stable
 
@@ -165,25 +166,6 @@ function adem_cart_update_qty_script()
 		</script>
 		<?php
 	}
-}
-
-//Custon login on checkout page
-
-add_action( 'woocommerce_before_checkout_form', 'force_checkout_login_for_unlogged_customers', 4 );
-function force_checkout_login_for_unlogged_customers() {
-    if( ! is_user_logged_in() ) {
-        remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
-        add_action( 'woocommerce_before_checkout_form', 'custom_checkout_login_form', 20 );
-    }
-}
-
-function custom_checkout_login_form() {
-	//!temprarily disable
-    // wc_get_template( 'global/form-login.php', array(
-    //     'message'  => __( 'If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing &amp; Shipping section.', 'woocommerce' ),
-    //     'redirect' => wc_get_page_permalink( 'checkout' ),
-    //     'hidden'   => false,
-    // ) );
 }
 
 //Custom fields on checkout page

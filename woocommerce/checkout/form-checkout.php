@@ -27,6 +27,7 @@ wc_get_template( 'cart/cart-panel.php' ); ?>
 			/**
 			 * Before checkout form hook.
 			 * //@hooked woocommerce_checkout_coupon_form - 10
+			 * //@hooked woocommerce_checkout_login_form' - 10
 			 */
 
 			do_action( 'woocommerce_before_checkout_form', $checkout );
