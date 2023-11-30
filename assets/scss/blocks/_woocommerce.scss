@@ -4,6 +4,49 @@
 		display: none;
 	}
 
+	.woocommerce-NoticeGroup-checkout {
+		grid-column: span 2;
+
+		.woocommerce-error {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			margin: 0 0 50px;
+			padding: 20px 20px 20px 50px;
+			background-color: #fff;
+			border: none;
+
+			@include md {
+				margin: 50px 0 0;
+			}
+
+			@include xs {
+				gap: 10px;
+				margin: 30px 0 0;
+				padding: 35px 10px 20px;
+				font-size: 12px;
+			}
+
+			&::before {
+				top: 20px;
+				color: var(--emphasis);
+
+				@include xs {
+					top: 10px;
+					left: 10px;
+				}
+			}
+
+			&::after {
+				display: none;
+			}
+
+			li {
+				color: var(--fc-dark);
+			}
+		}
+	}
+
 	.loader {
 
 		&::before {

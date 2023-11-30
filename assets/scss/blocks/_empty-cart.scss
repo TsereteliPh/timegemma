@@ -1,0 +1,42 @@
+.empty-cart {
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+		justify-content: center;
+
+		@include sm {
+			gap: 30px;
+		}
+	}
+
+	&__title {
+		margin: 0;
+		font-size: 46px;
+		text-align: center;
+
+		@include hg {
+			font-size: 28px;
+		}
+
+		@include xs {
+			font-size: 24px;
+		}
+	}
+
+	&__message {
+		font-weight: 300;
+		font-size: 20px;
+		text-align: center;
+
+		@include hg {
+			font-size: 16px;
+		}
+
+		@include xs {
+			font-size: 14px;
+		}
+	}
+}

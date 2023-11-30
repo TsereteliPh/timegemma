@@ -27,6 +27,8 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 
 remove_action( 'woocommerce_after_shop_loop', 'woocommerce_pagination', 10 );
 
+remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
+
 remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' );
 
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );

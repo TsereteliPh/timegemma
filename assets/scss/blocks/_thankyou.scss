@@ -1,0 +1,36 @@
+.thankyou {
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+		justify-content: center;
+		min-height: 300px;
+
+		@include sm {
+			gap: 30px;
+			min-height: 200px;
+		}
+	}
+
+	&__message {
+		max-width: 760px;
+		font-weight: 300;
+		font-size: 24px;
+		text-align: center;
+
+		@include sm {
+			max-width: 600px;
+			font-size: 20px;
+		}
+
+		@include xs {
+			font-size: 16px;
+		}
+
+		span {
+			font-weight: 500;
+		}
+	}
+}

@@ -33,7 +33,8 @@ wc_get_template( 'cart/cart-panel.php' ); ?>
 
 			// If checkout registration is disabled and not logged in, the user cannot checkout.
 			if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_required() && ! is_user_logged_in() ) {
-				echo esc_html( apply_filters( 'woocommerce_checkout_must_be_logged_in_message', __( 'You must be logged in to checkout.', 'woocommerce' ) ) );
+				echo '<h2 class="check__must-login">Um eine Bestellung aufzugeben, müssen Sie sich anmelden.</h2>';
+				echo '<button type="button" class="btn btn--black check__must-btn" data-fancybox data-src="#login">Anmeldung</button>';
 				return;
 			}
 		?>
