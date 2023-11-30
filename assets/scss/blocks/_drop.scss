@@ -180,15 +180,33 @@
 	}
 
 	&__user {
-		// background-color: red;
-		// height: 50px;
 
 		@include md {
 			grid-column: 1/2;
+			padding: 0 10px;
 		}
 
 		@include xs {
 			order: -1;
+		}
+	}
+
+	&__user-name {
+		font-size: 18px;
+
+		@include xs {
+			font-size: 16px;
+		}
+	}
+
+	&__user-email {
+		margin-top: 5px;
+		color: #828282;
+		font-weight: 300;
+		font-size: 16px;
+
+		@include xs {
+			font-size: 14px;
 		}
 	}
 
@@ -210,6 +228,7 @@
 		grid-column: 3/4;
 		// background-color: red;
 		// height: 50px;
+		//todo: socials in header
 
 		@include md {
 			grid-column: 1/2;

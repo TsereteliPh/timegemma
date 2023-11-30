@@ -224,7 +224,8 @@
 	&__search-btn,
 	&__favorites,
 	&__cart-link,
-	&__profile {
+	&__profile,
+	&__login {
 		display: block;
 		cursor: pointer;
 		transition: var(--transition);
@@ -255,7 +256,8 @@
 	}
 
 	&__search-btn,
-	&__profile {
+	&__profile,
+	&__login {
 		padding: 0;
 		background: none;
 		border: none;

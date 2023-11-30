@@ -18,6 +18,18 @@
 		}
 	}
 
+	&--login {
+		width: 100%;
+		max-width: min(98%, 1430px);
+		height: 90vh;
+		padding: 0;
+
+		@include hg {
+			height: fit-content;
+			max-height: 90vh;
+		}
+	}
+
 	&__search-form {
 		position: relative;
 	}
@@ -74,7 +86,6 @@
 			min-height: 100px;
 			max-height: 200px;
 			margin-top: 15px;
-			// padding: 5px 0;
 			overflow: auto;
 			border: 1px solid var(--fc-dark);
 			border-radius: 0;
@@ -109,5 +120,290 @@
 		&:last-child {
 			border: none;
 		}
+	}
+
+	&__login {
+		display: flex;
+		flex-flow: row nowrap;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	&__login-img {
+		flex: 0 1 0;
+		background: no-repeat 50% / cover;
+		transition: var(--transition);
+
+		@include sm {
+			display: none;
+		}
+
+		&--form-login {
+			background-image: url(assets/images/login-left-bg.jpg);
+		}
+
+		&--form-registeration {
+			background-image: url(assets/images/login-right-bg.jpg);
+		}
+
+		&.active {
+			flex: 1 1 40%;
+			max-width: 560px;
+
+			@include hg {
+				max-width: 450px;
+			}
+
+			@include lg {
+				max-width: 380px;
+			}
+
+			@include md {
+				max-width: 30%;
+			}
+		}
+	}
+
+	&__login-wrapper {
+		position: relative;
+		display: flex;
+		flex: 2 0 870px;
+		flex-direction: column;
+		gap: 40px;
+		align-items: center;
+		justify-content: center;
+		padding: 60px;
+
+		@include hg {
+			flex: 2 0 auto;
+		}
+
+		@include sm {
+			flex: 1 1 auto;
+			padding: 60px 40px 40px;
+		}
+
+		@include xs {
+			padding: 50px 20px 30px;
+		}
+	}
+
+	&__login-list {
+		display: flex;
+		gap: 120px;
+		align-items: center;
+
+		@include hg {
+			gap: 60px;
+		}
+
+		@include md {
+			gap: 40px;
+		}
+
+		@include xs {
+			gap: 30px;
+		}
+	}
+
+	&__login-item {
+		color: var(--fc-grey);
+		font-size: 36px;
+		font-family: var(--font-secondary);
+		cursor: pointer;
+		transition: var(--transition);
+
+		@include hg {
+			font-size: 26px;
+		}
+
+		@include md {
+			font-size: 22px;
+		}
+
+		@include xs {
+			font-size: 18px;
+		}
+
+		&.active {
+			color: var(--fc-dark);
+			font-weight: 700;
+			cursor: default;
+		}
+	}
+
+	&__login-form {
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		width: 100%;
+		max-width: 560px;
+		visibility: hidden;
+		opacity: 0;
+
+		@include hg {
+			max-width: 450px;
+		}
+
+		&.active {
+			position: static;
+			visibility: visible;
+			opacity: 1;
+			animation: form-show 0.5s ease-in-out;
+		}
+
+		&.invalid {
+
+			.fieldset {
+				border-color: var(--emphasis);
+				animation: input-invalid 0.3s ease-in-out both;
+			}
+
+			.modal__login-error {
+				display: block;
+			}
+		}
+
+		&.loader {
+
+			* {
+				opacity: 0.5;
+			}
+		}
+	}
+
+	&__login-error {
+		display: none;
+		color: var(--emphasis);
+		text-align: center;
+	}
+
+	&__fieldset {
+
+		@include hg {
+			min-height: 40px;
+		}
+
+		input {
+
+			@include hg {
+				font-size: 14px;
+			}
+		}
+	}
+
+	&__login-lost {
+		display: block;
+		width: fit-content;
+		margin: 0 auto;
+		font-size: 16px;
+		@include ui-link(var(--fc-dark));
+
+		@include hg {
+			font-size: 14px;
+		}
+	}
+
+	&__submit {
+		width: 100%;
+		min-width: auto;
+
+		@include hg {
+			min-height: 50px;
+			padding: 0 25px;
+			font-size: 14px;
+		}
+	}
+
+	.f-button.is-close-btn {
+		top: 10px;
+		right: 10px;
+		width: 45px;
+		height: 45px;
+		color: var(--fc-light);
+		background: var(--fc-dark);
+		border: none;
+		border-radius: 50%;
+		box-shadow: none;
+		opacity: 1;
+		transition: var(--transition);
+
+		@include hg {
+			width: 35px;
+			height: 35px;
+		}
+
+		@include sm {
+			opacity: 0.7;
+		}
+
+		@include xs {
+			top: 5px;
+			right: 5px;
+			width: 30px;
+			height: 30px;
+		}
+
+		@include mouse {
+
+			&:hover {
+				color: var(--primary);
+			}
+		}
+
+		svg {
+
+			@include hg {
+				width: 18px;
+				height: 18px;
+			}
+
+			@include xs {
+				width: 14px;
+				height: 14px;
+			}
+		}
+	}
+}
+
+@keyframes form-show {
+
+	0% {
+		opacity: 0;
+		scale: 0.85;
+	}
+
+	60% {
+		opacity: 1;
+		scale: 1.03;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+@keyframes input-invalid {
+
+	0% {
+		transform: translateX(15px);
+	}
+
+	25% {
+		transform: translateX(-15px);
+	}
+
+	50% {
+		transform: translateX(15px);
+	}
+
+	75% {
+		transform: translateX(-15px);
+	}
+
+	100% {
+		transform: translateX(0);
 	}
 }

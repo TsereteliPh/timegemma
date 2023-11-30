@@ -92,30 +92,34 @@ function sendForm() {
 		form.addEventListener("submit", function (e) {
 			e.preventDefault();
 			const form = this;
+			form.classList.add('loader');
 			let formData = new FormData(form);
-			const formName = form.name;
-			const fileInput = form.querySelector("input[type=file]");
 
-			formData.append("action", "send_mail");
+			if (!form.name === 'login' || !form.name === 'registeration') {
+				const formName = form.name;
+				const fileInput = form.querySelector("input[type=file]");
 
-			if (formName) {
-				formData.append("form_name", formName);
-			} else {
-				return;
-			}
+				formData.append("action", "send_mail");
 
-			if (fileInput) {
-				Array.from(fileInput.files).forEach((file, key) => {
-					formData.append(key.toString(), file);
-				});
-			}
+				if (formName) {
+					formData.append("form_name", formName);
+				} else {
+					return;
+				}
 
-			const response = fetch(adem_ajax.url, {
-				method: "POST",
-				body: formData,
-			})
+				if (fileInput) {
+					Array.from(fileInput.files).forEach((file, key) => {
+						formData.append(key.toString(), file);
+					});
+				}
+
+				const response = fetch(adem_ajax.url, {
+					method: "POST",
+					body: formData,
+				})
 				.then((response) => response.text())
 				.then((data) => {
+					form.classList.remove('loader');
 					Fancybox.close(true);
 					form.reset();
 					if (!form.classList.contains("checkout")) {
@@ -132,6 +136,53 @@ function sendForm() {
 				.catch((error) => {
 					console.error("Error:", error);
 				});
+			} else if (form.name === 'login') {
+				formData.append("action", "login");
+
+				const response = fetch(adem_ajax.url, {
+					method: "POST",
+					body: formData
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					form.classList.remove('loader');
+					if (data.status == 'success') {
+						Fancybox.close(true);
+						location.reload();
+					} else {
+						form.classList.add('invalid');
+						if (data.message) {
+							form.querySelector('.js-error').textContent = data.message;
+						}
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+			} else if (form.name === 'registeration') {
+				formData.append('action', 'registeration');
+
+				const response = fetch(adem_ajax.url, {
+					method: "POST",
+					body: formData
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					form.classList.remove('loader');
+					if (data.status == 'success') {
+						Fancybox.close(true);
+						location.reload();
+					} else {
+						form.classList.add('invalid');
+						if (data.message) {
+							form.querySelector('.js-error').textContent = data.message;
+						}
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+			}
 		});
 	});
 }
@@ -725,6 +776,26 @@ if (productList) {
 				this.classList.add('active');
 				slideToggle(this.nextElementSibling);
 			}
+		})
+	});
+}
+
+//Функционал модальных окон
+
+const modalLogin = document.querySelector('.modal--login');
+
+if (modalLogin) {
+	const loginSwitchBtns = modalLogin.querySelectorAll('.js-tabs li');
+	const loginImages = modalLogin.querySelectorAll('.modal__login-img');
+
+	loginSwitchBtns.forEach(btn => {
+		btn.addEventListener('click', function() {
+			for (let img of loginImages) {
+				img.classList.remove('active');
+			}
+
+			let activeImg = document.querySelector('.modal__login-img--' + btn.dataset.tab);
+			activeImg.classList.add('active');
 		})
 	});
 }

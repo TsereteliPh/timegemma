@@ -86,7 +86,7 @@ function adem_scripts()
 	wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/vendor/css/swiper-bundle.min.css', array(), '10.3.1');
 	wp_enqueue_script('swiper', get_template_directory_uri() . '/assets/vendor/js/swiper-bundle.min.js', array(), '10.3.1', true);
 	wp_enqueue_style('adem', get_stylesheet_uri(), array(), _S_VERSION);
-	wp_enqueue_script('adem', get_template_directory_uri() . '/assets/js/main.min.js', array(), _S_VERSION, true);
+	wp_enqueue_script('adem', get_template_directory_uri() . '/assets/js/main.js', array(), _S_VERSION, true); //! Change to min.js
 	wp_localize_script('adem', 'adem_ajax', array('url' => admin_url('admin-ajax.php')));
 }
 
@@ -171,6 +171,8 @@ function adem_searchwp_live_search_configs( $configs ) {
 add_filter( 'searchwp_live_search_base_styles', '__return_false' );
 
 require 'inc/acf.php';
+require 'inc/login.php';
+require 'inc/registeration.php';
 require 'inc/load-more.php';
 require 'inc/mail.php';
 require 'inc/svg.php';

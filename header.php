@@ -28,7 +28,7 @@
 			)); ?>
 
 			<div class="header__panel">
-				<button class="header__search-btn" aria-label="Suchleiste öffnen" data-fancybox data-src="#search">
+				<button class="header__search-btn" aria-label="Suchleiste öffnen" data-src="#search" data-fancybox>
 					<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
 				</button>
 
@@ -44,9 +44,15 @@
 					<span id="header-cart-counter" class="header__cart-counter<?php echo ( $contents_count > 0 ) ? ' active' : ''; ?>"><?php echo WC()->cart->cart_contents_count; ?></span>
 				</a>
 
-				<a href="<?php echo wc_get_page_permalink( 'myaccount' ); //todo add logged-out modals ?>" class="header__profile" aria-label="Profil öffnen">
-					<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-profile"></use></svg>
-				</a>
+				<?php if ( is_user_logged_in() ) : ?>
+					<a href="<?php echo wc_get_page_permalink( 'myaccount' ); ?>" class="header__profile" aria-label="Profil öffnen">
+						<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-profile"></use></svg>
+					</a>
+				<?php else : ?>
+					<button class="header__login" aria-label="Anmeldefenster öffnen" data-src="#login" data-fancybox>
+						<svg width="20" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-login"></use></svg>
+					</button>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>
@@ -112,10 +118,18 @@
 			</div>
 		<?php endif; ?>
 
-		<?php if ( $user ) : ?>
-			<?php // TODO: username and email address ?>
+		<?php
+			if ( is_user_logged_in() ) :
+				$current_user = wp_get_current_user();
+		?>
+			<div class="drop__user">
+				<?php if ( $current_user->display_name ) : ?>
+					<div class="drop__user-name"><?php echo $current_user->display_name; ?></div>
+				<?php endif; ?>
+
+				<div class="drop__user-email"><?php echo $current_user->user_login; ?></div>
+			</div>
 		<?php endif; ?>
-		<!-- <div class="drop__user">test</div> -->
 
 		<?php
 			$headerCollection = get_field( 'collection_banner', 'options' );
