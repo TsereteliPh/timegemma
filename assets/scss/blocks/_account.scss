@@ -52,7 +52,7 @@
 
 			.fieldset {
 				border-color: var(--emphasis);
-				animation: input-invalid 0.3s ease-in-out both; //From modal.scss
+				animation: input-invalid 0.3s ease-in-out both; //From animations.scss
 			}
 
 			.account__login-error {

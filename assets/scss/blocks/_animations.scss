@@ -1,0 +1,109 @@
+@keyframes cats-show {
+
+	0% {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+
+	60% {
+		transform: translateY(-10px);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+@keyframes footer-cats-show {
+
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes form-show {
+
+	0% {
+		opacity: 0;
+		scale: 0.85;
+	}
+
+	60% {
+		opacity: 1;
+		scale: 1.03;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+@keyframes heart-pulse {
+
+	0% {
+		transform: scale(0);
+	}
+
+	70% {
+		transform: scale(1.1);
+	}
+
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes input-invalid {
+
+	0% {
+		transform: translateX(15px);
+	}
+
+	25% {
+		transform: translateX(-15px);
+	}
+
+	50% {
+		transform: translateX(15px);
+	}
+
+	75% {
+		transform: translateX(-15px);
+	}
+
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes item-show {
+
+	0% {
+		scale: 0;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+@keyframes show-cart {
+
+	0% {
+		opacity: 0;
+	}
+
+	60% {
+		transform: translateY(-5px);
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}

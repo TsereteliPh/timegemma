@@ -107,7 +107,7 @@
 
 		&.active {
 			display: block;
-			animation: new-item-show 0.3s ease-out;
+			animation: item-show 0.3s ease-out; //From animations.scss
 		}
 	}
 
@@ -133,16 +133,5 @@
 			position: static;
 			transform: none;
 		}
-	}
-}
-
-@keyframes new-item-show {
-
-	0% {
-		scale: 0;
-	}
-
-	100% {
-		scale: 1;
 	}
 }

@@ -168,7 +168,7 @@
 	&.active {
 
 		svg {
-			animation: heart-pulse 0.4s ease-out;
+			animation: heart-pulse 0.4s ease-out; //From animations.scss
 			fill: var(--emphasis);
 		}
 	}
@@ -227,20 +227,5 @@
 		color: var(--fc-light);
 		font-weight: 700;
 		background-color: var(--fc-dark);
-	}
-}
-
-@keyframes heart-pulse {
-
-	0% {
-		transform: scale(0);
-	}
-
-	70% {
-		transform: scale(1.1);
-	}
-
-	100% {
-		transform: scale(1);
 	}
 }

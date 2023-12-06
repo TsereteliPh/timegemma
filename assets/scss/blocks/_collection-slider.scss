@@ -16,7 +16,6 @@
 		}
 
 		.collection-slider__title {
-			// position: relative;
 			margin: 60px 0 0;
 			text-align: center;
 		}
@@ -30,7 +29,7 @@
 
 			&.active {
 				display: flex;
-				animation: collection-item-show 0.3s ease-out;
+				animation: item-show 0.3s ease-out; //From animations.scss
 			}
 		}
 
@@ -140,16 +139,5 @@
 		justify-content: center;
 		padding: 10px 15px;
 		font-size: 20px;
-	}
-}
-
-@keyframes collection-item-show {
-
-	0% {
-		scale: 0;
-	}
-
-	100% {
-		scale: 1;
 	}
 }

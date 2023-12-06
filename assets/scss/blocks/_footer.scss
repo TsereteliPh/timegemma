@@ -149,7 +149,7 @@
 		&.active {
 			position: static;
 			display: grid;
-			animation: footer-cats-show 0.4s ease-in;
+			animation: footer-cats-show 0.4s ease-in; //From animations.scss
 		}
 	}
 
@@ -195,16 +195,5 @@
 		@include lg {
 			margin: 0;
 		}
-	}
-}
-
-@keyframes footer-cats-show {
-
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
 	}
 }

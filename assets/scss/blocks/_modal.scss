@@ -251,14 +251,14 @@
 			position: static;
 			visibility: visible;
 			opacity: 1;
-			animation: form-show 0.5s ease-in-out;
+			animation: form-show 0.5s ease-in-out; //From animation.scss
 		}
 
 		&.invalid {
 
 			.fieldset {
 				border-color: var(--emphasis);
-				animation: input-invalid 0.3s ease-in-out both;
+				animation: input-invalid 0.3s ease-in-out both; //From animation.scss
 			}
 
 			.modal__login-error {
@@ -365,45 +365,5 @@
 				height: 14px;
 			}
 		}
-	}
-}
-
-@keyframes form-show {
-
-	0% {
-		opacity: 0;
-		scale: 0.85;
-	}
-
-	60% {
-		opacity: 1;
-		scale: 1.03;
-	}
-
-	100% {
-		scale: 1;
-	}
-}
-
-@keyframes input-invalid {
-
-	0% {
-		transform: translateX(15px);
-	}
-
-	25% {
-		transform: translateX(-15px);
-	}
-
-	50% {
-		transform: translateX(15px);
-	}
-
-	75% {
-		transform: translateX(-15px);
-	}
-
-	100% {
-		transform: translateX(0);
 	}
 }
