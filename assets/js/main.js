@@ -775,6 +775,18 @@ if (productList) {
 	});
 }
 
+//Функционал меню на страницу аккаунта
+
+const accountNav = document.querySelector('.account__nav');
+
+if (accountNav && window.innerWidth <= 768) {
+	const accountNavBtn = accountNav.querySelector('.account__nav-btn');
+
+	accountNavBtn.onclick = () => {
+		accountNav.classList.toggle('active');
+	}
+}
+
 //Функционал модальных окон
 
 const modalLogin = document.querySelector('.modal--login');

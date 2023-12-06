@@ -42,10 +42,8 @@ remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_condit
 
 // ---------------------------------------------------------------- Filters
 
-//add to cart fragment
-
+//Add to cart fragment
 add_filter('woocommerce_add_to_cart_fragments', 'adem_header_add_to_cart_fragments');
-
 function adem_header_add_to_cart_fragments( $fragments ) {
 	$cart_count = WC()->cart->get_cart_contents_count();
 	$countHTML = '<span id="header-cart-counter" class="header__cart-counter">' . $cart_count . '</span>';
@@ -55,10 +53,8 @@ function adem_header_add_to_cart_fragments( $fragments ) {
 	return $fragments;
 }
 
-//edit out of stock
-
+// Edit out of stock
 add_filter( 'woocommerce_get_availability', 'adem_out_of_stock', 10, 2 );
-
 function adem_out_of_stock( $availability, $product ) {
 
 	if ( ! $product->is_in_stock() ) {
@@ -69,10 +65,8 @@ function adem_out_of_stock( $availability, $product ) {
 	return $availability;
 }
 
-//rename catalog_orderby
-
+// Rename catalog_orderby
 add_filter( 'woocommerce_catalog_orderby', 'adem_custom_woocommerce_catalog_orderby', 20 );
-
 function adem_custom_woocommerce_catalog_orderby( $orderby ) {
     $orderby[ 'menu_order' ] = 'Default';
     $orderby[ 'popularity' ] = 'Nach Beliebtheit';
@@ -85,9 +79,8 @@ function adem_custom_woocommerce_catalog_orderby( $orderby ) {
 	return $orderby;
 }
 
-//Change cart coupon
+// Change cart coupon
 add_filter( 'woocommerce_cart_totals_coupon_label', 'adem_cart_totals_coupon_label', 10, 2 );
-
 function adem_cart_totals_coupon_label( $label, $coupon ) {
 	if ( $coupon->get_code() ) {
         // New label
@@ -97,9 +90,8 @@ function adem_cart_totals_coupon_label( $label, $coupon ) {
     return $label;
 }
 
-//Change remove coupon link
+// Change remove coupon link
 add_filter( 'woocommerce_cart_totals_coupon_html', 'custom_cart_totals_coupon_html', 30, 3 );
-
 function custom_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount_html ) {
 
     if( 'percent' == $coupon->get_discount_type() ) {
@@ -113,69 +105,13 @@ function custom_cart_totals_coupon_html( $coupon_html, $coupon, $discount_amount
     return $coupon_html;
 }
 
-// ---------------------------------------------------------------- Functions
-
-// check product in cart
-function is_product_in_cart() {
-    foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
-        $cart_product = $values['data'];
-
-        if( get_the_ID() == $cart_product->id ) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-// product quantity in cart by ID
-
-function get_product_quantity_in_cart( $product_id ) {
-	$quantity = 0;
-
-	foreach ( WC()->cart->get_cart() as $cart_item ) {
-		if( $product_id == $cart_item[ 'product_id' ] ){
-			$quantity = $cart_item[ 'quantity' ];
-			break;
-		}
-	}
-
-	return $quantity;
-
-}
-
-// update cart quantity
-add_action('wp_footer', 'adem_cart_update_qty_script');
-function adem_cart_update_qty_script()
-{
-	if ( is_cart() ) {
-		?>
-		<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				changeInputQuantity('.cart', true);
-				let update_cart;
-				jQuery('body').delegate(".cart__item .qty", "change", function () {
-					if (update_cart != null) {
-						clearTimeout(update_cart);
-					}
-					update_cart = setTimeout(function () {
-						jQuery("[name='update_cart']").trigger("click")
-					}, 1000);
-				});
-			});
-		</script>
-		<?php
-	}
-}
-
 //Custom fields on checkout page
-
 add_filter( 'woocommerce_form_field_text', 'custom_woocommerce_form_field_text', 10, 4 );
 function custom_woocommerce_form_field_text( $field, $key, $args, $value ) {
 
     if ( $args['type'] == 'text' ) {
 
-            $field = '<fieldset class="fieldset check__fieldset check__fieldset--' . esc_attr( $key ) . '">';
+            $field = '<fieldset class="fieldset fieldset--' . esc_attr( $key ) . '">';
 
 			$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - <span>' . esc_html__( 'optional', 'woocommerce' ) . '</span>' : '' ) . '</legend>';
 
@@ -192,9 +128,9 @@ function custom_woocommerce_form_field_tel( $field, $key, $args, $value ) {
 
     if ( $args['type'] == 'tel' ) {
 
-            $field = '<fieldset class="fieldset check__fieldset check__fieldset--' . esc_attr( $key ) . '">';
+            $field = '<fieldset class="fieldset fieldset--' . esc_attr( $key ) . '">';
 
-			$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - ' . esc_html__( 'optional', 'woocommerce' ) : '' ) . '</legend>';
+			$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - <span>' . esc_html__( 'optional', 'woocommerce' ) . '</span>' : '' ) . '</legend>';
 
 			$field .= '<input type="tel" class="input-text" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $value ) . '" name="' . esc_attr( $key ) . '" required>';
 
@@ -209,9 +145,9 @@ function custom_woocommerce_form_field_email( $field, $key, $args, $value ) {
 
     if ( $args['type'] == 'email' ) {
 
-            $field = '<fieldset class="fieldset check__fieldset check__fieldset--' . esc_attr( $key ) . '">';
+            $field = '<fieldset class="fieldset fieldset--' . esc_attr( $key ) . '">';
 
-			$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - ' . esc_html__( 'optional', 'woocommerce' ) : '' ) . '</legend>';
+			$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - <span>' . esc_html__( 'optional', 'woocommerce' ) . '</span>' : '' ) . '</legend>';
 
 			$field .= '<input type="email" class="input-text" id="' . esc_attr( $args['id'] ) . '" value="' . esc_attr( $value ) . '" name="' . esc_attr( $key ) . '" required>';
 
@@ -228,9 +164,9 @@ function custom_woocommerce_form_field_country( $field, $key, $args, $value ) {
 
 		$countries = 'shipping_country' === $key ? WC()->countries->get_shipping_countries() : WC()->countries->get_allowed_countries();
 
-		$field = '<fieldset class="fieldset check__fieldset check__fieldset--' . esc_attr( $key ) . '">';
+		$field = '<fieldset class="fieldset fieldset--' . esc_attr( $key ) . '">';
 
-		$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - ' . esc_html__( 'optional', 'woocommerce' ) : '' ) . '</legend>';
+		$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - <span>' . esc_html__( 'optional', 'woocommerce' ) . '</span>' : '' ) . '</legend>';
 
 		if ( 1 === count( $countries ) ) {
 
@@ -266,8 +202,8 @@ function custom_woocommerce_form_field_state( $field, $key, $args, $value ) {
 		$for_country = isset( $args['country'] ) ? $args['country'] : WC()->checkout->get_value( 'billing_state' === $key ? 'billing_country' : 'shipping_country' );
 		$states      = WC()->countries->get_states( $for_country );
 
-		$field = '<fieldset class="fieldset check__fieldset check__fieldset--' . esc_attr( $key ) . '">';
-		$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - ' . esc_html__( 'optional', 'woocommerce' ) : '' ) . '</legend>';
+		$field = '<fieldset class="fieldset fieldset--' . esc_attr( $key ) . '">';
+		$field .= '<legend>' . $args['label'] . ( !$args['required'] ? ' - <span>' . esc_html__( 'optional', 'woocommerce' ) . '</span>' : '' ) . '</legend>';
 
 		if ( is_array( $states ) && empty( $states ) ) {
 
@@ -296,4 +232,65 @@ function custom_woocommerce_form_field_state( $field, $key, $args, $value ) {
     }
 
     return $field;
+}
+
+// Disable account links
+add_filter( 'woocommerce_account_menu_items', 'adem_account_menu_items', 25 );
+function adem_account_menu_items( $menu_links ) {
+	unset( $menu_links[ 'downloads' ] );
+
+	return $menu_links;
+}
+
+// ---------------------------------------------------------------- Functions
+
+// Check product in cart
+function is_product_in_cart() {
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $values ) {
+        $cart_product = $values['data'];
+
+        if( get_the_ID() == $cart_product->id ) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+// Product quantity in cart by ID
+function get_product_quantity_in_cart( $product_id ) {
+	$quantity = 0;
+
+	foreach ( WC()->cart->get_cart() as $cart_item ) {
+		if( $product_id == $cart_item[ 'product_id' ] ){
+			$quantity = $cart_item[ 'quantity' ];
+			break;
+		}
+	}
+
+	return $quantity;
+
+}
+
+// Update cart quantity
+add_action('wp_footer', 'adem_cart_update_qty_script');
+function adem_cart_update_qty_script() {
+	if ( is_cart() ) {
+		?>
+			<script>
+				document.addEventListener('DOMContentLoaded', function () {
+					changeInputQuantity('.cart', true);
+					let update_cart;
+					jQuery('body').delegate(".cart__item .qty", "change", function () {
+						if (update_cart != null) {
+							clearTimeout(update_cart);
+						}
+						update_cart = setTimeout(function () {
+							jQuery("[name='update_cart']").trigger("click")
+						}, 1000);
+					});
+				});
+			</script>
+		<?php
+	}
 }

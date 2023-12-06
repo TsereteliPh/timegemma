@@ -2,6 +2,64 @@
 
 	.woocommerce-notices-wrapper {
 		display: none;
+
+		.woocommerce-error,
+		.woocommerce-message {
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+			margin: 0 0 50px;
+			padding: 20px 20px 20px 50px;
+			background: none;
+			border: 1px solid var(--fc-dark);
+
+			@include md {
+				margin: 0 0 30px;
+			}
+
+			@include xs {
+				gap: 10px;
+				padding: 35px 10px 20px;
+				font-size: 12px;
+			}
+
+			&::before {
+				top: 20px;
+				color: var(--emphasis);
+
+				@include xs {
+					top: 10px;
+					left: 10px;
+				}
+			}
+
+			&::after {
+				display: none;
+			}
+
+			li {
+				color: var(--fc-dark);
+			}
+		}
+
+		.woocommerce-message {
+
+			@include xs {
+				padding: 15px 30px;
+			}
+
+			&::before {
+				color: #2e8b57;
+
+				@include xs {
+					top: 14px;
+				}
+			}
+		}
+	}
+
+	.account .woocommerce-notices-wrapper {
+		display: block;
 	}
 
 	.woocommerce-NoticeGroup-checkout {
@@ -99,6 +157,109 @@
 	.woocommerce-checkout #payment {
 		background: #fff;
 	}
+
+	.woocommerce-order-details,
+	.woocommerce-customer-details {
+		margin: 30px 0 0;
+
+		@include xs {
+			margin: 20px 0 0;
+		}
+	}
+
+
+	table.shop_table {
+		border-color: var(--fc-dark);
+		border-radius: 0;
+		border-collapse: collapse;
+
+		th {
+			padding: 15px 20px;
+
+			@include xs {
+				padding: 10px 5px;
+				font-size: 12px;
+			}
+		}
+
+		tbody th,
+		tbody td,
+		tfoot td,
+		tfoot th {
+			padding: 15px 20px;
+			border: none;
+
+			@include xs {
+				padding: 10px 5px;
+				font-size: 12px;
+			}
+		}
+	}
+
+	.woocommerce-customer-details address {
+		padding: 0;
+		border: 1px solid var(--fc-dark);
+		border-radius: 0;
+	}
+
+	form .password-input {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		@include xs {
+			gap: 5px;
+		}
+
+		.woocommerce-password-strength {
+			font-weight: 500;
+			font-size: 14px;
+
+			@include hg {
+				font-size: 12px;
+			}
+
+			@include xs {
+				font-size: 10px;
+			}
+		}
+
+		.woocommerce-password-hint {
+			margin: 0;
+			font-size: 12px;
+
+			@include xs {
+				font-size: 10px;
+			}
+		}
+
+		.show-password-input {
+			top: 0;
+			right: 0;
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: transparent;
+
+			&::after {
+				display: block;
+				width: 20px;
+				height: 20px;
+				background: url(assets/images/icon-hide-password.svg) 50% / contain;
+				content: "";
+
+				@include sm {
+					width: 15px;
+					height: 15px;
+				}
+			}
+
+			&.display-password {
+
+				&::after {
+					background-image: url(assets/images/icon-show-password.svg);
+				}
+			}
+		}
+	}
 }
 
 .woocommerce-page {
@@ -109,6 +270,52 @@
 
 	form .check__payment label.checkbox {
 		display: flex;
+	}
+
+	form .password-input {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		.woocommerce-password-strength {
+			font-weight: 500;
+			font-size: 14px;
+
+			@include hg {
+				font-size: 12px;
+			}
+		}
+
+		.woocommerce-password-hint {
+			margin: 0;
+			font-size: 12px;
+
+			@include hg {
+				font-size: 10px;
+			}
+		}
+
+		.show-password-input {
+			top: 0;
+			right: 0;
+			-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+			-webkit-tap-highlight-color: transparent;
+
+			&::after {
+				display: block;
+				width: 20px;
+				height: 20px;
+				background: url(assets/images/icon-hide-password.svg) 50% / contain;
+				content: "";
+			}
+
+			&.display-password {
+
+				&::after {
+					background-image: url(assets/images/icon-show-password.svg);
+				}
+			}
+		}
 	}
 }
 

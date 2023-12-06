@@ -42,6 +42,10 @@
 		min-height: 50px;
 	}
 
+	@include xs {
+		padding: 10px 15px 15px;
+	}
+
 	legend {
 		padding: 0 10px;
 		color: var(--fc-dark);

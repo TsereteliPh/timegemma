@@ -6,7 +6,7 @@ function login() {
 		'status' => 'failure'
 	);
 
-	if ( ! isset( $_POST['modal-login-nonce'] ) || ! wp_verify_nonce( $_POST['modal-login-nonce'], 'login' ) ) {
+	if ( ! isset( $_POST['login-nonce'] ) || ! wp_verify_nonce( $_POST['login-nonce'], 'login' ) ) {
 		$response += ['message' => 'Etwas ist schief gelaufen. Versuchen Sie es später noch einmal'];
 		echo json_encode($response);
 		wp_die();

@@ -41,7 +41,7 @@
 					<input type="password" class="input-text" id="login-password" name="password" autocomplete="current-password" required>
 				</fieldset>
 
-				<?php wp_nonce_field( 'login', 'modal-login-nonce' ); ?>
+				<?php wp_nonce_field( 'login', 'login-nonce' ); ?>
 
 				<button type="submit" class="btn btn--black modal__submit" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>">Weitermachen</button>
 

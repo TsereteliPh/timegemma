@@ -82,77 +82,77 @@
 		&::after {
 			position: absolute;
 		}
-	}
 
-	&__fieldset {
-		grid-column: span 2;
-
-		@include lg {
-			grid-column: span 4;
-		}
-
-		@include md {
+		.fieldset {
 			grid-column: span 2;
-		}
-
-		legend {
-
-			@include sm {
-				font-size: 12px;
-			}
-		}
-
-		.select2-container {
-			margin-bottom: -20px;
 
 			@include lg {
-				margin-top: -10px;
+				grid-column: span 4;
 			}
 
-			@include sm {
-				margin-top: -20px;
+			@include md {
+				grid-column: span 2;
 			}
 
-			.select2-selection {
-				display: flex;
-				align-items: center;
-				border: none;
+			legend {
 
-				.select2-selection__rendered {
-					padding: 0 25px 0 0;
-					font-size: 18px;
-					background: none;
-					border: none;
+				@include sm {
+					font-size: 12px;
+				}
+			}
 
-					@include lg {
-						font-size: 16px;
-					}
+			.select2-container {
+				margin-bottom: -20px;
 
-					@include sm {
-						font-size: 14px;
-					}
+				@include lg {
+					margin-top: -10px;
 				}
 
-				.select2-selection__arrow {
-					top: 50%;
-					right: 5px;
-					width: 14px;
-					height: 14px;
-					border-right: 2px solid var(--fc-dark);
-					border-bottom: 2px solid var(--fc-dark);
-					transform: translateY(-50%) rotate(45deg);
+				@include sm {
+					margin-top: -20px;
+				}
 
-					b {
-						display: none;
+				.select2-selection {
+					display: flex;
+					align-items: center;
+					border: none;
+
+					.select2-selection__rendered {
+						padding: 0 25px 0 0;
+						color: var(--fc-dark);
+						font-size: 18px;
+						background: none;
+						border: none;
+
+						@include lg {
+							font-size: 16px;
+						}
+
+						@include sm {
+							font-size: 14px;
+						}
+					}
+
+					.select2-selection__arrow {
+						top: 50%;
+						right: 5px;
+						width: 14px;
+						height: 14px;
+						border-right: 2px solid var(--fc-dark);
+						border-bottom: 2px solid var(--fc-dark);
+						transform: translateY(-50%) rotate(45deg);
+
+						b {
+							display: none;
+						}
 					}
 				}
 			}
 		}
 
-
-		&--billing_address_2,
-		&--billing_city,
-		&--billing_state {
+		.fieldset--billing_address_2,
+		.fieldset--billing_city,
+		.fieldset--billing_state {
 			grid-column: span 4;
 
 			@include md {
@@ -160,7 +160,7 @@
 			}
 		}
 
-		&--billing_address_1 {
+		.fieldset--billing_address_1 {
 			grid-column: span 3;
 
 			@include md {
@@ -168,7 +168,7 @@
 			}
 		}
 
-		&--billing_postcode {
+		.fieldset--billing_postcode {
 			grid-column: span 1;
 			order: 1;
 
