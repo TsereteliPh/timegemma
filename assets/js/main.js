@@ -433,6 +433,7 @@ try {
 const customProgressbar = function(slider, elem) {
 	let progressbar = slider.el.querySelector(elem);
 	if (!progressbar) progressbar = slider.el.parentNode.querySelector(elem);
+	if (!progressbar) return;
 	let progressbarCounter = progressbar.querySelector('.slider-controls__counter');
 
 	let activeSlide = slider.activeIndex + 1;

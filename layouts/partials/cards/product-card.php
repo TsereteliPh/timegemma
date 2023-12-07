@@ -2,14 +2,14 @@
 	global $product;
 
 	$yearTerm = get_the_terms( $product->get_id(), 'pa_construction-year' );
-	$flash;
+	$flash = false;
 	if ( get_field( 'product_new' ) ) $flash = 'product-card__wrapper--new';
 	if ( $yearTerm ) $flash = 'product-card__wrapper--year';
 
 	$thumbnail = get_the_post_thumbnail_url( $product->get_id(), 'full' );
 ?>
 <li <?php wc_product_class( 'product-card ' . $args['class'], $product ); ?>>
-	<div class="product-card__wrapper <?php echo $flash; ?>" <?php echo ($yearTerm) ? 'data-year="' . $yearTerm[0]->name . '"' : ''; ?>>
+	<div class="product-card__wrapper <?php echo $flash ? $flash : ''; ?>" <?php echo $yearTerm ? 'data-year="' . $yearTerm[0]->name . '"' : ''; ?>>
 		<button class="btn-fav product-card__fav" type="button">
 			<svg width="22" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart--red"></use></svg>
 		</button>

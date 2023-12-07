@@ -54,8 +54,13 @@
 	</div>
 </section>
 
-<?php get_template_part('layouts/partials/blocks', null, array(
-	'id' => $acfPostID
-)); ?>
+<?php
+	$term = get_queried_object();
+	$categoryID = get_cat_ID($term->name);
+	$acfPostID = 'category_' . $categoryID;
+	get_template_part('layouts/partials/blocks', null, array(
+		'id' => $acfPostID
+	));
+?>
 
 <?php get_footer(); ?>

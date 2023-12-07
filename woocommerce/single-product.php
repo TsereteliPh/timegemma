@@ -57,7 +57,16 @@ get_header( 'shop' ); ?>
 	?>
 
 <?php
-get_template_part('layouts/partials/blocks');
+get_template_part( 'layouts/partials/blocks' );
+
+get_template_part( 'layouts/blocks/recently-viewed/template' );
+
+get_template_part( 'layouts/blocks/mailing/template', null, array(
+	'title' => 'Erhalten <span>Sie 10 %</span> Rabatt auf Ihre erste Bestellung',
+	'text' => 'Abonnieren Sie unseren Newsletter und erhalten Sie einen Rabattcode von <span>10 %</span> für Ihre erste Bestellung',
+	'label' => 'Instagram',
+	'link' => ''//todo: add inst link from options
+) );
 
 get_footer( 'shop' );
 

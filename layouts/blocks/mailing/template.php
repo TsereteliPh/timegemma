@@ -1,18 +1,26 @@
 <?php
 	$mailingBg = get_sub_field( 'background' );
-	$bgImage;
+	$bgImage = false;
 	if ( $mailingBg ) {
 		$bgImage = 'style="background-image: url(' . $mailingBg . ')"';
 	}
+	$title = ! empty( $args['title'] ) ? $args['title'] : get_sub_field( 'title' );
+	$text = ! empty( $args['text'] ) ? $args['text'] : get_sub_field( 'text' );
+	$label = ! empty( $args['label'] ) ? $args['label'] : get_sub_field( 'label' );
+	$link = ! empty( $args['link'] ) ? $args['link'] : get_sub_field( 'link' );
 ?>
 
 <section class="mailing">
-	<div class="mailing__content" <?php if ( $bgImage ) echo $bgImage; ?>>
+	<div class="mailing__content" <?php echo $bgImage ? $bgImage : ''; ?>>
 		<div class="container">
 			<div class="mailing__wrapper">
-				<h2 class="mailing__title"><?php the_sub_field( 'title' ); ?></h2>
+				<?php if ( $title ) : ?>
+					<h2 class="mailing__title"><?php echo $title; ?></h2>
+				<?php endif; ?>
 
-				<div class="mailing__message"><?php the_sub_field( 'text' ); ?></div>
+				<?php if ( $text ) : ?>
+					<div class="mailing__message"><?php echo $text; ?></div>
+				<?php endif; ?>
 
 				<form action="post" class="mailing__form">
 					<fieldset class="fieldset fieldset--light mailing__email">
@@ -32,10 +40,12 @@
 		<div class="mailing__social-wrapper">
 			<div class="mailing__social-text">
 				Wir sind auf
-				<span><?php the_sub_field( 'label' ); ?></span>
+				<?php if ( $label ) : ?>
+					<span><?php echo $label; ?></span>
+				<?php endif; ?>
 			</div>
 
-			<a href="<?php the_sub_field( 'link' ); ?>" target="_blank" class="btn btn--dial mailing__link">
+			<a href="<?php echo $link; ?>" target="_blank" class="btn btn--dial mailing__link">
 				Alle Nachrichten
 				<div class="btn__dial">
 					<svg width="83" height="76"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-dial"></use></svg>

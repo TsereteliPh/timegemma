@@ -64,7 +64,7 @@ acf_add_local_field_group(array(
 				'class' => '',
 				'id' => '',
 			),
-			'default_value' => '',
+			'default_value' => 'Instagram',
 			'maxlength' => '',
 			'placeholder' => '',
 			'prepend' => '',
@@ -146,7 +146,7 @@ acf_add_local_field_group(array(
 	'acfe_display_title' => '',
 	'acfe_meta' => '',
 	'acfe_note' => '',
-	'modified' => 1694000410,
+	'modified' => 1701969740,
 ));
 
 endif;
