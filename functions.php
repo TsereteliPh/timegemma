@@ -5,6 +5,8 @@ if (!defined('_S_VERSION')) {
 	define('_S_VERSION', '1.0.0');
 }
 
+// setcookie('woocommerce_recently_viewed');
+
 if (!function_exists('adem_setup')) {
 	function adem_setup()
 	{

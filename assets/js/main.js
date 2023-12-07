@@ -693,7 +693,7 @@ if (mainSliders) {
 			},
 			on: {
 				afterInit: function() {
-					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView)
+					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
 				},
 				slideChange: function() {
 					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView)

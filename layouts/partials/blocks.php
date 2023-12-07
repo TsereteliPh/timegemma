@@ -22,5 +22,6 @@ if (have_rows('blocks', $id)) {
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');
 		else if (get_row_layout() == 'main-text') get_template_part('layouts/blocks/main-text/template');
 		else if (get_row_layout() == 'new-releases') get_template_part('layouts/blocks/new-releases/template');
+		else if (get_row_layout() == 'recently-viewed') get_template_part('layouts/blocks/recently-viewed/template');
 	}
 }

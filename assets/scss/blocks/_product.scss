@@ -5,6 +5,10 @@
 		padding-bottom: 80px;
 	}
 
+	&.product-card {
+		padding: 0;
+	}
+
 	&__info {
 		display: grid;
 		grid-template-columns: 1fr 1.5fr 420px;

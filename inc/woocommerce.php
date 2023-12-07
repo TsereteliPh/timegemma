@@ -294,3 +294,34 @@ function adem_cart_update_qty_script() {
 		<?php
 	}
 }
+
+//Cookies
+remove_action('template_redirect', 'wc_track_product_view', 20);
+add_action( 'template_redirect', 'adem_track_product_view', 20 );
+function adem_track_product_view() {
+	if ( ! is_singular( 'product' ) ) return;
+
+	global $post;
+
+	if ( empty( $_COOKIE['woocommerce_recently_viewed'] ) ) { // @codingStandardsIgnoreLine.
+		$viewed_products = array();
+	} else {
+		$viewed_products = wp_parse_id_list( (array) explode( '|', wp_unslash( $_COOKIE['woocommerce_recently_viewed'] ) ) ); // @codingStandardsIgnoreLine.
+	}
+
+	// Unset if already in viewed products list.
+	$keys = array_flip( $viewed_products );
+
+	if ( isset( $keys[ $post->ID ] ) ) {
+		unset( $viewed_products[ $keys[ $post->ID ] ] );
+	}
+
+	$viewed_products[] = $post->ID;
+
+	if ( count( $viewed_products ) > 11 ) {
+		array_shift( $viewed_products );
+	}
+
+	// Store for session only.
+	wc_setcookie( 'woocommerce_recently_viewed', implode( '|', $viewed_products ) );
+}
