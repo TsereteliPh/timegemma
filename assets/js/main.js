@@ -608,6 +608,7 @@ if (brandsSlider) {
 			rows: 6,
 			fill: 'row'
 		},
+		watchOverflow: true,
 		navigation: {
 			nextEl: brandsSlider.parentNode.querySelector('.slider-controls__next'),
 			prevEl: brandsSlider.parentNode.querySelector('.slider-controls__prev'),
@@ -637,6 +638,9 @@ if (brandsSlider) {
 		on: {
 			afterInit: function() {
 				customProgressbar(this, '.slider-controls__progressbar');
+			},
+			lock: function() {
+				brandsSlider.parentNode.querySelector('.slider-controls').style.display = 'none';
 			},
 			slideChange: function() {
 				customProgressbar(this, '.slider-controls__progressbar');
@@ -688,6 +692,8 @@ if (mainSliders) {
 			slidesPerView: 1,
 			centeredSlides: true,
 			spaceBetween: 30,
+			centerInsufficientSlides: true,
+			watchOverflow: true,
 			navigation: {
 				nextEl: '.slider-controls__next',
 				prevEl: '.slider-controls__prev',
@@ -695,6 +701,9 @@ if (mainSliders) {
 			on: {
 				afterInit: function() {
 					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView);
+				},
+				lock: function() {
+					this.el.querySelector('.slider-controls').style.display = 'none';
 				},
 				slideChange: function() {
 					customProgressbar(this, '.slider-controls__progressbar', this.params.slidesPerView)
