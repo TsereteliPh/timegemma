@@ -198,6 +198,10 @@
 				text-decoration: none;
 			}
 		}
+
+		.current-menu-item {
+			color: var(--primary);
+		}
 	}
 
 	&__panel {

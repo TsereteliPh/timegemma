@@ -18,6 +18,7 @@ if (have_rows('blocks', $id)) {
 		else if (get_row_layout() == 'brands') get_template_part('layouts/blocks/brands/template');
 		else if (get_row_layout() == 'catalog-links') get_template_part('layouts/blocks/catalog-links/template');
 		else if (get_row_layout() == 'collection-slider') get_template_part('layouts/blocks/collection-slider/template');
+		else if (get_row_layout() == 'contacts') get_template_part('layouts/blocks/contacts/template');
 		else if (get_row_layout() == 'last-news') get_template_part('layouts/blocks/last-news/template');
 		else if (get_row_layout() == 'mailing') get_template_part('layouts/blocks/mailing/template');
 		else if (get_row_layout() == 'main-text') get_template_part('layouts/blocks/main-text/template');

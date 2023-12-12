@@ -1,0 +1,177 @@
+.contacts {
+	position: relative;
+	min-height: 1080px;
+	overflow: hidden;
+	color: var(--fc-light);
+	background: var(--bg-primary);
+
+	@include hg {
+		min-height: 800px;
+	}
+
+	@include md {
+		min-height: auto;
+		padding-bottom: 40px;
+	}
+
+	&__map-holder {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 1080px;
+
+		@include hg {
+			height: 800px;
+		}
+
+		@include md {
+			height: auto;
+			aspect-ratio: 6/7;
+		}
+
+		.gm-style {
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: $ui-index-1;
+				width: 100%;
+				height: 100%;
+				background: url(assets/images/contacts-mask.svg) no-repeat 85% 50% / 160% auto;
+				content: "";
+				pointer-events: none;
+
+				@include md {
+					background: url(assets/images/contacts-mask--mobile.svg) no-repeat 50% top / 100% auto;
+				}
+			}
+
+			&::after {
+				@include md {
+					position: absolute;
+					bottom: 0;
+					left: 0;
+					width: 100%;
+					height: 15%;
+					background: linear-gradient(to bottom, rgba(var(--bg-primary-rgb), 0) 0%, var(--bg-primary) 100%) no-repeat 50% / cover;
+					content: "";
+				}
+			}
+		}
+
+		.gm-bundled-control {
+			z-index: $ui-index-1;
+		}
+	}
+
+	&__container {
+		background: none;
+		pointer-events: none;
+	}
+
+	&__wrapper {
+		max-width: 50%;
+		pointer-events: all;
+
+		@include hg {
+			max-width: 45%;
+		}
+
+		@include md {
+			max-width: 100%;
+		}
+	}
+
+	&__title {
+		margin: 80px 0 90px;
+		font-weight: 400;
+		font-size: 48px;
+		font-family: var(--font-secondary);
+
+		@include hg {
+			margin: 0 0 40px;
+			font-size: 40px;
+		}
+
+		@include md {
+			margin: 115vw 0 30px;
+		}
+
+		@include xs {
+			margin: 110vw 0 30px;
+			font-size: 32px;
+		}
+	}
+
+	&__content {
+		display: grid;
+		grid-template-columns: 2fr 5fr;
+		gap: 0 60px;
+		margin-top: 45px;
+
+		@include hg {
+			grid-template-columns: 1fr;
+			gap: 10px;
+			margin-top: 20px;
+		}
+
+		@include md {
+			grid-template-columns: 2fr 5fr;
+			gap: 0 60px;
+		}
+
+		@include sm {
+			display: flex;
+			flex-direction: column;
+			gap: 20px;
+		}
+
+		&--output {
+
+			.contacts__text {
+				padding-top: 5px;
+				font-weight: 400;
+
+				@include hg {
+					padding-top: 0;
+				}
+			}
+		}
+	}
+
+	&__label {
+		color: var(--primary);
+		font-size: 20px;
+		font-family: var(--font-secondary);
+		line-height: 1.5;
+
+		@include hg {
+			font-size: 18px;
+		}
+	}
+
+	&__text {
+		padding-top: 10px;
+		font-weight: 300;
+		line-height: 1.6;
+
+		@include hg {
+			padding-top: 0;
+		}
+
+		@include xs {
+			word-wrap: break-word;
+		}
+	}
+
+	&__links {
+		font-weight: 700;
+
+		a {
+			font-weight: 300;
+			@include ui-link(var(--fc-light));
+		}
+	}
+}
