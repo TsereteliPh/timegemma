@@ -32,16 +32,22 @@
 					<svg width="18" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-search"></use></svg>
 				</button>
 
-				<a href="<?php //todo: add fav link ?>" class="header__favorites" aria-label="Favoriten öffnen">
-					<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart"></use></svg>
-				</a>
+				<?php if ( is_user_logged_in() ) : ?>
+					<a href="<?php echo get_page_link( 366 ); //Local post id 335 ?>" class="header__favorites" aria-label="Favoriten öffnen">
+						<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart"></use></svg>
+
+						<?php $favorites_count = adem_count_all_favorites(); ?>
+
+						<span class="header__favorites-counter<?php echo ( $favorites_count > 0 ) ? ' active' : ''; ?>"><?php echo $favorites_count; ?></span>
+					</a>
+				<?php endif; ?>
 
 				<a href="<?php echo wc_get_cart_url(); ?>" class="header__cart-link" aria-label="Warenkorb öffnen">
 					<svg width="18" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-cart"></use></svg>
 
 					<?php $contents_count = WC()->cart->cart_contents_count; ?>
 
-					<span id="header-cart-counter" class="header__cart-counter<?php echo ( $contents_count > 0 ) ? ' active' : ''; ?>"><?php echo WC()->cart->cart_contents_count; ?></span>
+					<span id="header-cart-counter" class="header__cart-counter<?php echo ( $contents_count > 0 ) ? ' active' : ''; ?>"><?php echo $contents_count; ?></span>
 				</a>
 
 				<?php if ( is_user_logged_in() ) : ?>
@@ -170,6 +176,10 @@
 ?>
 
 <main class="<?php echo $mainClass; ?>">
-<?php if ( is_front_page() ) get_template_part('layouts/partials/welcome'); ?>
+<?php
+	if ( is_front_page() ) get_template_part('layouts/partials/welcome');
+	if ( is_page( 366 ) ) get_template_part('layouts/partials/favorites'); //Local post id 335
+?>
+
 
 

@@ -49,9 +49,11 @@ wc_get_template( 'cart/cart-panel.php' ); ?>
 				?>
 					<li class="woocommerce-cart-form__cart-item cart__item <?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 						<div class="cart__item-buttons">
-							<button class="btn-fav cart__item-fav" type="button">
-								<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart--red"></use></svg>
-							</button>
+							<?php if ( is_user_logged_in() ) : ?>
+								<button class="btn-fav cart__item-fav<?php echo adem_check_favorite( $_product->get_id() ) ? ' active' : ''; ?>" type="button" data-id="<?php echo $_product->get_id(); ?>" data-user="<?php echo get_current_user_id(); ?>">
+									<svg width="20" height="18"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-heart"></use></svg>
+								</button>
+							<?php endif; ?>
 
 							<?php
 								echo apply_filters( // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

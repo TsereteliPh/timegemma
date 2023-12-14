@@ -1,0 +1,44 @@
+.favorites {
+
+	&__list {
+		@include hg {
+			margin-top: 30px;
+		}
+
+		@include sm {
+			margin-top: 20px;
+		}
+	}
+
+	&__empty {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		align-items: center;
+		justify-content: center;
+		margin-top: 40px;
+
+		@include hg {
+			margin-top: 30px;
+		}
+
+		@include sm {
+			gap: 20px;
+			margin-top: 20px;
+		}
+	}
+
+	&__text {
+		font-weight: 300;
+		font-size: 20px;
+		text-align: center;
+
+		@include hg {
+			font-size: 16px;
+		}
+	}
+
+	&__link {
+		max-width: fit-content;
+	}
+}

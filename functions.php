@@ -129,6 +129,42 @@ function adem_excerpt($limit, $ID = null)
 	return mb_substr(get_the_excerpt($ID), 0, $limit) . '...';
 }
 
+//Favorites
+
+add_action( 'template_redirect', 'adem_favorites_redirect' );
+function adem_favorites_redirect() {
+	if ( is_page('favorites') && ! is_user_logged_in() ) {
+		wp_redirect( home_url() );
+		exit();
+	}
+}
+
+function adem_count_all_favorites() {
+	if ( !is_user_logged_in() ) return;
+
+	$user_favorites = get_user_meta( get_current_user_id(), 'favorites', false );
+	if ( ! $user_favorites ) return;
+
+	return count( json_decode( $user_favorites[0], true ) );
+}
+
+function adem_check_favorite($product_id) {
+	if ( ! is_user_logged_in() ) return;
+
+	$user_favorites = get_user_meta( get_current_user_id(), 'favorites', false );
+	if ( ! $user_favorites ) return;
+
+	$user_favorites = json_decode( $user_favorites[0], true );
+	$user_favorites = array_unique( $user_favorites );
+	foreach ( $user_favorites as $item ) {
+		if ( $product_id == $item ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 //SearchWP plugin configs
 add_filter( 'searchwp_live_search_configs', 'adem_searchwp_live_search_configs' );
 
@@ -173,10 +209,12 @@ function adem_searchwp_live_search_configs( $configs ) {
 add_filter( 'searchwp_live_search_base_styles', '__return_false' );
 
 require 'inc/acf.php';
-require 'inc/login.php';
-require 'inc/registeration.php';
+require 'inc/add-to-favorite.php';
 require 'inc/load-more.php';
+require 'inc/login.php';
 require 'inc/mail.php';
+require 'inc/registeration.php';
+require 'inc/remove-from-favorite.php';
 require 'inc/svg.php';
 require 'inc/tiny-mce.php';
 require 'inc/traffic.php';

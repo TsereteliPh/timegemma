@@ -23,17 +23,29 @@
 ?>
 
 <div class="account__panel">
-	<a class="account__panel-link account__panel-link--fav">
+	<a href="<?php echo get_page_link( 366 ); //Local post id 335 ?>" class="account__panel-link account__panel-link--fav">
 		<div class="account__panel-count">
 			Favoriten
-			<span><?php echo 5; //todo Fav link and count ?></span>
+
+			<?php
+				$count_favorites = adem_count_all_favorites();
+				if ( $count_favorites > 0 ) :
+			?>
+				<span><?php echo $count_favorites; ?></span>
+			<?php endif; ?>
 		</div>
 	</a>
 
 	<a href="<?php echo wc_get_cart_url(); ?>" class="account__panel-link account__panel-link--cart">
 		<div class="account__panel-count">
 			Korb
-			<span><?php echo WC()->cart->get_cart_contents_count(); ?></span>
+
+			<?php
+				$count_cart = WC()->cart->get_cart_contents_count();
+				if ( $count_cart > 0 ) :
+			?>
+				<span><?php echo $count_cart; ?></span>
+			<?php endif; ?>
 		</div>
 
 		<?php if ( WC()->cart->get_cart_contents_count() > 0 ) : ?>

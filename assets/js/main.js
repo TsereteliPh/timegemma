@@ -391,6 +391,80 @@ function wcAddToCart() {
 	}
 }
 
+function favorites() {
+	const favBtns = document.querySelectorAll('.btn-fav');
+	const favCounter = document.querySelector('.header__favorites-counter');
+
+	if (!favBtns) return;
+
+	favBtns.forEach(btn => {
+		btn.addEventListener('click', function () {
+			this.setAttribute('disabled', true);
+			this.classList.add('btn-fav--loading');
+
+			if (!this.classList.contains('active')) {
+				const response = fetch(adem_ajax.url, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+					},
+					body: new URLSearchParams({
+						action: "add_to_favorite",
+						id: this.dataset.id,
+						user: this.dataset.user
+					}),
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					this.classList.remove('btn-fav--loading');
+					this.removeAttribute('disabled');
+					if (data.status === 'success') {
+						favCounter.classList.add('active');
+						favCounter.textContent = data.count;
+						favBtns.forEach(btn => {
+							if (btn.dataset.id === this.dataset.id) {
+								btn.classList.add('active');
+							}
+						});
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+			} else if (this.classList.contains('active')) {
+				const response = fetch(adem_ajax.url, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+					},
+					body: new URLSearchParams({
+						action: "remove_from_favorite",
+						id: this.dataset.id,
+						user: this.dataset.user
+					}),
+				})
+				.then((response) => response.json())
+				.then((data) => {
+					this.classList.remove('btn-fav--loading');
+					this.removeAttribute('disabled');
+					if (data.status === 'success') {
+						favCounter.textContent = data;
+						if (data.count === 0) favCounter.classList.remove('active');
+						favBtns.forEach(btn => {
+							if (btn.dataset.id === this.dataset.id) {
+								btn.classList.remove('active');
+							}
+						});
+					}
+				})
+				.catch((error) => {
+					console.error("Error:", error);
+				});
+			}
+		})
+	});
+}
+
 document.addEventListener("DOMContentLoaded", function () {
 	setHeaderScrollClass();
 
@@ -409,6 +483,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	changeInputQuantity('.product__cart');
 
 	wcAddToCart();
+
+	favorites();
 });
 
 //Fancybox

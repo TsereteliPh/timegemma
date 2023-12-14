@@ -12,10 +12,6 @@
 			color: var(--fc-light);
 			background-color: var(--bg-primary);
 
-			.product-card__wrapper::before {
-				transform: scale(1) rotate(180deg);
-			}
-
 			.product-card__fav {
 				transform: scale(1);
 			}
@@ -47,6 +43,7 @@
 			position: absolute;
 			top: 0;
 			left: 0;
+			z-index: $ui-index-1;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -59,10 +56,6 @@
 			writing-mode: vertical-lr;
 			transform: rotate(180deg);
 			transition: var(--transition);
-
-			@include mouse {
-				transform: scale(0) rotate(180deg);
-			}
 		}
 
 		&--new {
@@ -71,7 +64,6 @@
 				background-color: var(--fc-dark);
 				content: "Neu";
 			}
-
 		}
 
 		&--year {

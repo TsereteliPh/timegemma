@@ -34,7 +34,7 @@ remove_action( 'woocommerce_cart_collaterals', 'woocommerce_cross_sell_display' 
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_coupon_form', 10 );
 remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
 
-remove_action( 'woocommerce_checkout_before_customer_details', 'wc_get_pay_buttons', 30 ); //? Delete if not stable
+remove_action( 'woocommerce_checkout_before_customer_details', 'wc_get_pay_buttons', 30 );
 
 remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_checkout_privacy_policy_text', 20 );
 remove_action( 'woocommerce_checkout_terms_and_conditions', 'wc_terms_and_conditions_page_content', 30 );
