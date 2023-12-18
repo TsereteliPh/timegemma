@@ -18,7 +18,7 @@
 defined( 'ABSPATH' ) || exit;
 
 ?>
-<div class="cart-totals cart__totals cart_totals<?php //echo ( WC()->customer->has_calculated_shipping() ) ? ' calculated_shipping' : ''; ?>">
+<div class="cart-totals cart__totals cart_totals">
 
 	<?php do_action( 'woocommerce_before_cart_totals' ); ?>
 

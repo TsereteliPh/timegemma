@@ -151,13 +151,6 @@ if ( post_password_required() ) {
 							<li class="product__item-attribute">
 								<?php echo $attribute_taxonomy->attribute_label; ?>
 
-								<?php
-									//TODO: Add links for the attributes
-									// echo '<pre>';
-									// print_r( $attribute['id'] );
-									// echo '</pre>';
-								?>
-
 								<span>
 									<?php
 										foreach ( $attribute_values as $key => $value ) {

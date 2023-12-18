@@ -161,7 +161,7 @@
 </div>
 
 <?php if( !is_front_page() && function_exists( 'yoast_breadcrumb' ) ) : ?>
-	<div class="breadcrumb<?php echo is_page( 324 ) ? ' breadcrumb--light' : ''; ?>">
+	<div class="breadcrumb<?php echo is_page( 362 ) ? ' breadcrumb--light' : ''; ?>">
 		<div class="container">
 			<?php echo yoast_breadcrumb(); ?>
 		</div>
@@ -170,9 +170,7 @@
 
 <?php
 	$mainClass = 'main';
-	if ( is_front_page() ) {
-		$mainClass .= ' main--index';
-	}
+	if ( is_front_page() ) $mainClass .= ' main--index';
 ?>
 
 <main class="<?php echo $mainClass; ?>">
