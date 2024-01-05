@@ -227,7 +227,7 @@ if ( post_password_required() ) {
 					</div>
 				</li>
 			<?php endif; ?>
-		</div>
+		</ul>
 
 		<?php
 		/**
