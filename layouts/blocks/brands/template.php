@@ -10,7 +10,8 @@
 				'taxonomy' => 'product_cat',
 				'exclude' => array(
 					15,17,18
-				)
+				),
+				'hide_empty' => false //! temporarily
 			] );
 			if ( $terms ) :
 		?>

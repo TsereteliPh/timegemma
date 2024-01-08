@@ -93,6 +93,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 85px;
 		text-decoration: none;
 
 		@include mouse {
