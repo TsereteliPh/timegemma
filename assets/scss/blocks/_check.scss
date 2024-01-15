@@ -184,6 +184,7 @@
 
 	&__totals {
 		grid-row: span 2;
+		height: fit-content;
 
 		@include md {
 			order: -1;
