@@ -2,30 +2,21 @@
 	margin-top: 100px;
 
 	&__cats {
-		padding-bottom: 100px;
+		padding-bottom: 60px;
 		border-bottom: 1px solid var(--fc-grey);
 
-		@include md {
-			padding-bottom: 70px;
+		@include hg {
+			padding-bottom: 50px;
 		}
 
 		@include xs {
-			padding-bottom: 50px;
+			padding-bottom: 30px;
 		}
 	}
 
-	&__cats-list {
-		display: flex;
-		gap: 55px;
-		align-items: center;
-
-		@include sm {
-			gap: 40px;
-		}
-	}
-
-	&__cats-item {
-		color: var(--fc-dark);
+	&__cats-title {
+		color: var(--emphasis);
+		font-weight: 700;
 		font-size: 48px;
 		font-family: var(--font-secondary);
 		text-decoration: none;
@@ -46,18 +37,6 @@
 
 		@include xs {
 			font-size: 24px;
-		}
-
-		@include mouse {
-
-			&:hover {
-				color: var(--emphasis);
-			}
-		}
-
-		&.active {
-			color: var(--emphasis);
-			font-weight: 700;
 		}
 	}
 
@@ -95,30 +74,17 @@
 		justify-content: center;
 		min-height: 85px;
 		text-decoration: none;
+		border: 1px solid var(--fc-dark);
+		transition: var(--transition);
 
 		@include mouse {
 
 			&:hover {
+				border: 1px solid var(--emphasis);
 
 				img,
 				span {
 					scale: 1.1;
-				}
-			}
-		}
-
-		&.active {
-			border: 1px solid var(--emphasis);
-			cursor: default;
-
-			@include mouse {
-
-				&:hover {
-
-					img,
-					span {
-						scale: 1;
-					}
 				}
 			}
 		}

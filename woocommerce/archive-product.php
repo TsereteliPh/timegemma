@@ -44,27 +44,24 @@ do_action( 'woocommerce_before_main_content' );
 		<div class="container">
 			<?php
 				$currentTerm = get_queried_object();
+				if ( is_shop() || ( $currentTerm->term_id == 450 ) ) {
+					$termList = get_terms( [
+						'taxonomy' => 'product_cat',
+						'parent' => 450,
+						'hierarchical' => false
+					] );
+				} else {
+					$termList = get_terms( [
+						'taxonomy' => 'product_cat',
+						'parent' => $currentTerm->term_id,
+						'hierarchical' => false
+					] );
+				}
 			?>
-		</div>
 
-		<div class="container">
-			<?php
-				$currentTerm = get_queried_object();
-				$forHimAncestor = $currentTerm->term_id == 17 || term_is_ancestor_of( 17, $currentTerm->term_id, 'product_cat' );
-				$forHerAncestor = $currentTerm->term_id == 18 || term_is_ancestor_of( 18, $currentTerm->term_id, 'product_cat' );
+			<div class="catalog__cats-title"><?php echo is_shop() ? 'Katalog' : $currentTerm->name; ?></div>
 
-				$termList = get_terms( [
-					'taxonomy' => 'product_cat',
-					'child_of' => ( $forHimAncestor ) ? 17 : 18
-				] );
-			?>
-
-			<div class="reset-list catalog__cats-list">
-				<a <?php echo ( !$forHimAncestor || is_shop() ) ? 'href="' . get_term_link( 17 ) . '"' : ''; ?> class="catalog__cats-item<?php echo ( $forHimAncestor ) ? ' active' : ''; ?>">Für Männer</a>
-				<a <?php echo ( !$forHerAncestor || is_shop() ) ? 'href="' . get_term_link( 18 ) . '"' : ''; ?> class="catalog__cats-item<?php echo ( $forHerAncestor ) ? ' active' : ''; ?>">Für Frauen</a>
-			</div>
-
-			<?php if ( $termList && !is_shop() ) : ?>
+			<?php if ( $termList ) : ?>
 				<div class="catalog__cats-wrapper">
 					<?php foreach ( $termList as $term ) : ?>
 						<a href="<?php echo get_term_link( $term->term_id ); ?>" class="catalog__cats-cat<?php echo ( $term->term_id == $currentTerm->term_id) ? ' active' : ''; ?>">
