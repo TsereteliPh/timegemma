@@ -461,8 +461,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	showMorePosts();
 
-	calcBreadcrumbsPadding();
-
 	changeInputQuantity('.product__cart');
 
 	wcAddToCart();
