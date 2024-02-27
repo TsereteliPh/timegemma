@@ -149,11 +149,17 @@
 		.radio__text {
 			display: flex;
 			gap: 5px;
-			justify-content: space-between;
+			align-items: center;
 			width: 100%;
 
 			.amount {
+				margin-left: auto;
 				font-weight: 500;
+			}
+
+			.tax_label {
+				display: block;
+				flex-shrink: 0;
 			}
 		}
 	}

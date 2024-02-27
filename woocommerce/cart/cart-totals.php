@@ -38,6 +38,16 @@ defined( 'ABSPATH' ) || exit;
 		</div>
 	<?php endforeach; ?>
 
+	<?php if ( WC()->cart->needs_shipping() && WC()->cart->show_shipping() ) : ?>
+
+		<?php do_action( 'woocommerce_review_order_before_shipping' ); //Empty ?>
+
+		<?php wc_cart_totals_shipping_html(); ?>
+
+		<?php do_action( 'woocommerce_review_order_after_shipping' ); //Empty ?>
+
+	<?php endif; ?>
+
 	<?php
 		if ( wc_tax_enabled() && ! WC()->cart->display_prices_including_tax() ) {
 			$taxable_address = WC()->customer->get_taxable_address();

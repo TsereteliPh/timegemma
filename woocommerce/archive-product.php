@@ -44,6 +44,12 @@ do_action( 'woocommerce_before_main_content' );
 		<div class="container">
 			<?php
 				$currentTerm = get_queried_object();
+			?>
+		</div>
+
+		<div class="container">
+			<?php
+				$currentTerm = get_queried_object();
 				$forHimAncestor = $currentTerm->term_id == 17 || term_is_ancestor_of( 17, $currentTerm->term_id, 'product_cat' );
 				$forHerAncestor = $currentTerm->term_id == 18 || term_is_ancestor_of( 18, $currentTerm->term_id, 'product_cat' );
 

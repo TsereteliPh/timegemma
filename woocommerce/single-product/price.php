@@ -22,7 +22,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 global $product;
 
 ?>
-<div class="product__price">
-	<?php echo number_format( $product->price, 0, ',', '.' ); ?>
-	<span><?php echo get_woocommerce_currency_symbol(); ?></span>
-</div>
+<div class="product__price"><?php echo $product->get_price_html(); ?></div>

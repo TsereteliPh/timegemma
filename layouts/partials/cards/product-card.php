@@ -28,6 +28,6 @@
 
 		<a href="<?php the_permalink(); ?>" class="product-card__link"><?php the_title(); ?></a>
 
-		<div class="product-card__price"><?php echo $product->get_price() . ' ' . get_woocommerce_currency_symbol(); ?></div>
+		<div class="product-card__price"><?php echo $product->get_price_html(); ?></div>
 	</div>
 </li>
