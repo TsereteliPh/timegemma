@@ -123,6 +123,29 @@ function custom_breadcrumbs( $links ) {
 	return $links;
 }
 
+// Breadcrumbs indent
+add_action('wp_footer', 'adem_breadcrumbs_indent');
+function adem_breadcrumbs_indent() {
+	?>
+		<script>
+			const breadcrumbs = document.querySelector('.breadcrumb');
+
+			if (!breadcrumbs) return;
+
+			const main = document.querySelector('.main');
+			let section = document.querySelector('.js-bc-padding');
+
+			if (!section) section = main.firstElementChild;
+
+			let indent;
+			window.innerWidth > 1439 ? indent = 84 : indent = 60;
+
+			section.style.marginTop = 0;
+			section.style.paddingTop = breadcrumbs.clientHeight + indent + 'px';
+		</script>
+	<?php
+}
+
 // excerpt
 function adem_excerpt($limit, $ID = null)
 {

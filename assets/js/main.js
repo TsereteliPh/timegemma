@@ -254,23 +254,6 @@ function tabs() {
 	}
 }
 
-function calcBreadcrumbsPadding() {
-	const breadcrumbs = document.querySelector('.breadcrumb');
-
-	if (!breadcrumbs) return;
-
-	const main = document.querySelector('.main');
-	let section = document.querySelector('.js-bc-padding');
-
-	if (!section) section = main.firstElementChild;
-
-	let indent;
-	window.innerWidth > 1439 ? indent = 84 : indent = 60;
-
-	section.style.marginTop = 0;
-	section.style.paddingTop = breadcrumbs.clientHeight + indent + 'px';
-}
-
 function changeInputQuantity(form, dispatch = false) {
 	const formEl = document.querySelector(form);
 	if (formEl) {
