@@ -44,16 +44,16 @@
 		position: relative;
 		display: grid;
 		grid-template-columns: repeat(6, 1fr);
-		gap: 0 30px;
+		gap: 15px 20px;
 		margin-top: 40px;
 
 		@include hg {
 			grid-template-columns: repeat(5, 1fr);
-			gap: 10px 30px;
 		}
 
 		@include md {
 			grid-template-columns: repeat(4, 1fr);
+			gap: 15px;
 			margin-top: 25px;
 		}
 
@@ -63,7 +63,6 @@
 
 		@include xs {
 			grid-template-columns: 1fr 1fr;
-			gap: 5px 20px;
 			margin-top: 15px;
 		}
 	}
