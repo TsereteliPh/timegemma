@@ -1,6 +1,6 @@
 .footer {
 	margin-top: 70px;
-	padding: 15px 0 55px;
+	padding: 30px 0 55px;
 	font-weight: 300;
 	border-top: 1px solid var(--fc-grey);
 
@@ -13,30 +13,40 @@
 	&__container {
 		display: grid;
 		grid-template-columns: 1fr 1.5fr 230px;
-		gap: 80px;
-
-		@include hg {
-			gap: 60px;
-		}
-
-		@include lg {
-			grid-template-columns: 1fr 2fr;
-			row-gap: 30px;
-		}
+		gap: 60px;
 
 		@include md {
+			grid-template-columns: auto 1fr auto;
+		}
+
+		@include sm {
+			grid-template-columns: 1fr 1fr;
+			gap: 30px;
+		}
+
+		@include xs {
 			display: flex;
 			flex-direction: column;
-			gap: 50px;
 		}
 	}
 
 	&__info {
-		@include md {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include sm {
+			flex-direction: row;
+			grid-column: span 2;
+			align-items: flex-end;
+			justify-content: space-between;
 			order: 1;
 		}
 
 		@include xs {
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 			padding-top: 30px;
 			border-top: 1px solid var(--fc-grey);
 		}
@@ -51,43 +61,22 @@
 		cursor: pointer;
 	}
 
-	&__text {
-		max-width: 450px;
-		margin-top: 15px;
-
-		@include md {
-			max-width: none;
-		}
-	}
-
-	&__socials {
-		margin-top: 30px;
-	}
-
-	&__links {
-		display: grid;
-		grid-template-columns: 200px 1fr;
-		gap: 40px;
-
-		@include md {
-			grid-template-columns: 1fr 2fr;
-		}
-
-		@include xs {
-			display: flex;
-			flex-direction: column;
-			gap: 50px;
-		}
-	}
-
 	&__label {
-		margin: 30px 0;
 		font-weight: 400;
 		font-size: 20px;
 		font-family: var(--font-secondary);
+	}
 
-		@include sm {
-			margin: 0 0 30px;
+	&__menu-wrapper,
+	&__contact-us {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+
+		@include xs {
+			align-items: center;
+			justify-content: center;
+			text-align: center;
 		}
 	}
 
@@ -104,77 +93,16 @@
 		}
 	}
 
-	&__tabs {
-		display: flex;
-		gap: 20px;
-		align-items: center;
-	}
-
-	&__tab {
-		cursor: pointer;
-
-		&.active {
-			font-weight: 700;
-			cursor: default;
-		}
-	}
-
-	&__cats-wrapper {
-		position: relative;
-	}
-
-	&__cats {
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: none;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 10px 90px;
-		width: 100%;
-
-		@include hg {
-			grid-template-columns: 1fr 1fr;
-			gap: 10px 30px;
-			justify-content: space-between;
-		}
-
-		@include lg {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-
-		@include sm {
-			grid-template-columns: 1fr 1fr;
-		}
-
-		&.active {
-			position: static;
-			display: grid;
-			animation: footer-cats-show 0.4s ease-in; //From animations.scss
-		}
-	}
-
-	&__cat {
-		@include ui-link(var(--fc-dark));
-	}
-
 	&__contact-us {
-		@include lg {
-			display: flex;
-			grid-column: span 2;
-			gap: 60px;
+		@include sm {
+			margin-left: auto;
+			text-align: right;
 		}
 
 		@include xs {
-			flex-direction: column;
-			gap: 30px;
+			margin-left: 0;
 			padding-top: 30px;
 			border-top: 1px solid var(--fc-grey);
-		}
-
-		.footer__label {
-			@include lg {
-				margin: 0;
-			}
 		}
 	}
 
@@ -186,14 +114,6 @@
 		a {
 			font-weight: 700;
 			@include ui-link(var(--fc-dark));
-		}
-	}
-
-	&__emails {
-		margin-top: 40px;
-
-		@include lg {
-			margin: 0;
 		}
 	}
 }

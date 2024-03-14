@@ -74,55 +74,20 @@
 				'menu_class' => 'reset-list drop__menu'
 			));
 
-			$forHimTerms = get_terms( [
+			$termList = get_terms( [
 				'taxonomy' => 'product_cat',
-				'child_of' => 17
-			] );
-
-			$forHerTerms = get_terms( [
-				'taxonomy' => 'product_cat',
-				'child_of' => 18
+				'parent' => 450,
+				'hierarchical' => false
 			] );
 		?>
 
-		<?php if ( $forHimTerms || $forHerTerms ) : ?>
-			<ul class="reset-list drop__tabs js-tabs">
-				<li class="btn-tab drop__tab active" data-tab="header-for-him">Für Männer</li>
-				<li class="btn-tab drop__tab" data-tab="header-for-her">Für Frauen</li>
-			</ul>
-
-			<div class="drop__cats-wrapper">
-				<div class="drop__cats active" id="header-for-him">
-					<?php foreach ( $forHimTerms as $term ) : ?>
-						<a href="<?php echo get_term_link( $term->term_id ); ?>" class="drop__cat">
-							<?php
-								$termThumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
-
-								echo $term->name;
-								if ( $termThumb ) {
-									echo wp_get_attachment_image( $termThumb, 'medium', false );
-								}
-							?>
-						</a>
-					<?php endforeach; ?>
-				</div>
-
-				<div class="drop__cats" id="header-for-her">
-					<?php foreach ( $forHerTerms as $term ) : ?>
-						<a href="<?php echo get_term_link( $term->term_id ); ?>" class="drop__cat">
-							<?php
-								$termThumb = get_term_meta( $term->term_id, 'thumbnail_id', true );
-
-								echo $term->name;
-								if ( $termThumb ) {
-									echo wp_get_attachment_image( $termThumb, 'medium', false );
-								}
-							?>
-						</a>
-					<?php endforeach; ?>
-				</div>
-			</div>
-		<?php endif; ?>
+		<div class="drop__cats">
+			<?php if ( $termList ) : ?>
+				<?php foreach ( $termList as $term ) : ?>
+					<a href="<?php echo get_term_link( $term->term_id ); ?>" class="drop__cat"><?php echo $term->name; ?></a>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
 
 		<?php
 			if ( is_user_logged_in() ) :
@@ -152,11 +117,15 @@
 		<?php
 			$socials = get_field( 'socials', 'options' );
 			if ( $socials ) :
-			//TODO: drop_socials
 		?>
-
+			<div class="drop__socials socials">
+				<?php foreach ( $socials as $social ) : ?>
+					<a href="<?php echo $social['url']; ?>" class="socials__item">
+						<svg width="20" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-<?php echo $social['type']; ?>"></use></svg>
+					</a>
+				<?php endforeach; ?>
+			</div>
 		<?php endif; ?>
-		<!-- <div class="drop__socials"></div> -->
 	</div>
 </div>
 

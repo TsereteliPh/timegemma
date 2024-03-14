@@ -45,7 +45,7 @@
 		}
 
 		@include md {
-			grid-template-columns: 1fr 1fr 1fr;
+			grid-template-columns: auto 1fr;
 		}
 
 		@include sm {
@@ -92,80 +92,45 @@
 		}
 	}
 
-	&__tabs {
-		display: grid;
-		grid-column: 2/3;
-		grid-template-columns: 1fr 1fr;
-		gap: 10px;
-		align-items: center;
-		max-width: 330px;
-
-		@include md {
-			grid-column: span 2;
-		}
-	}
-
-	&__cats-wrapper {
-		position: relative;
-		grid-column: 2/3;
-
-		@include md {
-			grid-column: span 2;
-		}
-
-		@include xs {
-			margin-bottom: 85px;
-		}
-	}
-
 	&__cats {
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: none;
+		display: grid;
+		grid-row: span 2;
 		grid-template-columns: 1fr 1fr 1fr;
-		gap: 0 10px;
+		gap: 10px;
 		width: 100%;
-
-		@include hg {
-			gap: 10px;
-		}
+		height: fit-content;
 
 		@include lg {
 			grid-template-columns: 1fr 1fr;
 		}
 
-		&.active {
-			position: static;
-			display: grid;
-			animation: cats-show 0.3s ease-out; //From animations.scss
+		@include md {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		@include sm {
+			grid-template-columns: 1fr 1fr;
 		}
 	}
 
 	&__cat {
 		display: flex;
-		flex-wrap: wrap;
-		gap: 10px;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 		padding: 20px;
 		font-size: 18px;
 		text-decoration: none;
+		background-color: #fff;
 
 		@include hg {
-			flex-direction: column;
-			gap: 5px;
-			align-items: center;
 			padding: 15px;
 			font-size: 14px;
-			background-color: #fff;
 		}
 
 		@include mouse {
 
 			&:hover {
 				color: var(--emphasis);
-				background-color: #fff;
 			}
 		}
 
@@ -226,9 +191,6 @@
 
 	&__socials {
 		grid-column: 3/4;
-		// background-color: red;
-		// height: 50px;
-		//todo: socials in header
 
 		@include md {
 			grid-column: 1/2;
@@ -238,6 +200,7 @@
 			position: relative;
 			bottom: 0;
 			left: -1rem;
+			justify-content: center;
 			width: calc(100% + 2rem);
 			min-height: 100px;
 			margin-top: auto;
@@ -245,6 +208,7 @@
 		}
 
 		&::before {
+
 			@include xs {
 				position: absolute;
 				top: 0;
@@ -254,6 +218,21 @@
 				background: var(--fc-dark);
 				opacity: 0.8;
 				content: "";
+			}
+		}
+
+		.socials__item {
+
+			@include xs {
+				position: relative;
+				z-index: var(--ui-index-1);
+			}
+
+			svg {
+
+				@include xs {
+					color: var(--fc-light);
+				}
 			}
 		}
 	}

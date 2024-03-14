@@ -1,6 +1,7 @@
 </main>
 
 <?php
+	$address = get_field( 'address', 'options' );
 	$phones = get_field( 'phones', 'options' );
 	$emails = get_field( 'emails', 'options' );
 	$socials = get_field( 'socials', 'options' );
@@ -12,66 +13,35 @@
 		<div class="footer__info">
 			<a href="<?php echo bloginfo( 'url' ); ?>" class="footer__link" aria-label="Link zur Hauptseite"></a>
 
-			<?php if ( $footer_text ) : ?>
-				<div class="footer__text"><?php echo $footer_text; ?></div>
-			<?php endif; ?>
-
 			<?php if ( $socials ) : ?>
-				<div class="footer__socials"></div>
-			<?php endif; ?>
-		</div>
-
-		<div class="footer__links">
-			<div class="footer__menu-wrapper">
-				<div class="footer__label">Informationen</div>
-
-				<?php wp_nav_menu(array(
-					'theme_location' => 'menu_footer',
-					'container' => '',
-					'menu_id' => 'menu-footer',
-					'menu_class' => 'reset-list footer__menu'
-				)); ?>
-			</div>
-
-			<?php
-				$forHimTerms = get_terms( [
-					'taxonomy' => 'product_cat',
-					'child_of' => 17
-				] );
-
-				$forHerTerms = get_terms( [
-					'taxonomy' => 'product_cat',
-					'child_of' => 18
-				] );
-
-				if ( $forHimTerms || $forHerTerms ) :
-			?>
-				<div class="footer__brands">
-					<ul class="reset-list footer__tabs js-tabs">
-						<li class="footer__label footer__tab active" data-tab="footer-for-him">Für Männer</li>
-						<li class="footer__label footer__tab" data-tab="footer-for-her">Für Frauen</li>
-					</ul>
-
-					<div class="footer__cats-wrapper">
-						<div class="footer__cats active" id="footer-for-him">
-							<?php foreach ( $forHimTerms as $term ) : ?>
-								<a href="<?php echo get_term_link( $term->term_id ); ?>" class="footer__cat"><?php echo $term->name; ?></a>
-							<?php endforeach; ?>
-						</div>
-
-						<div class="footer__cats" id="footer-for-her">
-							<?php foreach ( $forHerTerms as $term ) : ?>
-								<a href="<?php echo get_term_link( $term->term_id ); ?>" class="footer__cat"><?php echo $term->name; ?></a>
-							<?php endforeach; ?>
-						</div>
-					</div>
+				<div class="footer__socials socials">
+					<?php foreach ( $socials as $social ) : ?>
+						<a href="<?php echo $social['url']; ?>" class="socials__item">
+							<svg width="20" height="20"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-<?php echo $social['type']; ?>"></use></svg>
+						</a>
+					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>
 		</div>
 
+		<div class="footer__menu-wrapper">
+			<div class="footer__label">Informationen</div>
+
+			<?php wp_nav_menu(array(
+				'theme_location' => 'menu_footer',
+				'container' => '',
+				'menu_id' => 'menu-footer',
+				'menu_class' => 'reset-list footer__menu'
+			)); ?>
+		</div>
+
 		<?php if ( $phones || $emails ) : ?>
 			<div class="footer__contact-us">
-				<div class="footer__label">Kontakte</div>
+				<div class="footer__label">Kontakt</div>
+
+				<?php if ( $address ) : ?>
+					<div class="footer__address"><?php echo $address; ?></div>
+				<?php endif; ?>
 
 				<?php if ( $phones ) : ?>
 					<div class="footer__contacts footer__phones">
