@@ -1,13 +1,9 @@
 <?php
 	$mailingBg = get_sub_field( 'background' );
 	$bgImage = false;
-	if ( $mailingBg ) {
-		$bgImage = 'style="background-image: url(' . $mailingBg . ')"';
-	}
+	if ( $mailingBg ) $bgImage = 'style="background-image: url(' . $mailingBg . ')"';
 	$title = ! empty( $args['title'] ) ? $args['title'] : get_sub_field( 'title' );
 	$text = ! empty( $args['text'] ) ? $args['text'] : get_sub_field( 'text' );
-	$label = ! empty( $args['label'] ) ? $args['label'] : get_sub_field( 'label' );
-	$link = ! empty( $args['link'] ) ? $args['link'] : get_sub_field( 'link' );
 ?>
 
 <section class="mailing">
@@ -33,24 +29,6 @@
 					<div class="policy mailing__policy">Mit meiner Anmeldung bestätige ich, dass ich die Datenschutzerklärung von <a href="<?php echo get_privacy_policy_url(); ?>" target="_blank">Timegemma</a> gelesen habe</div>
 				</form>
 			</div>
-		</div>
-	</div>
-
-	<div class="mailing__social">
-		<div class="mailing__social-wrapper">
-			<div class="mailing__social-text">
-				Wir sind auf
-				<?php if ( $label ) : ?>
-					<span><?php echo $label; ?></span>
-				<?php endif; ?>
-			</div>
-
-			<a href="<?php echo $link; ?>" target="_blank" class="btn btn--dial mailing__link">
-				Alle Nachrichten
-				<div class="btn__dial">
-					<svg width="83" height="76"><use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#icon-arrow-dial"></use></svg>
-				</div>
-			</a>
 		</div>
 	</div>
 </section>
